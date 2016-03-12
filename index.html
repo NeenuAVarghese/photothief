@@ -1,19 +1,60 @@
 <!doctype html>
 <html>
   <head>
-    <title>Landing</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Photos Thief</title>
+    <!-- Test design with MDL CSS framework -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.2/material.indigo-pink.min.css">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
-    <header>
-    </header>
-    <main>
-    </main>
-      <div>
-        <span class="title">Hello, world!</span>
-      </div>
-    <footer>
-    </footer>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Photos Thief - You got Blackmail !</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation pt_navAction">
+            <a class="mdl-navigation__link pt_signUpAction" href="">Sign Up</a>
+            <a class="mdl-navigation__link pt_signInOutAction" href="">Sign In</a>
+            <a class="mdl-navigation__link pt_demandAction" href="">Demands</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="mdl-layout__content">
+        <div class="mdl-grid">
+          <div class="page-content container">
+            <!-- Content put in here -->
+            <div id="pt_PhotosSlider">
+              <!-- Slider go here -->
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Photos Thief</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="">Help</a></li>
+            <li><a href="">Privacy & Terms</a></li>
+          </ul>
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- MDL CSS library java script -->
+    <script defer src="https://code.getmdl.io/1.1.2/material.min.js"></script>
+    <!-- jQuery and application specific JS -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="javascripts/photothief.js"></script>
+    <!-- 3rd parties library beaverslider.com -->
+    <script src="libraries/beaverslider/beaverslider.js"></script>
+    <script src="libraries/beaverslider/beaverslider-effects.js"></script>
   </body>
 </html>

@@ -4,3 +4,8 @@
   padding: 5em;
   float: right;
 }
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
