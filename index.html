@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
   <head>
-    <title>Photos Thief</title>
+    <title>PhotoThief - You've got Blackmail!</title>
     <!-- Test design with MDL CSS framework -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.2/material.indigo-pink.min.css">
+    <link href="stylesheets/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
   </head>
 
@@ -13,17 +13,42 @@
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Photos Thief - You got Blackmail !</span>
+          <span class="mdl-layout-title">PhotoThief</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect pt_uploadAction" href="#"><i class="material-icons">cloud_upload</i> Upload</button>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Search -->
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
+            </div>
+          </div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation pt_navAction">
-            <a class="mdl-navigation__link pt_signUpAction" href="">Sign Up</a>
-            <a class="mdl-navigation__link pt_signInOutAction" href="">Sign In</a>
-            <a class="mdl-navigation__link pt_demandAction" href="">Demands</a>
+            <a class="mdl-navigation__link pt_demandAction" href="#">Demands</a>
+            <!--<a class="mdl-navigation__link pt_signUpAction" href="#">Sign Up</a>-->
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pt_signUpAction">Sign Up</button>
+            <!--<a class="mdl-navigation__link pt_signInOutAction" href="#">Sign In</a>-->
+            <a class="mdl-navigation__link pt_loginAction" href="#">Login</a>
+            <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="1">account_circle</div>
           </nav>
         </div>
       </header>
+      <!-- Hamburger menu -->
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">PhotoThief</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link pt_uploadAction" href="#"><i class="material-icons">cloud_upload</i> Upload</a>
+            <a class="mdl-navigation__link pt_demandAction" href="#"><i class="material-icons">gavel</i> Demands</a>
+            <a class="mdl-navigation__link pt_signUpAction" href="#"><i class="material-icons">person_add</i> Sign Up</a>
+            <a class="mdl-navigation__link pt_loginAction" href="#"><i class="material-icons">account_circle</i> Log In</a>
+          </nav>
+      </div>
 
       <main class="mdl-layout__content">
         <div class="mdl-grid">
@@ -34,14 +59,18 @@
             </div>
           </div>
         </div>
+
+        <!-- MDL Progress Bar with Indeterminate Progress -->
+        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
       </main>
 
       <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
-          <div class="mdl-logo">Photos Thief</div>
+          <div class="mdl-logo">PhotoThief</div>
           <ul class="mdl-mini-footer__link-list">
-            <li><a href="">Help</a></li>
-            <li><a href="">Privacy & Terms</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+            <li><i class="material-icons">face</i></li>
           </ul>
         </div>
       </footer>
@@ -49,10 +78,10 @@
     </div>
 
     <!-- MDL CSS library java script -->
-    <script defer src="https://code.getmdl.io/1.1.2/material.min.js"></script>
+    <script defer src="js/material.min.js"></script>
     <!-- jQuery and application specific JS -->
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="javascripts/photothief.js"></script>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/photothief.js"></script>
     <!-- 3rd parties library beaverslider.com -->
     <script src="libraries/beaverslider/beaverslider.js"></script>
     <script src="libraries/beaverslider/beaverslider-effects.js"></script>
