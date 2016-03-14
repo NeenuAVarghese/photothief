@@ -7,6 +7,11 @@
     <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
     <link href="libraries/collageplus/support/examples.css" rel="stylesheet" type="text/css">
     <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
+    <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+    <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="libraries/owlcarousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="libraries/owlcarousel/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css">
+    <!-- project specific styles -->
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
   </head>
 
@@ -53,16 +58,22 @@
       </div>
 
       <main class="mdl-layout__content">
-        <div class="mdl-grid">
-          <div class="page-content container">
-            <!-- Content put in here -->
-            <div id="pt_PhotosSlider">
-              <!-- Slider go here -->
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell--1-offset-desktop"></div>
+            <div class="mdl-cell mdl-cell--10-col-desktop">
+              <!-- Content put in here -->
+              <p>Most wanted Hall of Shame</p>
+              <div id="pt_photoSlider1" class="owl-carousel pt_photosSlider-Container"></div>
+              <p>Newest Uploads</p>
+              <div id="pt_photoSlider2" class="owl-carousel pt_photosSlider-Container"></div>
             </div>
           </div>
         </div>
 
+
         <!-- Collage gallery -->
+
         <section class="Collage effect-parent">
           <div class="Image_Wrapper"><img src="http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
           <div class="Image_Wrapper"><img src="http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
@@ -114,13 +125,14 @@
     <script src="js/jquery-2.0.3.min.js"></script>
     <!-- Material Design Light -->
     <script src="js/material.min.js"></script>
-    <!-- Application specific JS -->
-    <script src="js/photothief.js"></script>
-    <!-- 3rd party library beaverslider.com -->
-    <script defer src="libraries/beaverslider/beaverslider.js"></script>
-    <script defer src="libraries/beaverslider/beaverslider-effects.js"></script>
     <!-- 3rd party library collageplus.edlea.com -->
     <script defer src="libraries/collageplus/jquery.collagePlus.min.js"></script>
+    <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+    <script src="libraries/owlcarousel/owl-carousel/owl.carousel.js"></script>
+    <!-- 3rd party library collageplus -->
     <script defer src="js/collageplus-load.js"></script>
+
+    <!-- Application specific JS have it load last -->
+    <script src="js/photothief.js"></script>
   </body>
 </html>

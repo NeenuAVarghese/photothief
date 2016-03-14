@@ -5,7 +5,11 @@
   float: right;
 }
 
-.container {
-  max-width: 700px;
-  margin: auto;
+.pt_photosSlider-Container .owl-item{
+  margin: 3px;
+}
+.pt_photosSlider-Container .owl-item img{
+  display: block;
+  width: 100%;
+  height: auto;
 }

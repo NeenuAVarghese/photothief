@@ -1,5 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
+/* global console: true, alert: true */
 
 var main = function () {
     "use strict";
@@ -18,34 +19,44 @@ var main = function () {
     // Function for the initial load of the page.
     function initialize() {
 
-        var slider;
-        var photoData;
-
-        // TODO: pull data from JSON-Server here to get photoData
-        photoData = "Get JSON Server data here and turn it into array";
-
-        // Configured the BeaverSlider and pass photoData in
-        slider = new BeaverSlider({
-            type: "carousel",
-            structure: {
-                container: {
-                    id: "pt_PhotosSlider",
-                    width: 640,
-                    height: 480
-                }
+        // Load owlCarousel for slider 1.  Sample data pull from image 40 to 50
+        $("#pt_photoSlider1").owlCarousel({
+            jsonPath : "http://localhost:3000/photos?_start=40&_end=50",
+            jsonSuccess : function (data) {
+                // Call back function to process the photo data we pull
+                data.forEach(function(image) {
+                    var $img = $("<img>");
+                    $img.attr("src", image.src);
+                    $img.attr("alt", "images from json");
+                    $("#pt_photoSlider1").append($img);
+                });
             },
-            content: {
-                images: ["http://lorempixel.com/640/480/nature",
-                "http://lorempixel.com/640/480/animals",
-                "http://lorempixel.com/640/480/cats"]
-            },
-            animation: {
-                effects: effectSets["carousel: slideOver"],
-                interval: 4000,
-                initialInterval: 4000,
-                waitAllImages: true
-            }
+            autoPlay : 5000, //Set AutoPlay to 3 seconds
+            items : 6,
+            lazyLoad : true,
+            itemsDesktop : [1199,5],
+            itemsDesktopSmall : [979,3]
         });
+
+        $("#pt_photoSlider2").owlCarousel({
+            jsonPath : "http://localhost:3000/photos?_start=0&_end=10",
+            jsonSuccess : function (data) {
+                // Call back function to process the photo data we pull
+                data.forEach(function(image) {
+                    var $img = $("<img>");
+                    $img.attr("src", image.src);
+                    $img.attr("alt", "images from json");
+                    $("#pt_photoSlider2").append($img);
+                });
+            },
+            autoPlay : 5000, //Set AutoPlay to 3 seconds
+            items : 6,
+            lazyLoad : true,
+            itemsDesktop : [1199,5],
+            itemsDesktopSmall : [979,3]
+        });
+
+
 
         // TODO: Any other tasks need to be done here to initialize page
     } // End iniitalize function
@@ -127,6 +138,7 @@ var main = function () {
 
     // Call function to intitialize it here
     initialize();
+
 };
 
 $(document).ready(main);
