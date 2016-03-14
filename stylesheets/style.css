@@ -70,13 +70,7 @@ html body {
 
 }
 
-.Collage img:hover {
-  opacity: 0.7;
-  cursor: pointer;
-}
-
 .Collage img:active {
-  opacity: 1;
   transform-style: preserve-3d;
   transform: rotateY(180deg);
   transition: all 1.0s linear;
@@ -84,7 +78,19 @@ html body {
 
 .Caption_Content{
   color: #FFF;
+  padding: 20px 0 20px 20px;
+}
+
+.like {
+  cursor: pointer;
+}
+
+.counter {
+  border-radius: 50%;
+  background-color: #FF4081;
   padding: 20px;
+  margin: 5px;
+  cursor: default;
 }
 
 .mdl-mini-footer {

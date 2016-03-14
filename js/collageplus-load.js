@@ -6,7 +6,7 @@
 $(window).load(function () {
     $(document).ready(function(){
         collage();
-        //$('.Collage').collageCaption();
+        $('.Collage').collageCaption();
     });
 });
 
@@ -16,6 +16,7 @@ function collage() {
     $('.Collage').removeWhitespace().collagePlus(
         {
             'fadeSpeed'     : 2000,
+            //'allowPartialLastRow' : true,
             'effect'        : 'effect-3',
             'targetHeight'  : 200
         }
