@@ -1,3 +1,7 @@
+html body {
+  background-color: #E6E6E6;
+}
+
 .title {
   font-size: 2em;
   color: #FF0000;
@@ -5,11 +9,84 @@
   float: right;
 }
 
-.pt_photosSlider-Container .owl-item{
-  margin: 3px;
+.heading {
+  font-size: 1.25em;
+  margin: 1em 0 0 3em;
 }
-.pt_photosSlider-Container .owl-item img{
+
+.pt_photosSlider-Container .owl-item {
+  margin: 3px;
+  border: 6px solid #FFF;
+
+}
+
+.pt_photosSlider-Container .owl-item img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.owl-theme .owl-controls .owl-buttons div {
+  position: absolute;
+}
+
+.owl-theme .owl-controls .owl-buttons .owl-prev{
+  left: -5em;
+  top: 7em;
+}
+
+.owl-theme .owl-controls .owl-buttons .owl-next{
+  right: -5em;
+  top: 7em;
+}
+
+.Image_Wrapper, .pt_photosSlider-Container .owl-item {
+  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.Image_Wrapper {
+  opacity: 0;
+}
+
+.pt_photosSlider-Container .owl-item, .Collage img {
+  border: 6px solid #FFF;
+}
+
+.Collage{
+  padding: 10px;
+}
+
+.Collage img {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
+  opacity: 1;
+
+}
+
+.Collage img:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.Collage img:active {
+  opacity: 1;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  transition: all 1.0s linear;
+}
+
+.Caption_Content{
+  color: #FFF;
+  padding: 20px;
+}
+
+.mdl-mini-footer {
+  padding: 1.25em;
 }

@@ -2,10 +2,14 @@
 <html>
   <head>
     <title>PhotoThief - You've got Blackmail!</title>
+    <!-- Favicon encoded as base64, for localhost -->
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+    <!-- Reset default stylesheets -->
+    <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
     <!-- Test design with MDL CSS framework -->
     <link href="stylesheets/material-icons.css" rel="stylesheet" type="text/css">
     <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
-    <link href="libraries/collageplus/support/examples.css" rel="stylesheet" type="text/css">
+    <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
     <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
     <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
     <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
@@ -23,7 +27,9 @@
           <span class="mdl-layout-title">PhotoThief</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect pt_uploadAction" href="#"><i class="material-icons">cloud_upload</i> Upload</button>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect pt_uploadAction">
+            <i class="material-icons">cloud_upload</i> Upload
+          </button>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Search -->
@@ -63,9 +69,9 @@
             <div class="mdl-cell--1-offset-desktop"></div>
             <div class="mdl-cell mdl-cell--10-col-desktop">
               <!-- Content put in here -->
-              <p>Most wanted Hall of Shame</p>
+              <p class="heading">Most wanted Hall of Shame</p>
               <div id="pt_photoSlider1" class="owl-carousel pt_photosSlider-Container"></div>
-              <p>Newest Uploads</p>
+              <p class="heading">Newest Uploads</p>
               <div id="pt_photoSlider2" class="owl-carousel pt_photosSlider-Container"></div>
             </div>
           </div>
@@ -73,14 +79,43 @@
 
 
         <!-- Collage gallery -->
-
+        <p class="heading">Random Mix</p>
         <section class="Collage effect-parent">
-          <div class="Image_Wrapper"><img src="http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
+          <div class="Image_Wrapper"><img src="photos/001.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/012.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/003.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/014.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/025.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/016.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/027.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/018.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/029.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/010.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/021.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/012.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/023.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/014.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/035.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/016.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/027.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/018.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/039.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/040.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/051.jpg" alt="photo"></div>
+          <div class="Image_Wrapper"><img src="photos/062.jpg" alt="photo"></div>
+          <!-- <div class="Image_Wrapper"><img src="http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
           <div class="Image_Wrapper"><img src="http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/1000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/1500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/1500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
+
+          <div class="Image_Wrapper"><img src="http://deelay.me/2500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/1500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
           <div class="Image_Wrapper"><img src="http://deelay.me/500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
           <div class="Image_Wrapper"><img src="http://deelay.me/3000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
           <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/2500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
 
           <div class="Image_Wrapper"><img src="http://deelay.me/4500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
           <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
@@ -89,23 +124,16 @@
           <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
           <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
 
-          <div class="Image_Wrapper"><img src="http://deelay.me/6500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/4500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/7000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/7500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/7500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
-
-          <div class="Image_Wrapper"><img src="http://deelay.me/8500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/7500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/6500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/9000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/9500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/9500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/4500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/6000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/6500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
+          <div class="Image_Wrapper"><img src="http://deelay.me/6000?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div> -->
         </section>
 
         <!-- MDL Progress Bar with Indeterminate Progress -->
-        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+        <!-- <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div> -->
       </main>
 
       <footer class="mdl-mini-footer">

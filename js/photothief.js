@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global console: true, alert: true */
+/* global alert: true */
 
 var main = function () {
     "use strict";
@@ -19,9 +19,9 @@ var main = function () {
     // Function for the initial load of the page.
     function initialize() {
 
-        // Load owlCarousel for slider 1.  Sample data pull from image 40 to 50
+        // Load owlCarousel for slider 1.  Sample data pull from image 40 to 60
         $("#pt_photoSlider1").owlCarousel({
-            jsonPath : "http://localhost:3000/photos?_start=40&_end=50",
+            jsonPath : "http://localhost:3000/photos?_start=40&_end=60",
             jsonSuccess : function (data) {
                 // Call back function to process the photo data we pull
                 data.forEach(function(image) {
@@ -31,15 +31,20 @@ var main = function () {
                     $("#pt_photoSlider1").append($img);
                 });
             },
+            navigation: true,
+            navigationText: [
+              "<i class='material-icons'>navigate_before</i>",
+              "<i class='material-icons'>navigate_next</i>" ],
             autoPlay : 5000, //Set AutoPlay to 3 seconds
-            items : 6,
+            items : 8,
             lazyLoad : true,
             itemsDesktop : [1199,5],
             itemsDesktopSmall : [979,3]
         });
 
+        // Load owlCarousel for slider 2.  Sample data pull from image 0 to 25
         $("#pt_photoSlider2").owlCarousel({
-            jsonPath : "http://localhost:3000/photos?_start=0&_end=10",
+            jsonPath : "http://localhost:3000/photos?_start=0&_end=30",
             jsonSuccess : function (data) {
                 // Call back function to process the photo data we pull
                 data.forEach(function(image) {
@@ -49,8 +54,12 @@ var main = function () {
                     $("#pt_photoSlider2").append($img);
                 });
             },
+            navigation: true,
+            navigationText: [
+              "<i class='material-icons'>navigate_before</i>",
+              "<i class='material-icons'>navigate_next</i>" ],
             autoPlay : 5000, //Set AutoPlay to 3 seconds
-            items : 6,
+            items : 8,
             lazyLoad : true,
             itemsDesktop : [1199,5],
             itemsDesktopSmall : [979,3]

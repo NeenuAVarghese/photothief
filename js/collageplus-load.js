@@ -1,11 +1,14 @@
 // All images need to be loaded for this plugin to work so
+/*$(document).ready(function(){
+     collage();
+});*/
 // we end up waiting for the whole window to load in this example
-//$(window).load(function () {
+$(window).load(function () {
     $(document).ready(function(){
         collage();
         //$('.Collage').collageCaption();
     });
-//});
+});
 
 
 // Here we apply the actual CollagePlus plugin
@@ -13,6 +16,7 @@ function collage() {
     $('.Collage').removeWhitespace().collagePlus(
         {
             'fadeSpeed'     : 2000,
+            'effect'        : 'effect-3',
             'targetHeight'  : 200
         }
     );
