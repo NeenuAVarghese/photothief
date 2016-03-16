@@ -96,3 +96,14 @@ html body {
 .mdl-mini-footer {
   padding: 1.25em;
 }
+
+.pt_loginCard.mdl-card {
+  min-width: 450px;
+  height: 320px;
+  margin: auto;
+}
+.pt_loginCard > .mdl-card__title {
+  color: #fff;
+  background: #46B6AC;
+
+}
