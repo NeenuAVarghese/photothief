@@ -42,11 +42,9 @@
             </div>
           </div>
           <!-- Navigation. We hide it in small screens. -->
-          <nav class="mdl-navigation pt_navAction">
-            <a class="mdl-navigation__link pt_demandAction" href="#">Demands</a>
-            <!--<a class="mdl-navigation__link pt_signUpAction" href="#">Sign Up</a>-->
+          <nav class="mdl-navigation pt_landPage-navigation">
+            <a class="mdl-navigation__link pt_openDemandAction" href="#">Demands</a>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pt_openSignupCardAction">Sign Up</button>
-            <!--<a class="mdl-navigation__link pt_signInOutAction" href="#">Sign In</a>-->
             <a class="mdl-navigation__link pt_openLoginCardAction" href="#">Login</a>
             <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="1">account_circle</div>
           </nav>
@@ -138,10 +136,10 @@
         </div>
 
         <div class="mdl-mini-footer__right-section pt_landPage-loginInfo">
-          <span id="pt_authenticated_Id"></span>
-          <span id="pt_authenticated_Email"></span>
+          <span id="pt_session_Id"></span>
+          <span id="pt_session_User"></span>
+          <span id="pt_session_Email"></span>
         </div>
-
       </footer>
 
     </div>

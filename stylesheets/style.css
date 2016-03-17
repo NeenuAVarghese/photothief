@@ -97,12 +97,12 @@ html body {
   padding: 1.25em;
 }
 
-.pt_loginCard.mdl-card {
+.pt_loginCard.mdl-card, .pt_signupCard.mdl-card {
   min-width: 450px;
-  height: 320px;
+  height: auto;
   margin: auto;
 }
-.pt_loginCard > .mdl-card__title {
+.pt_loginCard > .mdl-card__title , .pt_signupCard > .mdl-card__title {
   color: #fff;
   background: #46B6AC;
 

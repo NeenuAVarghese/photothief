@@ -8,13 +8,15 @@
     <div class="mdl-card__supporting-text">
       <!-- Textfield with Floating Label -->
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="pt_loginCard-loginId">
+        <input class="mdl-textfield__input" type="text" pattern="^[a-z\d\.]{4,20}$" id="pt_loginCard-loginId">
         <label class="mdl-textfield__label" for="pt_loginCard-loginId">Login ID</label>
+        <span class="mdl-textfield__error">Login ID required. Minimum 4, max 20 characters</span>
       </div>
       <!-- Textfield with Floating Label -->
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="password" id="pt_loginCard-loginPassword">
+        <input class="mdl-textfield__input" type="password" pattern="^.{1,50}$" id="pt_loginCard-loginPassword">
         <label class="mdl-textfield__label" for="pt_loginCard-loginPassword">Password</label>
+        <span class="mdl-textfield__error">Password cannot be empty !</span>
       </div>
       <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="pt_loginCard-revealPassword">
         <input type="checkbox" id="pt_loginCard-revealPassword" class="mdl-checkbox__input">
