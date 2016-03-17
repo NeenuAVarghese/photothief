@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PhotoThief - You've got Blackmail!</title>
+  <!-- Favicon encoded as base64, for localhost -->
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <!-- Reset default stylesheets -->
+  <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
+  <!-- Test design with MDL CSS framework -->
+  <link href="stylesheets/material-icons.css" rel="stylesheet" type="text/css">
+  <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
+  <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
+  <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
+  <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+  <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
+  <link href="libraries/owlcarousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
+  <link href="libraries/owlcarousel/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css">
+  <!-- project specific styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+
+  <!--<link href="CSS/mystyle.css" rel="stylesheet">-->
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbaritems" aria-expanded="false">
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#">Photo Thief</a>
+      </div>
+
+      <div class="navbar-collapse collapse" id="navbaritems">
+        <ul class="nav navbar-nav ">
+          <li>
+            <div class="mdl-layout-spacer"></div>
+            <button type="button" class="btn navbar-btn navbar-right pt_modalButton pt_uploadAction" data-toggle="modal" data-target="#uploadModal">
+              <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> UPLOAD
+            </button>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#">Demands</a>
+          </li>
+          <li>
+
+            <!--<a class="mdl-navigation__link pt_signUpAction" href="#">Sign Up</a>-->
+            <button type="button" class="btn navbar-btn navbar-right pt_modalButton pt_signUpAction" data-toggle="modal" data-target="#signupModal">SIGN UP</button>
+          </li>
+          <li>
+            <button type="button" class="btn navbar-btn navbar-right pt_modalButton" data-toggle="modal" data-target="#loginModal">LOGIN</button>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Login</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="username" class="control-label">Username:</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+              <label for="username" class="control-label">Password:</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+            <button type="button" class="btn btn-primary">Sign In</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">I want to join</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="username" class="control-label">Name:</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+              <label for="username" class="control-label">E-Mail:</label>
+              <input type="email" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+              <label for="username" class="control-label">User Id:</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+              <label for="username" class="control-label">Password:</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+            <button type="button" class="btn btn-primary">Sign Me Up</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fuid">
+    <div class="page-content pt_landPage-content">
+      <!-- The dynamic content goes in here -->
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row row-footer">
+        <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
+          <a href="#">PhotoThief</a>
+          <!-- Can put a list of links here -->
+        </div>
+        <div class="col-xs-6 col-sm-5 address">
+          <a href="#">Help</a>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="nav navbar-nav" style="padding: 40px 10px;">
+            <a class="btn btn-social-icon btn-google-plus" href="http://www.google.com/+"><i class="fa fa-google-plus"></i></a>
+            <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
+            <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin"></i></a>
+            <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+            <a class="btn ntm-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+            <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+          </div>
+
+        </div>
+        <div class="col-xs-12">
+          <p style="padding:10px;"></p>
+          <p align=center>© PhotoThief</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <!-- Material Design Light -->
+  <script src="js/material.min.js"></script>
+  <!-- 3rd party library collageplus.edlea.com -->
+  <script defer src="libraries/collageplus/jquery.collagePlus.min.js"></script>
+  <script defer src="libraries/collageplus/extras/jquery.collageCaption.min.js"></script>
+  <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+  <script src="libraries/owlcarousel/owl-carousel/owl.carousel.js"></script>
+  <!-- 3rd party library collageplus -->
+  <script defer src="js/collageplus-load.js"></script>
+
+  <!-- Application specific JS have it load last -->
+  <script src="js/photothief.js"></script>
+</body>
+
+</html>

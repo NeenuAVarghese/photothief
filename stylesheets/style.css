@@ -1,5 +1,5 @@
 html body {
-  background-color: #E6E6E6;
+  padding-top: 70px;
 }
 
 .title {
@@ -106,4 +106,33 @@ html body {
   color: #fff;
   background: #46B6AC;
 
+}
+
+.pt_modalButton{
+   color: #ffffff; 
+  background-color: #ff4081; 
+  border-color: #130269; 
+}
+
+.navbar-inverse{
+  background: #3F51B5;
+  
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+  margin-top:20px; 
+}
+
+.navbar-right{
+  margin-right: 30px;
+}
+.navbar-inverse .navbar-nav > li >a{
+  color:#FFFFFF;
+}
+.row-footer {
+  margin: 0px auto;
+  padding: 20px 0px;
+  background-color: #AfAfAf;
 }
