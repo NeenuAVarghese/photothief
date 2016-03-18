@@ -33,25 +33,27 @@
 <body>
 
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+    <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbaritems" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle Navigation</span>
           <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span> Photo Thief</a>
+        <a class="navbar-brand" href="#"> Photo Thief</a>
       </div>
-      <div class="navbar-collapse collapse" id="navbaritems">
+      <div id="navbar" class="navbar-collapse collapse" >
         <ul class="nav navbar-nav">
           <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
           <li><a href="AboutUs.html"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Demands</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a class="pt_signUpAction" data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-qrcode"></span> SIGN UP</a>
+            <a class="pt_signUpAction" data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> SIGN UP</a>
           </li>
           <li>
-            <a class="pt_openLoginCardAction" data-toggle="modal" data-target="#loginModal"><span  class="glyphicon glyphicon-log-in"></span> LOGIN</a>
+            <a  data-toggle="modal" data-target="#loginModal"><span  class="glyphicon glyphicon-log-in" aria-hidden="true"></span> LOGIN</a>
           </li>
         </ul>
       </div>
@@ -59,7 +61,7 @@
   </nav>
 
   <!-- Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade pt_loginCard" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -70,13 +72,13 @@
           <form>
             <div class="form-group">
               <label for="username" class="control-label">Username:</label>
-              <input type="text" class="form-control" id="username">
+              <input type="text" class="form-control" id="pt_loginCard-loginId">
             </div>
             <div class="form-group">
               <label for="username" class="control-label">Password:</label>
-              <input type="password" class="form-control" id="password">
+              <input type="password" class="form-control" id="pt_loginCard-loginPassword">
             </div>
-            <button type="button" class="btn btn-primary">Sign In</button>
+            <button type="button" class="btn btn-primary pt_loginAction">Sign In</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -136,7 +138,7 @@
         </div>
         <div class="col-xs-12 col-sm-2">
           <p style="padding:20px;"></p>
-          <button type="button" class="btn btn-warning btn-block pt_modalButton pt_uploadAction" data-toggle="modal" data-target="#uploadModal">
+          <button type="button" class="btn btn-warning btn-lg btn-block pt_modalButton pt_uploadAction" data-toggle="modal" data-target="#uploadModal">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> UPLOAD
           </button>
         </div>
@@ -180,7 +182,7 @@
   </section>
 
   <footer>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row row-footer">
         <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
           <h5>Quick Links</h5>

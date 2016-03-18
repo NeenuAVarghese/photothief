@@ -77,7 +77,7 @@ body {
 }
 
 .Caption_Content {
-  color: #FFF;
+  color: #000;
   padding: 20px 0 20px 20px;
 }
 
@@ -115,16 +115,7 @@ body {
   padding: 20px 0px;
   background-color: #AfAfAf;
 }
-.navbar .navbar-nav {
-  display: inline-block;
-  float: none;
-  vertical-align: top;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-.navbar-right{
-  margin-right: 30px;
-}
+
 .jumbotron {
   margin-top: 0px auto;
   padding: 70px 30px;
