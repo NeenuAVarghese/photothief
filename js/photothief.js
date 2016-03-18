@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global alert: true, console: true, componentHandler: true */
+/* global alert: true, console: true */
 
 var main = function () {
     "use strict";
@@ -29,7 +29,7 @@ var main = function () {
                 login : ".pt_openLoginCardAction",
                 logout : ".pt_logOutAction",
                 signup : ".pt_openSignupCardAction",
-                demand : ".pt_openDemandAction",
+                demand : ".pt_openDemandCardAction",
             }
         },
         carousel: {
@@ -67,7 +67,7 @@ var main = function () {
             }
         },
         uploadCard: {
-            handle: ".pt_uploadCard",
+            handle: "#pt_uploadCard",
             template: "template/upload.tmpl",
             field: {
                 source: "#pt_uploadCard-source"
@@ -77,7 +77,7 @@ var main = function () {
             }
         },
         demandCard: {
-            handle: ".pt_demandCard",
+            handle: "#pt_demandCard",
             template: "templates/demand.tmpl",
             field: {
                 photoId: "#pt_demandCard-photoId",
@@ -135,9 +135,6 @@ var main = function () {
                 // Add the newly add template login into the land page content
                 $($pt.landPage.section.content).append($template);
 
-                // MDL update it
-                componentHandler.upgradeAllRegistered();
-
                 // Loop to load carousel
                 loadCarousel($pt.carousel.mostWanted, $wantedSource);
                 loadCarousel($pt.carousel.newestUpload, $newestSource);
@@ -163,10 +160,14 @@ var main = function () {
         $($pt.landPage.session.email).text(result[0].email);
 
         // Hide signup button
-        $($pt.landPage.action.signup).fadeOut();
+        $($pt.landPage.action.signup).addClass("hidden").removeClass("show");
+        // Show Demand button
+        $($pt.landPage.action.demand).addClass("show").removeClass("hidden");
         // Toggle the login Button to say logout
         $($pt.landPage.action.login).addClass(($pt.landPage.action.logout).substr(1));
-        $($pt.landPage.action.login).text(" LOGOUT");
+        $($pt.landPage.action.login).children(":last-child").text("LOGOUT");
+        $($pt.landPage.action.login).children(":first-child").addClass("glyphicon-log-out");
+        $($pt.landPage.action.login).children(":first-child").removeClass("glyphicon-log-in");
         $($pt.landPage.action.login).removeClass(($pt.landPage.action.login).substr(1));
 
         // Reload the main page with carousel
@@ -236,10 +237,14 @@ var main = function () {
         $($pt.landPage.session.email).text("");
 
         // show SignUp button
-        $($pt.landPage.action.signup).fadeIn();
+        $($pt.landPage.action.signup).addClass("show").removeClass("hidden");
+        // hide demands
+        $($pt.landPage.action.demand).addClass("hidden").removeClass("show");
         // Toggle the login Button to say logout
         $($pt.landPage.action.logout).addClass(($pt.landPage.action.login).substr(1));
-        $($pt.landPage.action.logout).text(" LOGIN");
+        $($pt.landPage.action.logout).children(":last-child").text("LOGIN");
+        $($pt.landPage.action.logout).children(":first-child").addClass("glyphicon-log-in");
+        $($pt.landPage.action.logout).children(":first-child").removeClass("glyphicon-log-out");
         $($pt.landPage.action.logout).removeClass(($pt.landPage.action.logout).substr(1));
 
         // TODO:  Anything else that we need to handle go here

@@ -4,12 +4,9 @@
 <head>
   <title>PhotoThief - You've got Blackmail!</title>
   <!-- Favicon encoded as base64, for localhost -->
-  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon">
   <!-- Reset default stylesheets -->
   <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
-  <!-- Test design with MDL CSS framework -->
-  <link href="stylesheets/material-icons.css" rel="stylesheet" type="text/css">
-  <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
   <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
   <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
   <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
@@ -19,6 +16,9 @@
   <!--BootStrap Libraries -->
   <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-theme.min.css">
+  <!-- MDL libraries -->
+  <link rel="stylesheet" href="libraries/material/css/material-icons.css">
+  <link rel="stylesheet" href="libraries/material/css/material.indigo-pink.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.css">
@@ -45,21 +45,24 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse" >
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-          <li><a href="AboutUs.html"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Demands</a></li>
+          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true">&nbsp;</span><span>HOME</span></a></li>
+          <li><a href="#" class="btn hidden pt_openDemandCardAction"><span class="glyphicon glyphicon-fire" aria-hidden="true">&nbsp;</span><span>DEMANDS</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="" class="pt_openSignupCardAction"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> SIGN UP</a>
+            <a href="#" class="btn pt_openSignupCardAction"><span class="glyphicon glyphicon-edit" aria-hidden="true">&nbsp;</span><span>SIGN UP</span></a>
           </li>
           <li>
-            <a href="" class="pt_openLoginCardAction"><span  class="glyphicon glyphicon-log-in" aria-hidden="true"></span> LOGIN</a>
+            <a href="#" class="btn pt_openLoginCardAction"><span class="glyphicon glyphicon-log-in" aria-hidden="true">&nbsp;</span><span>LOGIN</span></a>
           </li>
-        </ul>
-        <ul class=".pt_landPage_loginInfo">
-          <li><span id="pt_session_Id"></span></li>
-          <li><span id="pt_session_User"></span></li>
-          <li><span id="pt_session_Email"></span></li>
+          <li class=".pt_landPage_loginInfo">
+            <a href="#" class="btn disabled">
+              <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span>
+              <span id="pt_session_Id" hidden></span>
+              <span id="pt_session_Email" hidden></span>
+              <span id="pt_session_User"></span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -163,7 +166,7 @@
 
 
   <div class="container-fuid">
-    <div class="page-content pt_landPage-content">
+    <div class="pt_landPage-content">
       <!-- The dynamic content goes in here -->
     </div>
   </div>
@@ -230,13 +233,13 @@
     </div>
   </footer>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- JQuery -->
+  <script src="libraries/jquery/jquery-2.2.2.min.js"></script>
+  <!-- Bootstrap -->
   <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
-  <!--<script src="js/jquery-2.0.3.min.js"></script>-->
-  <!-- Material Design Light -->
-  <script src="js/material.min.js"></script>
+  <!-- MDL -->
+  <script src="libraries/material/js/material.min.js"></script>
   <!-- 3rd party library collageplus.edlea.com -->
   <script defer src="libraries/collageplus/jquery.collagePlus.min.js"></script>
   <script defer src="libraries/collageplus/extras/jquery.collageCaption.min.js"></script>
