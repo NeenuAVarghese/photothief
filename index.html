@@ -1,73 +1,174 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>PhotoThief - You've got Blackmail!</title>
-    <!-- Favicon encoded as base64, for localhost -->
-    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
-    <!-- Reset default stylesheets -->
-    <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
-    <!-- Test design with MDL CSS framework -->
-    <link href="stylesheets/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
-    <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
-    <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
-    <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
-    <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="libraries/owlcarousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
-    <link href="libraries/owlcarousel/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css">
-    <!-- project specific styles -->
-    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
-  </head>
 
-  <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <!-- Title -->
-          <span class="mdl-layout-title">PhotoThief</span>
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect pt_uploadAction">
-            <i class="material-icons">cloud_upload</i> Upload
-          </button>
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <!-- Search -->
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
-            </div>
-          </div>
-          <!-- Navigation. We hide it in small screens. -->
-          <nav class="mdl-navigation pt_landPage-navigation">
-            <a class="mdl-navigation__link pt_openDemandAction" href="#">Demands</a>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pt_openSignupCardAction">Sign Up</button>
-            <a class="mdl-navigation__link pt_openLoginCardAction" href="#">Login</a>
-            <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="1">account_circle</div>
-          </nav>
-        </div>
-      </header>
-      <!-- Hamburger menu -->
-      <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">PhotoThief</span>
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link pt_uploadAction" href="#"><i class="material-icons">cloud_upload</i> Upload</a>
-            <a class="mdl-navigation__link pt_demandAction" href="#"><i class="material-icons">gavel</i> Demands</a>
-            <a class="mdl-navigation__link pt_signUpAction" href="#"><i class="material-icons">person_add</i> Sign Up</a>
-            <a class="mdl-navigation__link pt_openLoginCardAction" href="#"><i class="material-icons">account_circle</i> Log In</a>
-          </nav>
+<head>
+  <title>PhotoThief - You've got Blackmail!</title>
+  <!-- Favicon encoded as base64, for localhost -->
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <!-- Reset default stylesheets -->
+  <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
+  <!-- Test design with MDL CSS framework -->
+  <link href="stylesheets/material-icons.css" rel="stylesheet" type="text/css">
+  <link href="stylesheets/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
+  <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
+  <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
+  <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+  <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
+  <link href="libraries/owlcarousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
+  <link href="libraries/owlcarousel/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css">
+  <!--BootStrap Libraries -->
+  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-theme.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.css">
+
+  <!-- project specific styles -->
+  <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+
+  <!-- Optional theme -->
+
+</head>
+
+<body>
+
+  <nav class="pt_landPage-navigation navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"> Photo Thief</a>
       </div>
+      <div id="navbar" class="navbar-collapse collapse" >
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+          <li><a href="AboutUs.html"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Demands</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="" class="pt_openSignupCardAction"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> SIGN UP</a>
+          </li>
+          <li>
+            <a href="" class="pt_openLoginCardAction"><span  class="glyphicon glyphicon-log-in" aria-hidden="true"></span> LOGIN</a>
+          </li>
+        </ul>
+        <ul class=".pt_landPage_loginInfo">
+          <li><span id="pt_session_Id"></span></li>
+          <li><span id="pt_session_User"></span></li>
+          <li><span id="pt_session_Email"></span></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      <main class="mdl-layout__content">
-        <div class="page-content pt_landPage-content">
-          <!-- The dynamic content goes in here -->
+  <!-- Login Modal -->
+  <div class="modal fade" id="pt_loginCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Login</h4>
         </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="pt_loginCard-loginId" class="control-label">Username:</label>
+              <input type="text" class="form-control" id="pt_loginCard-loginId">
+            </div>
+            <div class="form-group">
+              <label for="pt_loginCard-loginPassword" class="control-label">Password:</label>
+              <input type="password" class="form-control" id="pt_loginCard-loginPassword">
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" id="pt_loginCard-revealPassword">Show password</label>
+            </div>
+            <button type="button" class="btn btn-primary pt_loginAction">Sign In</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <p id="pt_loginCard-errorMessage"><p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="pt_signupCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">I want to join</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="pt_signupCard-name" class="control-label">Name:</label>
+              <input type="text" class="form-control" id="pt_signupCard-name">
+            </div>
+            <div class="form-group">
+              <label for="pt_signupCard-email" class="control-label">E-Mail:</label>
+              <input type="email" class="form-control" id="pt_signupCard-email">
+            </div>
+            <div class="form-group">
+              <label for="pt_signupCard-loginId" class="control-label">User Id:</label>
+              <input type="text" class="form-control" id="pt_signupCard-loginId">
+            </div>
+            <div class="form-group">
+              <label for="pt_signupCard-password" class="control-label">Password:</label>
+              <input type="text" class="form-control" id="pt_signupCard-password">
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" id="pt_signupCard-hidePassword">Hide password</label>
+            </div>
+            <button type="button" class="btn btn-primary pt_signupAction">Sign Me Up</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <p id="pt_signupCard-errorMessage"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="jumbotron">
+    <div class="container">
+      <div class="row row-header">
+        <div class="col-xs-12 col-sm-8">
+          <h1>PHOTO - THIEF</h1>
+          <p style="padding:20px;"></p>
+          <p>We have Stolen from the Best ! We are Shameless Thiefs !!</p>
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <!-- NEED to CHANGE THIS IMAGE -->
+          <img src="images/thief.jpg" class="img-responsive">
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <p style="padding:20px;"></p>
+          <button type="button" class="btn btn-warning btn-lg btn-block pt_modalButton pt_uploadAction" data-toggle="modal" data-target="#uploadModal">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> UPLOAD
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
-        <!-- Collage gallery -->
+  <div class="container-fuid">
+    <div class="page-content pt_landPage-content">
+      <!-- The dynamic content goes in here -->
+    </div>
+  </div>
+
+  <!-- Collage gallery -->
         <p class="heading">Random Mix</p>
         <section class="Collage effect-parent">
           <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/001.jpg" alt="photo"></div>
@@ -92,71 +193,60 @@
           <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/040.jpg" alt="photo"></div>
           <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/051.jpg" alt="photo"></div>
           <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/062.jpg" alt="photo"></div>
-          <!-- <div class="Image_Wrapper"><img src="http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
-          <div class="Image_Wrapper"><img src="http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/1000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/1500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/1500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
 
-          <div class="Image_Wrapper"><img src="http://deelay.me/2500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/1500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/3000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/2500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
+  </section>
 
-          <div class="Image_Wrapper"><img src="http://deelay.me/4500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/2500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/5000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div>
-
-          <div class="Image_Wrapper"><img src="http://deelay.me/5500?http://placehold.it/350x150/69D2E7/ffffff" width="350" height="150"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/4500?http://placehold.it/320x180/A7DBD8/ffffff" width="320" height="180"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/3500?http://placehold.it/320x300/E0E4CC/ffffff" width="320" height="300"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/6000?http://placehold.it/472x500/F38630/ffffff" width="472" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/6500?http://placehold.it/320x500/542437/ffffff" width="320" height="500"></div>
-          <div class="Image_Wrapper"><img src="http://deelay.me/6000?http://placehold.it/450x300/53777A/ffffff" width="450" height="300"></div> -->
-        </section>
-
-        <!-- MDL Progress Bar with Indeterminate Progress -->
-        <!-- <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div> -->
-      </main>
-
-      <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__left-section">
-          <div class="mdl-logo">PhotoThief</div>
-          <ul class="mdl-mini-footer__link-list">
+  <footer>
+    <div class="container-fluid">
+      <div class="row row-footer">
+        <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
+          <h5>Quick Links</h5>
+          <!-- Can put a list of links here -->
+          <ul>
+            <li><a href="#">Home</a></li>
             <li><a href="#">Help</a></li>
             <li><a href="#">Privacy & Terms</a></li>
-            <li><i class="material-icons">face</i></li>
           </ul>
         </div>
-
-        <div class="mdl-mini-footer__right-section pt_landPage-loginInfo">
-          <span id="pt_session_Id"></span>
-          <span id="pt_session_User"></span>
-          <span id="pt_session_Email"></span>
+        <div class="col-xs-6 col-sm-5 address">
+          <a href="#">Help</a>
         </div>
-      </footer>
+        <div class="col-xs-12 col-sm-4">
+          <div class="nav navbar-nav" style="padding: 40px 10px;">
+            <a class="btn btn-social-icon btn-google-plus" href="http://www.google.com/+"><i class="fa fa-google-plus"></i></a>
+            <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
+            <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin"></i></a>
+            <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+            <a class="btn ntm-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+            <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+          </div>
 
+        </div>
+        <div class="col-xs-12">
+          <p style="padding:10px;"></p>
+          <p align="center">© PhotoThief</p>
+        </div>
+      </div>
     </div>
+  </footer>
 
-    <!-- jQuery -->
-    <script src="js/jquery-2.0.3.min.js"></script>
-    <!-- Material Design Light -->
-    <script src="js/material.min.js"></script>
-    <!-- 3rd party library collageplus.edlea.com -->
-    <script defer src="libraries/collageplus/jquery.collagePlus.min.js"></script>
-    <script defer src="libraries/collageplus/extras/jquery.collageCaption.min.js"></script>
-    <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
-    <script src="libraries/owlcarousel/owl-carousel/owl.carousel.js"></script>
-    <!-- 3rd party library collageplus -->
-    <script defer src="js/collageplus-load.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
+  <!--<script src="js/jquery-2.0.3.min.js"></script>-->
+  <!-- Material Design Light -->
+  <script src="js/material.min.js"></script>
+  <!-- 3rd party library collageplus.edlea.com -->
+  <script defer src="libraries/collageplus/jquery.collagePlus.min.js"></script>
+  <script defer src="libraries/collageplus/extras/jquery.collageCaption.min.js"></script>
+  <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+  <script src="libraries/owlcarousel/owl-carousel/owl.carousel.js"></script>
+  <!-- 3rd party library collageplus -->
+  <script defer src="js/collageplus-load.js"></script>
 
-    <!-- Application specific JS have it load last -->
-    <script src="js/photothief.js"></script>
-  </body>
+  <!-- Application specific JS have it load last -->
+  <script src="js/photothief.js"></script>
+</body>
+
 </html>
