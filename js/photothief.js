@@ -464,9 +464,6 @@ var main = function () {
         // Add Event handler for the login button
         $($pt.uploadCard.action.demand).on("click", handleUploadAction);
 
-        // Add Event handler for the Checkbox toggle
-        alert ("Action click: " + $target.text());
-
         return false;
     });
   
