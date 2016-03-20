@@ -43,6 +43,11 @@ body {
   background-color: #FF4081;
 }
 
+.modal-backdrop.in {
+  filter: alpha(opacity=80);
+  opacity: .8;
+}
+
 .pt_photosSlider-Container .owl-item {
   margin: 3px;
   border: 6px solid white;

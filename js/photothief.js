@@ -17,6 +17,7 @@ var main = function () {
         landPage: {
             section: {
                 navbar : ".pt_landPage-navigation",
+                slogan : ".pt_landPage-slogan",
                 content: ".pt_landPage-content",
                 loginInfo: ".pt_landPage-loginInfo"
             },
@@ -166,6 +167,8 @@ var main = function () {
         $($pt.landPage.session.email).text(result[0].email);
         $($pt.landPage.session.notify).attr("data-badge", 5 /*result[0].notify*/);
 
+        // Hide slogan
+        $($pt.landPage.section.slogan).addClass("hidden").removeClass("show");
         // Hide signup button
         $($pt.landPage.action.signup).addClass("hidden").removeClass("show");
         // Show demand button
@@ -256,6 +259,8 @@ var main = function () {
         $($pt.landPage.action.demand).addClass("hidden").removeClass("show");
         // Show signup button
         $($pt.landPage.action.signup).addClass("show").removeClass("hidden");
+        // Show slogan
+        $($pt.landPage.section.slogan).addClass("show").removeClass("hidden");
 
         // Toggle the login Button to say logout
         $($pt.landPage.action.icon).text("person");
