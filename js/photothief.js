@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global alert: true, console: true, componentHandler: true */
+/* global alert: true, console: true */
 
 var main = function () {
     "use strict";
@@ -29,7 +29,7 @@ var main = function () {
                 login : ".pt_openLoginCardAction",
                 logout : ".pt_logOutAction",
                 signup : ".pt_openSignupCardAction",
-                demand : ".pt_openDemandAction",
+                demand : ".pt_openDemandCardAction",
             }
         },
         carousel: {
@@ -38,7 +38,7 @@ var main = function () {
             newestUpload: "#pt_carouselNewestUpload"
         },
         loginCard: {
-            handle: ".pt_loginCard",
+            handle: "#pt_loginCard",
             template: "templates/login.tmpl",
             field: {
                 loginId : "#pt_loginCard-loginId",
@@ -52,7 +52,7 @@ var main = function () {
 
         },
         signupCard: {
-            handle: ".pt_signupCard",
+            handle: "#pt_signupCard",
             template: "templates/signup.tmpl",
             field: {
                 name: "#pt_signupCard-name",
@@ -67,7 +67,7 @@ var main = function () {
             }
         },
         uploadCard: {
-            handle: ".pt_uploadCard",
+            handle: "#pt_uploadCard",
             template: "template/upload.tmpl",
             field: {
                 source: "#pt_uploadCard-source"
@@ -77,7 +77,7 @@ var main = function () {
             }
         },
         demandCard: {
-            handle: ".pt_demandCard",
+            handle: "#pt_demandCard",
             template: "templates/demand.tmpl",
             field: {
                 photoId: "#pt_demandCard-photoId",
@@ -135,9 +135,6 @@ var main = function () {
                 // Add the newly add template login into the land page content
                 $($pt.landPage.section.content).append($template);
 
-                // MDL update it
-                componentHandler.upgradeAllRegistered();
-
                 // Loop to load carousel
                 loadCarousel($pt.carousel.mostWanted, $wantedSource);
                 loadCarousel($pt.carousel.newestUpload, $newestSource);
@@ -161,11 +158,16 @@ var main = function () {
         $($pt.landPage.session.id).text(result[0].id);
         $($pt.landPage.session.user).text(result[0].loginId);
         $($pt.landPage.session.email).text(result[0].email);
+
         // Hide signup button
-        $($pt.landPage.action.signup).fadeOut();
+        $($pt.landPage.action.signup).addClass("hidden").removeClass("show");
+        // Show Demand button
+        $($pt.landPage.action.demand).addClass("show").removeClass("hidden");
         // Toggle the login Button to say logout
         $($pt.landPage.action.login).addClass(($pt.landPage.action.logout).substr(1));
-        $($pt.landPage.action.login).text("Logout");
+        $($pt.landPage.action.login).children(":last-child").text("LOGOUT");
+        $($pt.landPage.action.login).children(":first-child").addClass("glyphicon-log-out");
+        $($pt.landPage.action.login).children(":first-child").removeClass("glyphicon-log-in");
         $($pt.landPage.action.login).removeClass(($pt.landPage.action.login).substr(1));
 
         // Reload the main page with carousel
@@ -179,11 +181,11 @@ var main = function () {
         var $loginId = $($pt.loginCard.field.loginId);
         var $password = $($pt.loginCard.field.password);
         var $revealPass = $($pt.loginCard.field.revealPass);
-        var $errorStatus = $($pt.loginCard.field.errorStatus);
+        var $error = $($pt.loginCard.field.errorStatus);
 
         if ($loginId.val().trim() === "" || $password.val().trim() === "") {
             // Empty login Information
-            $errorStatus.text("Either User or Password is empty");
+            $error.text("Either User or Password is empty");
             return false;
         }
 
@@ -193,15 +195,12 @@ var main = function () {
         urlHost += "&password=" + $password.val().trim();
 
         // Clear input boxes
-        $errorStatus.text("");
+        $error.text("");
         $loginId.val("");
-        $loginId.parent().removeClass("is-dirty");
         $password.val("");
-        $password.parent().removeClass("is-dirty");
         // Reset the show password checkbox and also the password type
         if ($revealPass.is(":checked") === true) {
             $revealPass.prop("checked", false);
-            $revealPass.parent().removeClass("is-checked");
             $password.prop("type", "password");
         }
 
@@ -214,11 +213,11 @@ var main = function () {
                 // result is an array if it return
                 if (result.length === 0) {
                     // Failed login
-                    $errorStatus.text("Invalid Login Information");
+                    $error.text("Invalid Login Information");
                     return false;
                 } else if (result.length === 1) {
-                    // We remove the loginCard
-                    $($pt.loginCard.handle).fadeOut(300).remove();
+                    // Close Bootstrap Login Modal
+                    $($pt.loginCard.handle).modal("hide");
                     // Then process the login with the result
                     processSuccessLogin(result);
                 }
@@ -238,10 +237,14 @@ var main = function () {
         $($pt.landPage.session.email).text("");
 
         // show SignUp button
-        $($pt.landPage.action.signup).fadeIn();
+        $($pt.landPage.action.signup).addClass("show").removeClass("hidden");
+        // hide demands
+        $($pt.landPage.action.demand).addClass("hidden").removeClass("show");
         // Toggle the login Button to say logout
         $($pt.landPage.action.logout).addClass(($pt.landPage.action.login).substr(1));
-        $($pt.landPage.action.logout).text("Login");
+        $($pt.landPage.action.logout).children(":last-child").text("LOGIN");
+        $($pt.landPage.action.logout).children(":first-child").addClass("glyphicon-log-in");
+        $($pt.landPage.action.logout).children(":first-child").removeClass("glyphicon-log-out");
         $($pt.landPage.action.logout).removeClass(($pt.landPage.action.logout).substr(1));
 
         // TODO:  Anything else that we need to handle go here
@@ -310,19 +313,14 @@ var main = function () {
                             $email.val("");
                             $loginId.val("");
                             $password.val("");
-                            $name.parent().removeClass("is-dirty");
-                            $email.parent().removeClass("is-dirty");
-                            $loginId.parent().removeClass("is-dirty");
-                            $password.parent().removeClass("is-dirty");
                             // Reset the show password checkbox and also the password type
                             if ($hidePass.is(":checked") === true) {
                                 $hidePass.prop("checked", false);
-                                $hidePass.parent().removeClass("is-checked");
                                 $password.prop("type", "text");
                             }
-                            // Remove the signupCard
-                            $($pt.signupCard.handle).fadeOut(300).remove();
-                            
+                            // Close the signup modal
+                            $($pt.signupCard.handle).modal("hide");
+
                             // Call processSuccessLogin to log the user in
                             // result is an object, wrap it in array
                             processSuccessLogin([result]);
@@ -345,102 +343,49 @@ var main = function () {
     }
 
     // Event handler for Sign Up link
-    $($pt.landPage.section.navbar).on("click",$pt.landPage.action.signup, function (event) {
-        var $target = $(event.currentTarget);
-        console.log("Action click: " + $target.text());
+    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.signup, function () {
+        //var $target = $(event.currentTarget);
 
-        var $template = $("<div>").hide();
-        $template.addClass("mdl-grid");
+        // Bootstrap open up modal for sign up
+        $($pt.signupCard.handle).modal("show");
 
-        // Use AJAX to load in the template file
-        $template.load($pt.signupCard.template, function (result, status) {
-            if (status === "success") {
-                // Empty all stuff inside the land page content
-                $($pt.landPage.section.content).empty();
-                // Add SignUp Card into the land page content
-                $($pt.landPage.section.content).append($template);
+        // Add Event handler for the login button
+        $($pt.signupCard.action.signup).on("click", handleSignupAction);
 
-                // IMPORTANT:  Must run the command below to register the
-                // dynamic content to MDL
-                componentHandler.upgradeAllRegistered();
-
-                // Add Event handler for the login button
-                $($pt.signupCard.action.signup).on("click", handleSignupAction);
-
-                // Add Event handler for the Checkbox toggle
-                $($pt.signupCard.field.hidePass).on("click", function (event) {
-                    var $target = $(event.currentTarget);
-                    // Set the type of the password input to either text or password
-                    if ($target.is(":checked") === true) {
-                        $($pt.signupCard.field.password).prop("type", "password");
-                    } else {
-                        $($pt.signupCard.field.password).prop("type", "text");
-                    }
-                });
-
-                // Show the login Card
-                $template.fadeIn(500);
+        // Add Event handler for the Checkbox toggle
+        $($pt.signupCard.field.hidePass).on("click", function (event) {
+            var $target = $(event.currentTarget);
+            // Set the type of the password input to either text or password
+            if ($target.is(":checked") === true) {
+                $($pt.signupCard.field.password).prop("type", "password");
             } else {
-                // Encountered error
-                console.log(status, "Unable to load templates/login.tmpl");
+                $($pt.signupCard.field.password).prop("type", "text");
             }
         });
 
-        // TODO: When successful, auto sign in the person
-
-        // TODO: Maybe trigger auto sign in
-        // $(signInOutAction).trigger("click");
         // Needed to stop follow link
         return false;
     });
 
-    // Even handler for Login Link
+    // Event handler for Login Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.login, function () {
-        //var $target = $(event.currentTarget);
+        // Show the Login Modal
+        $($pt.loginCard.handle).modal("show");
 
-        // TODO: More code to handle the sign up
-        var $template = $("<div>").hide();
-        $template.addClass("mdl-grid");
+        // Add Event handler for the login button
+        $($pt.loginCard.action.login).on("click", handleLoginAction);
 
-        // Use AJAX to load in the template file with the login form
-        $template.load($pt.loginCard.template, function (result, status) {
-            if (status === "success") {
-                // Empty all stuff inside the land page content
-                $($pt.landPage.section.content).empty();
-                // Add login Card into the land page content
-                $($pt.landPage.section.content).append($template);
-
-                // IMPORTANT:  Must run the command below to register the
-                // dynamic content to MDL
-                componentHandler.upgradeAllRegistered();
-
-                // Add Event handler for the login button
-                $($pt.loginCard.action.login).on("click", handleLoginAction);
-
-                // Add Event handler for the Checkbox toggle
-                $($pt.loginCard.field.revealPass).on("click", function (event) {
-                    var $target = $(event.currentTarget);
-                    // Set the type of the password input to either text or password
-                    if ($target.is(":checked") === true) {
-                        $($pt.loginCard.field.password).prop("type", "text");
-                    } else {
-                        $($pt.loginCard.field.password).prop("type", "password");
-                    }
-                });
-
-                // Show the login Card
-                $template.fadeIn(500);
+        // Add Event handler for the Checkbox toggle
+        $($pt.loginCard.field.revealPass).on("click", function (event) {
+            var $target = $(event.currentTarget);
+            // Set the type of the password input to either text or password
+            if ($target.is(":checked") === true) {
+                $($pt.loginCard.field.password).prop("type", "text");
             } else {
-                // Encountered error
-                console.log(status, "Unable to load templates/login.tmpl");
+                $($pt.loginCard.field.password).prop("type", "password");
             }
         });
 
-        // TODO: When successful, auto sign in the person
-
-        // TODO: Maybe trigger auto sign in
-        // $(signInOutAction).trigger("click");
-        // Needed to stop follow link
         return false;
     });
 
