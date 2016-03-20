@@ -167,6 +167,24 @@ body {
   color: white;
 }
 
+.uploadSections{
+  font-weight:bold;
+  font-size:large;
+  padding-top:10px;
+  color:purple;
+}
+
+.modeOfPay{
+  font-weight:bold;
+}
+
+#ransomMoney{
+  padding-top:10px;
+}
+
+.ransomMessage{
+  font-weight:normal;
+}
 .pt_footer > p{
   font-size: 20px;
   margin: 10px;
