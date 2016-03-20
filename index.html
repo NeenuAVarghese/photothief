@@ -1,34 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-  <title>PhotoThief - You've got Blackmail!</title>
-  <!-- Favicon encoded as base64, for localhost -->
-  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon">
-  <!-- Reset default stylesheets -->
-  <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
-  <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
-  <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
-  <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
-  <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
-  <link href="libraries/owlcarousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
-  <link href="libraries/owlcarousel/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css">
-  <!--BootStrap Libraries -->
-  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-theme.min.css">
-  <!-- MDL libraries -->
-  <link rel="stylesheet" href="libraries/material/css/material-icons.css">
-  <link rel="stylesheet" href="libraries/material/css/material.indigo-pink.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.css">
-
-  <!-- project specific styles -->
-  <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
-
-  <!-- Optional theme -->
-
-</head>
+  <head>
+    <title>PhotoThief - You've got Blackmail!</title>
+    <!-- Favicon encoded as base64, for localhost -->
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOCjkdHfrYdAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC9ElEQVQ4y32SzW9UZRTGf+d9Z3rH6RQY2qIgnUYpHaVEMi0loBZTYorT2sSEuKEhslMwgfgX8CfIplY3xLWuCEmFbqoJC5rUZkBDaDqmHwSUtrHzcQen9857j4u2JCbE3+7kPM9ZnOcRthncN8j06jSD+wZPAheBUeDA9vopcAv4fnp1+t6OFkB2Dpzd/6ENnLsF5Pl/fnrFNo1O/nnHAUh+fx5F7abbXFTVDkUxYl7qjKIIay2q+tiz3huCOFv0i3Q2d/6o6Mnh9/OMfvAxG+UST1afELqQhmugkXKs+xgXP/mM3ak9LKws7Fa0Z+qvqR9iY5nzuVJYPldzNfx/fHI9Ofrf6ceKZW1jDUFo29uGixzOOe49mEFREiZxbixzPhczYi7sbUrToilwULhfYHFlkbW1Ndb/XkdVSe9J05pu5eDrBwnqm7yWeJW4xAEuGIMZBohLnEx7hmw2y52VKc4MnaG7q5vs4SxD+SGmn/1Mb66XrgNdO2YMZtiUKB8aGRohDEN836ewXGBybpIrN65isRgMV25cZXJuksJyAb/mEwQBx3PHKZvKIRkfGw8+Gjgbd84xMztDuVLiwdJvpL00fsUHIJlKslHfoCfTQ8JL0Jfro72tndu/3A5jcRubV9WjxhhOnTgFwLCMICL/iVBViTR6MTvniMVi87HTJ07fBI5qQ6kt1UC3xGIF69mt/IOIqBEhIogRmt9sBoGB/oGbUpxYeBt46Bd9ojDCa/fw0h7Ws8h2URXFBY6gFLD5bBObtCQ7kwBHBKD4zcK3/h/+5zZhqafr3P39LsvrK1SfVwBIJVvobM3wbs97tDxPEVZDUl2p77ouHf5CihML1J/WJayGD8XIW7u6d+HFvZf+IGgEVIoVokb0qOPTjiOl+yV9oZr76lcRlXGES7HmGE3pJkzCgEBUjwhLIWE1BGVCRb/s/bpPt7qwjRGjueu9l4Fsw29cq63UZqvz1XL1UbVcW6rNhuXwGkI2d733shGjO75/AYGxTLrkqe2AAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon">
+    <!-- Reset default stylesheets -->
+    <link href="stylesheets/reset.css" rel="stylesheet" type="text/css">
+    <!-- 3rd party library collagePlus http://collageplus.edlea.com -->
+    <link href="libraries/collageplus/css/transitions.css" rel="stylesheet" type="text/css">
+    <!-- 3rd party library owl carousel http://owlgraphic.com/owlcarousel/ -->
+    <link href="libraries/owlcarousel/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="libraries/owlcarousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="libraries/owlcarousel/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css">
+    <!--BootStrap Libraries -->
+    <link href="libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="libraries/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <!--<link href="libraries/mdl-theme/css/bootstrap-material-design.min.css" rel="stylesheet" type="text/css">-->
+    <!-- MDL libraries -->
+    <link href="libraries/iconfont/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="libraries/material/css/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link href="libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="libraries/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <!-- project specific styles -->
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+  </head>
 
 <body>
 
@@ -207,7 +203,7 @@
         </div>
         <div class="col-xs-12">
           <p style="padding:10px;"></p>
-          <p align="center">© PhotoThief</p>
+          <p align="center"><i class="material-icons">face</i>PhotoThief</p>
         </div>
       </div>
     </div>
