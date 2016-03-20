@@ -77,9 +77,9 @@ app.use(express.static(pt.staticHtml));
 app.use(mdUpload.single(pt.formField));
 
 // Configure express error handling
-app.use(function (err, req, res) {
+app.use(function (err, req, res, next) {
     var result = {};
-
+    
     // Build error JSON result
     result.status = "error";
     result.message = err.message;
@@ -88,22 +88,24 @@ app.use(function (err, req, res) {
         result.message += " while expecting " + pt.formField;
     }
 
-    // Print out the error to console
-    console.error(err);
+    if (err.hasOwnProperty("file")) {
+        result.message +=". Got " + err.file.mimetype.split("/")[0];
+    }
 
     // Send the result back to user
-    res.status(500);
-    res.json(result);
-    res.end();
+    res.status(500).json(result).end();
+
+    // Console log it
+    console.log(err.message);
 
 });
 
 // Expose the upload Web Service API to user
 app.post(pt.route, function (req, res) {
     var result = {};
-    var content = req.headers["content-type"];
 
-    if (content.split("/")[0] !== "multipart") {
+    // If the form type not form-data
+    if (!req.is("multipart/form-data")) {
         result.status = "error";
         result.message = "Invalid upload form encode type";
         result.message += ". Expect enctype: multipart/form-data";
@@ -113,20 +115,28 @@ app.post(pt.route, function (req, res) {
 
     if (req.hasOwnProperty("file")) {
         // Multer has process the file
-        result.file = req.file;
+        result.originalname = req.file.originalname;
+        result.filename = req.file.filename;
+        result.path = req.file.path;
+        result.size = req.file.size;
+        // Split the filename to get the middle part which is Date.now()
+        // ptimg-xxx.jpg
+        result.created = result.filename.split(".")[0].split("-")[1];
     }
 
     // Handle other multer errors
-    mdUpload(req, res, function (err) {
+    mdUpload.single("photo")(req, res, function (err) {
         if (err) {
             result.status = "error";
             result.message = "File upload error encountered";
+            res.status(500);
         } else {
             result.status = "success";
             result.message = "File upload success";
+            res.status(200);
         }
         // Send the json result back
-        res.status(200).json(result).end();
+        res.json(result).end();
     });
 
     // Log the request to console
