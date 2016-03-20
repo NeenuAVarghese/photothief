@@ -1,0 +1,183 @@
+body {
+  padding-top: 70px;
+  background-color: #E6E6E6;
+}
+
+.title {
+  font-size: 2em;
+  color: #FF0000;
+  padding: 5em;
+  float: right;
+}
+
+.heading {
+  font-size: 1.25em;
+  margin: 1em 0 0 3em;
+}
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle;
+  padding: 0 1.2em 0 0;
+}
+
+.navbutton {
+  cursor: pointer;
+}
+
+.navbar img {
+  display: inline;
+  padding: 0 0.5em 0 0;
+}
+
+.navbar-brand {
+  margin: 0 0 0 2em;
+}
+
+.navbar-toggle, .navbar-toggle:active {
+  background-color: #3F51B5;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #FF4081;
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=80);
+  opacity: .8;
+}
+
+.pt_photosSlider-Container .owl-item {
+  margin: 3px;
+  border: 6px solid white;
+}
+
+.pt_photosSlider-Container .owl-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.owl-theme .owl-controls .owl-buttons div {
+  position: absolute;
+}
+
+.owl-theme .owl-controls .owl-buttons .owl-prev {
+  left: -5em;
+  top: 7em;
+}
+
+.owl-theme .owl-controls .owl-buttons .owl-next {
+  right: -5em;
+  top: 7em;
+}
+
+.Image_Wrapper,
+.pt_photosSlider-Container .owl-item {
+  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.Image_Wrapper {
+  opacity: 0;
+}
+
+.pt_photosSlider-Container .owl-item,
+.Collage img {
+  border: 6px solid white;
+}
+
+.Collage {
+  padding: 10px;
+}
+
+.Collage img {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
+  opacity: 1;
+}
+
+.Collage img:active {
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  transition: all 1.0s linear;
+}
+
+.Caption_Content {
+  color: black;
+  padding: 20px 0 20px 20px;
+}
+
+.like {
+  cursor: pointer;
+}
+
+.counter {
+  border-radius: 50%;
+  background-color: #FF4081;
+  padding: 20px;
+  margin: 5px;
+  cursor: default;
+}
+
+.mdl-mini-footer {
+  padding: 1.25em;
+}
+
+.pt_loginCard .mdl-card,
+.pt_signupCard .mdl-card {
+  min-width: 450px;
+  height: auto;
+  margin: auto;
+}
+
+.pt_loginCard > .mdl-card__title,
+.pt_signupCard > .mdl-card__title {
+  color: white;
+  background: #46B6AC;
+}
+
+.navbar-inverse {
+  background: #3F51B5;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-nav > li >a {
+  color: white;
+  margin-right: 10px;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background: #1A237E;
+  color: white;
+}
+
+.navbar-inverse .navbar-nav >li > a:hover {
+  background: #1A237E;
+  color: white;
+}
+
+.pt_footer > p{
+  font-size: 20px;
+  margin: 10px;
+}
+
+.row-footer {
+  margin: 0 auto;
+  padding: 20px 0;
+  background-color: #E6E6E6;
+}
+
+.row-footer .pt_footer > a{
+  padding: 10px;
+}

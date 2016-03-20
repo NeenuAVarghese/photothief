@@ -17,15 +17,20 @@ var main = function () {
         landPage: {
             section: {
                 navbar : ".pt_landPage-navigation",
+                slogan : ".pt_landPage-slogan",
                 content: ".pt_landPage-content",
                 loginInfo: ".pt_landPage-loginInfo"
             },
             session: {
+                info : ".pt_landPage_loginInfo",
                 id: "#pt_session_Id",
                 user: "#pt_session_User",
-                email: "#pt_session_Email"
+                email: "#pt_session_Email",
+                notify : "#pt_session_Notify"
             },
             action: {
+                icon : "#pt_log_icon",
+                text : "#pt_log_text",
                 login : ".pt_openLoginCardAction",
                 logout : ".pt_logOutAction",
                 signup : ".pt_openSignupCardAction",
@@ -35,6 +40,7 @@ var main = function () {
         },
         carousel: {
             handle: ".pt_landPage-carousels",
+            template: "templates/main.tmpl",
             mostWanted: "#pt_carouselMostWanted",
             newestUpload: "#pt_carouselNewestUpload"
         },
@@ -79,11 +85,14 @@ var main = function () {
         },
         demandCard: {
             handle: "#pt_demandCard",
-            template: "templates/demand.tmpl",
+            template: "templates/demands.tmpl",
             field: {
-                photoId: "#pt_demandCard-photoId",
-                demand: "#pt_demandCard-demand",
-                victimEmail: "#pt_demandCard-victimEmail"
+                photoId: "#pt_demandsCard-photoId",
+                demand: "#pt_demandsCard-demand",
+                victimEmail: "#pt_demandsCard-victimEmail",
+                errorStatus: "#pt_demandCard-errorMessage",
+                removeVictim : "#pt_demandcard-removeVictim"
+              
             },
             action: {
                 create: ".pt_demandAction"
@@ -129,7 +138,7 @@ var main = function () {
         // Update the template with class mdl-grid
         $template.addClass("mdl-grid");
         // Use AJAX to load in the template file with the main carousel
-        $template.load("templates/main.tmpl", function (result, status) {
+        $template.load($pt.carousel.template, function (result, status) {
             if (status === "success") {
                 // Empty all stuff inside the land page content
                 $($pt.landPage.section.content).empty();
@@ -159,16 +168,23 @@ var main = function () {
         $($pt.landPage.session.id).text(result[0].id);
         $($pt.landPage.session.user).text(result[0].loginId);
         $($pt.landPage.session.email).text(result[0].email);
+        $($pt.landPage.session.notify).attr("data-badge", 5 /*result[0].notify*/);
 
+        // Hide slogan
+        $($pt.landPage.section.slogan).addClass("hidden").removeClass("show");
         // Hide signup button
         $($pt.landPage.action.signup).addClass("hidden").removeClass("show");
-        // Show Demand button
+        // Show demand button
         $($pt.landPage.action.demand).addClass("show").removeClass("hidden");
+        // Show upload button
+        $($pt.landPage.action.upload).addClass("show").removeClass("hidden");
+        // Show user info
+        $($pt.landPage.session.info).addClass("show").removeClass("hidden");
+
         // Toggle the login Button to say logout
+        $($pt.landPage.action.icon).text("exit_to_app");
+        $($pt.landPage.action.text).text("Logout");
         $($pt.landPage.action.login).addClass(($pt.landPage.action.logout).substr(1));
-        $($pt.landPage.action.login).children(":last-child").text("LOGOUT");
-        $($pt.landPage.action.login).children(":first-child").addClass("glyphicon-log-out");
-        $($pt.landPage.action.login).children(":first-child").removeClass("glyphicon-log-in");
         $($pt.landPage.action.login).removeClass(($pt.landPage.action.login).substr(1));
 
         // Reload the main page with carousel
@@ -236,17 +252,25 @@ var main = function () {
         $($pt.landPage.session.id).text("");
         $($pt.landPage.session.user).text("");
         $($pt.landPage.session.email).text("");
+        $($pt.landPage.session.notify).removeAttr("data-badge");
 
-        // show SignUp button
-        $($pt.landPage.action.signup).addClass("show").removeClass("hidden");
-        // hide demands
+        // Hide user info
+        $($pt.landPage.session.info).addClass("hidden").removeClass("show");
+        // Hide Upload button
+        $($pt.landPage.action.upload).addClass("hidden").removeClass("show");
+        // Hide Demand button
         $($pt.landPage.action.demand).addClass("hidden").removeClass("show");
+        // Show signup button
+        $($pt.landPage.action.signup).addClass("show").removeClass("hidden");
+        // Show slogan
+        $($pt.landPage.section.slogan).addClass("show").removeClass("hidden");
+
         // Toggle the login Button to say logout
+        $($pt.landPage.action.icon).text("person");
+        $($pt.landPage.action.text).text("Login");
         $($pt.landPage.action.logout).addClass(($pt.landPage.action.login).substr(1));
-        $($pt.landPage.action.logout).children(":last-child").text("LOGIN");
-        $($pt.landPage.action.logout).children(":first-child").addClass("glyphicon-log-in");
-        $($pt.landPage.action.logout).children(":first-child").removeClass("glyphicon-log-out");
         $($pt.landPage.action.logout).removeClass(($pt.landPage.action.logout).substr(1));
+
 
         // TODO:  Anything else that we need to handle go here
 
@@ -343,6 +367,14 @@ var main = function () {
 
     }
 
+    function handleDemandAction() {
+        // TODO
+    }
+
+    function handleUploadAction() {
+        // TODO
+    }
+
     // Event handler for Sign Up link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.signup, function () {
         //var $target = $(event.currentTarget);
@@ -393,6 +425,7 @@ var main = function () {
     // Event handler for logout Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.logout, handleLogOutAction);
 
+  /* 
     // Event handler event for demands Action
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function (event) {
         var $target = $(event.currentTarget);
@@ -404,6 +437,72 @@ var main = function () {
         // Need to stop follow Link
         return false;
     });
+*/
+    /*// Event handler for Demands Link
+    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
+        var $target = $(event.currentTarget);
+
+        // Show the Demands Modal
+        $($pt.demandsCard.handle).modal("show");
+
+        // Add Event handler for the login button
+        $($pt.demandsCard.action.demand).on("click", handleDemandAction);
+
+        // Add Event handler for the Checkbox toggle
+        alert ("Action click: " + $target.text());
+
+        return false;
+    });*/
+
+    // Event handler for Upload Link
+    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.upload, function () {
+        var $target = $(event.currentTarget);
+
+        // Show the Upload Modal
+        $($pt.uploadCard.handle).modal("show");
+
+        // Add Event handler for the login button
+        $($pt.uploadCard.action.demand).on("click", handleUploadAction);
+
+        return false;
+    });
+  
+  $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
+    // Show the Demand Modal
+    $($pt.demandCard.handle).modal("show");
+
+    //Show content in the modal
+    if ($($pt.landPage.action.signup).hasClass("hidden")) {
+      $.ajax({
+        type: "GET"
+        , url: "http://localhost:3000/demands"
+        , data: {
+          get_param: "value"
+        }
+        , dataType: "json"
+        , success: function (data) {
+          $.each(data, function (index, element) {
+            if ($($pt.landPage.session.id).text() == element.userId) {
+              if (!element.met) {
+                $(".mdl-list").append($("<div id='pt_demandcard-removeVictim' class='mdl-list__item'><span class='mdl-list__item-primary-content'><i class='material-icons'>person</i><span class='elementname'>" + element.victimEmail + "</span></span><a class='mdl-list__item-secondary-action' href='#'><i class='material-icons'>delete</i></a></div>"));
+              }
+            }
+          });
+        }
+        , error: function (error) {
+          console.log(error);
+        }
+      });
+    } else {
+      console.log("not logged in")
+        //$error.text("Either User or Password is empty");
+        //$($pt.demandCard.handle).modal("hide");
+      }
+      $($pt.demandCard.field.removeVictim).on("click", function (event){
+        //to be coded
+      });
+    initialize();
+  });
 
     // Event handler for upload Action
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.upload, function (event) {
