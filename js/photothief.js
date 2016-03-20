@@ -83,13 +83,16 @@ var main = function () {
                 upload: ".pt_uploadImageAction"
             }
         },
-        demandsCard: {
-            handle: "#pt_demandsCard",
+        demandCard: {
+            handle: "#pt_demandCard",
             template: "templates/demands.tmpl",
             field: {
                 photoId: "#pt_demandsCard-photoId",
                 demand: "#pt_demandsCard-demand",
-                victimEmail: "#pt_demandsCard-victimEmail"
+                victimEmail: "#pt_demandsCard-victimEmail",
+                errorStatus: "#pt_demandCard-errorMessage",
+                removeVictim : "#pt_demandcard-removeVictim"
+              
             },
             action: {
                 create: ".pt_demandAction"
@@ -422,6 +425,7 @@ var main = function () {
     // Event handler for logout Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.logout, handleLogOutAction);
 
+  /* 
     // Event handler event for demands Action
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function (event) {
         var $target = $(event.currentTarget);
@@ -433,8 +437,8 @@ var main = function () {
         // Need to stop follow Link
         return false;
     });
-
-    // Event handler for Demands Link
+*/
+    /*// Event handler for Demands Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
         var $target = $(event.currentTarget);
 
@@ -448,7 +452,7 @@ var main = function () {
         alert ("Action click: " + $target.text());
 
         return false;
-    });
+    });*/
 
     // Event handler for Upload Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.upload, function () {
@@ -465,6 +469,43 @@ var main = function () {
 
         return false;
     });
+  
+  $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
+    // Show the Demand Modal
+    $($pt.demandCard.handle).modal("show");
+
+    //Show content in the modal
+    if ($($pt.landPage.action.signup).hasClass("hidden")) {
+      $.ajax({
+        type: "GET"
+        , url: "http://localhost:3000/demands"
+        , data: {
+          get_param: "value"
+        }
+        , dataType: "json"
+        , success: function (data) {
+          $.each(data, function (index, element) {
+            if ($($pt.landPage.session.id).text() == element.userId) {
+              if (!element.met) {
+                $(".mdl-list").append($("<div id='pt_demandcard-removeVictim' class='mdl-list__item'><span class='mdl-list__item-primary-content'><i class='material-icons'>person</i><span class='elementname'>" + element.victimEmail + "</span></span><a class='mdl-list__item-secondary-action' href='#'><i class='material-icons'>delete</i></a></div>"));
+              }
+            }
+          });
+        }
+        , error: function (error) {
+          console.log(error);
+        }
+      });
+    } else {
+      console.log("not logged in")
+        //$error.text("Either User or Password is empty");
+        //$($pt.demandCard.handle).modal("hide");
+      }
+      $($pt.demandCard.field.removeVictim).on("click", function (event){
+        //to be coded
+      });
+    initialize();
+  });
 
     // Call function to intitialize it here
     initialize();

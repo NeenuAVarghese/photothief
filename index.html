@@ -22,7 +22,7 @@
   <link href="libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="libraries/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
   <!-- project specific styles -->
-  <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+  <link href="stylesheets/photothief.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <!-- Navbar -->
@@ -180,6 +180,27 @@
         <div class="modal-footer">
           <div>
             <p id="pt_UploadCard-errorMessage"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Demands Modal -->
+  <div class="modal fade" id="pt_demandCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Current Demands Pending</h4>
+        </div>
+        <div class="modal-body">
+          <div class="demo-list-action mdl-list">
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <div>
+            <p id="pt_demandCard-errorMessage"></p>
           </div>
         </div>
       </div>
