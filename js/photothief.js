@@ -30,6 +30,7 @@ var main = function () {
                 logout : ".pt_logOutAction",
                 signup : ".pt_openSignupCardAction",
                 demand : ".pt_openDemandCardAction",
+                upload : ".pt_openUploadCardAction"
             }
         },
         carousel: {
@@ -400,6 +401,21 @@ var main = function () {
         alert ("Action click: " + $target.text());
 
 
+        // Need to stop follow Link
+        return false;
+    });
+
+    // Event handler for upload Action
+    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.upload, function (event) {
+        var $target = $(event.currentTarget);
+
+        // TODO: code needed here to handle demands
+        alert ("Action click: " + $target.text());
+
+        // Show the Upload Modal
+        $($pt.uploadCard.handle).modal("show");
+
+        
         // Need to stop follow Link
         return false;
     });

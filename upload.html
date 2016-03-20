@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test upload</title>
+        <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+      <div class="col-lg-4 col-sm-4 col-12">
+        <form action="/photo/upload" method="post" enctype="multipart/form-data">
+            <input id="pt_uploadCard-file" name="pt_photo" type="file">
+            <input class="btn btn-primary pt_uploadAction" type="submit" value="Upload">
+        </form>
+
+        <!-- JQuery -->
+        <script src="libraries/jquery/jquery-2.2.2.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>

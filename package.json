@@ -1,0 +1,23 @@
+{
+  "name": "photothief",
+  "version": "1.0.0",
+  "description": "Project PhotoThief",
+  "main": "./server/ptserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddangcsu/test.git"
+  },
+  "author": "David Dang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddangcsu/test/issues"
+  },
+  "homepage": "https://github.com/ddangcsu/test#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "multer": "^1.1.0"
+  }
+}
