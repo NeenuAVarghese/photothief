@@ -47,11 +47,11 @@
         <ul class="nav navbar-nav">
           <li><a href="AboutUs.html" class="btn"><span class="glyphicon glyphicon-fire" aria-hidden="true">&nbsp;</span>Demands</a></li>
           <li>
-            
+
             <a href="" class="pt_uploadAction"><i class="fa fa-cloud-upload">&nbsp;</i>Upload</a>
           </li>
-        </ul> 
-       <ul class="nav navbar-nav navbar-right">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="" class="pt_openSignupCardAction"><span class="glyphicon glyphicon-qrcode" aria-hidden="true">&nbsp;</span>Sign Up</a>
           </li>
@@ -90,14 +90,16 @@
               <input type="password" class="form-control" id="pt_loginCard-loginPassword">
             </div>
             <div class="form-group">
-              <label><input type="checkbox" id="pt_loginCard-revealPassword">Show password</label>
+              <label>
+                <input type="checkbox" id="pt_loginCard-revealPassword">Show password</label>
             </div>
             <button type="button" class="btn btn-primary pt_loginAction">Sign In</button>
           </form>
         </div>
         <div class="modal-footer">
           <div>
-            <p id="pt_loginCard-errorMessage"><p>
+            <p id="pt_loginCard-errorMessage">
+              <p>
           </div>
         </div>
       </div>
@@ -131,7 +133,8 @@
               <input type="text" class="form-control" id="pt_signupCard-password">
             </div>
             <div class="form-group">
-              <label><input type="checkbox" id="pt_signupCard-hidePassword">Hide password</label>
+              <label>
+                <input type="checkbox" id="pt_signupCard-hidePassword">Hide password</label>
             </div>
             <button type="button" class="btn btn-primary pt_signupAction">Sign Me Up</button>
           </form>
@@ -145,6 +148,35 @@
     </div>
   </div>
 
+
+  <!-- Upload Modal -->
+  <div class="modal fade" id="pt_uploadCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Upload Photo</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-inline">
+              <div class="form-group">
+                <input type="file" name="files[]" id="js-upload-files" multiple>
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <p id="pt_UploadCard-errorMessage"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container-fuid">
     <div class="pt_landPage-content">
       <!-- The dynamic content goes in here -->
@@ -152,30 +184,30 @@
   </div>
 
   <!-- Collage gallery -->
-        <p class="heading">Random Mix</p>
-        <section class="Collage effect-parent">
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/001.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>5</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>1</span><button class='material-icons like'>thumb_down</button>"><img src="photos/003.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>12</span><button class='material-icons like'>thumb_down</button>"><img src="photos/014.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>3</span><button class='material-icons like'>thumb_down</button>"><img src="photos/025.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/016.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/027.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/018.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/029.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/010.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/021.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/023.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/014.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/035.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/016.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/027.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/018.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/039.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/040.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/051.jpg" alt="photo"></div>
-          <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/062.jpg" alt="photo"></div>
+  <p class="heading">Random Mix</p>
+  <section class="Collage effect-parent">
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/001.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>5</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>1</span><button class='material-icons like'>thumb_down</button>"><img src="photos/003.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>12</span><button class='material-icons like'>thumb_down</button>"><img src="photos/014.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>3</span><button class='material-icons like'>thumb_down</button>"><img src="photos/025.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/016.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/027.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/018.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/029.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/010.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/021.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/023.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/014.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/035.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/016.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/027.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/018.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/039.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/040.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/051.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/062.jpg" alt="photo"></div>
 
   </section>
 
