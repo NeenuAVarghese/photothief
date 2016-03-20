@@ -21,6 +21,10 @@ body {
   padding: 0 1.2em 0 0;
 }
 
+.navbutton {
+  cursor: pointer;
+}
+
 .navbar img {
   display: inline;
   padding: 0 0.5em 0 0;
@@ -41,7 +45,7 @@ body {
 
 .pt_photosSlider-Container .owl-item {
   margin: 3px;
-  border: 6px solid #FFF;
+  border: 6px solid white;
 }
 
 .pt_photosSlider-Container .owl-item img {
@@ -80,7 +84,7 @@ body {
 
 .pt_photosSlider-Container .owl-item,
 .Collage img {
-  border: 6px solid #FFF;
+  border: 6px solid white;
 }
 
 .Collage {
@@ -102,7 +106,7 @@ body {
 }
 
 .Caption_Content {
-  color: #000;
+  color: black;
   padding: 20px 0 20px 20px;
 }
 
@@ -122,8 +126,8 @@ body {
   padding: 1.25em;
 }
 
-.pt_loginCard.mdl-card,
-.pt_signupCard.mdl-card {
+.pt_loginCard .mdl-card,
+.pt_signupCard .mdl-card {
   min-width: 450px;
   height: auto;
   margin: auto;
@@ -131,43 +135,43 @@ body {
 
 .pt_loginCard > .mdl-card__title,
 .pt_signupCard > .mdl-card__title {
-  color: #fff;
+  color: white;
   background: #46B6AC;
 }
 
 .row-footer {
-  margin: 0px auto;
-  padding: 20px 0px;
-  background-color: #AfAfAf;
+  margin: 0 auto;
+  padding: 20px 0;
+  background-color: #AFAFAF;
 }
 
-.jumbotron {
-  margin-top: 0px auto;
-  padding: 70px 30px;
-  background: #7986CB;
-  color: floralwhite;
-}
 .navbar-inverse {
   background: #3F51B5;
 }
+
 .navbar-inverse .navbar-brand {
-  color: #FFFFFF;
+  color: white;
 }
+
 .navbar-inverse .navbar-nav > li >a {
-  color: #FFFFFF;
+  color: white;
   margin-right: 10px;
 }
+
 .navbar-inverse .navbar-nav > .active > a {
-  background: #1a237e;
-  color: #ffffff;
+  background: #1A237E;
+  color: white;
 }
+
 .navbar-inverse .navbar-nav >li > a:hover {
-  background: #1a237e;
-  color: #ffffff;
+  background: #1A237E;
+  color: white;
 }
+
 .pt_footer > a{
   color:black;
 }
+
 .pt_footer > p{
   font-size: 20px;
   margin: 10px;
@@ -176,4 +180,3 @@ body {
 .row-footer .pt_footer > a{
   padding: 10px;
 }
-

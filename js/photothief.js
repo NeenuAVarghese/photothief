@@ -359,6 +359,14 @@ var main = function () {
 
     }
 
+    function handleDemandAction() {
+        // TODO
+    }
+
+    function handleUploadAction() {
+        // TODO
+    }
+
     // Event handler for Sign Up link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.signup, function () {
         //var $target = $(event.currentTarget);
@@ -423,6 +431,8 @@ var main = function () {
 
     // Event handler for Demands Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
+        var $target = $(event.currentTarget);
+
         // Show the Demands Modal
         $($pt.demandsCard.handle).modal("show");
 
@@ -437,6 +447,8 @@ var main = function () {
 
     // Event handler for Upload Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.upload, function () {
+        var $target = $(event.currentTarget);
+
         // Show the Upload Modal
         $($pt.uploadCard.handle).modal("show");
 
