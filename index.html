@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
   <title>PhotoThief</title>
   <!-- Favicon encoded as base64, for localhost -->
@@ -16,10 +15,6 @@
   <!--BootStrap Libraries -->
   <link href="libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="libraries/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-  <!-- Bootstrap Material Design -->
-  <!--<link href="libraries/bootstrap-mdl/css/bootstrap-material-design.min.css" rel="stylesheet" type="text/css">-->
-  <!--<link href="libraries/bootstrap-mdl/css/ripples.min.css" rel="stylesheet" type="text/css">-->
-  <!--<link href="libraries/bootstrap-mdl/css/mdl-theme.css" rel="stylesheet" type="text/css">-->
   <!-- MDL libraries -->
   <link href="libraries/iconfont/material-icons.css" rel="stylesheet" type="text/css">
   <link href="libraries/material/css/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
@@ -29,67 +24,71 @@
   <!-- project specific styles -->
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-  <!-- Fixed navbar -->
+  <!-- Navbar -->
   <nav class="pt_landPage-navigation navbar navbar-inverse navbar-fixed-top">
-    <a href="." class="navbar-brand pull-left"><img src="images/thief-24.png" alt="logo" />PhotoThief</a>
+    <a class="navbar-brand pull-left" href="."><img alt="logo" src="images/thief-24.png">PhotoThief</a>
     <span class="navbar-brand">You've got Blackmail!</span>
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
           <i class="material-icons md-light">menu</i>
           <span class="sr-only">Toggle navigation</span>
-
         </button>
-
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
+      <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-          <li><a class="pt_openDemandCardAction hidden"><i class="material-icons">gavel</i>Demands</a></li>
-          <li><a class="pt_openUploadCardAction hidden"><i class="material-icons">cloud_upload</i>Upload</a></li>
+          <li>
+            <a class="pt_openDemandCardAction hidden"><i class="material-icons">gavel</i>Demands</a>
+          </li>
+          <li>
+            <a class="pt_openUploadCardAction hidden"><i class="material-icons">cloud_upload</i>Upload</a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="pt_openLoginCardAction navbutton"><i id="pt_log_icon" class="material-icons">person</i><span id="pt_log_text">Login</span></a></li>
-          <li><a class="pt_openSignupCardAction navbutton"><i class="material-icons">touch_app</i>Sign Up</a></li>
-        <li class="pt_landPage_loginInfo hidden">
-          <a class="btn disabled">
-            <span id="pt_session_Id" hidden></span>
-            <span id="pt_session_Email" hidden></span>
-            <span id="pt_session_User"></span>
-            <i id="pt_session_Notify" class="material-icons mdl-badge mdl-badge--overlap">person</i>
-          </a>
-        </li>
+          <li>
+            <a class="pt_openLoginCardAction navbutton"><i class="material-icons" id="pt_log_icon">person</i><span id="pt_log_text">Login</span></a>
+          </li>
+          <li>
+            <a class="pt_openSignupCardAction navbutton"><i class="material-icons">touch_app</i>Sign Up</a>
+          </li>
+          <li class="pt_landPage_loginInfo hidden">
+            <a class="btn disabled">
+              <span hidden="" id="pt_session_Id"></span>
+              <span hidden="" id="pt_session_Email"></span>
+              <span id="pt_session_User"></span>
+              <i class="material-icons mdl-badge mdl-badge--overlap" id="pt_session_Notify">person</i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-
-
   <!-- Login Modal -->
-  <div class="modal fade" id="pt_loginCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div aria-labelledby="myModalLabel" class="modal fade" id="pt_loginCard" role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">×</span>
+          </button>
           <h4 class="modal-title" id="myModalLabel">Login</h4>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="pt_loginCard-loginId" class="control-label">Username:</label>
-              <input type="text" class="form-control" id="pt_loginCard-loginId">
+              <label class="control-label" for="pt_loginCard-loginId">Username:</label>
+              <input class="form-control" id="pt_loginCard-loginId" type="text">
             </div>
             <div class="form-group">
-              <label for="pt_loginCard-loginPassword" class="control-label">Password:</label>
-              <input type="password" class="form-control" id="pt_loginCard-loginPassword">
+              <label class="control-label" for="pt_loginCard-loginPassword">Password:</label>
+              <input class="form-control" id="pt_loginCard-loginPassword" type="password">
             </div>
             <div class="form-group">
-              <label>
-                <input type="checkbox" id="pt_loginCard-revealPassword">Show password</label>
+              <label><input id="pt_loginCard-revealPassword" type="checkbox">Show password</label>
             </div>
-            <button type="button" class="btn btn-primary pt_loginAction">Sign In</button>
+            <button class="btn btn-primary pt_loginAction" type="button">Sign In</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -102,36 +101,37 @@
   </div>
 
   <!-- Sign Up Modal-->
-  <div class="modal fade" id="pt_signupCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div aria-labelledby="myModalLabel" class="modal fade" id="pt_signupCard" role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">×</span>
+          </button>
           <h4 class="modal-title" id="myModalLabel">I want to join</h4>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="pt_signupCard-name" class="control-label">Name:</label>
-              <input type="text" class="form-control" id="pt_signupCard-name">
+              <label class="control-label" for="pt_signupCard-name">Name:</label>
+              <input class="form-control" id="pt_signupCard-name" type="text">
             </div>
             <div class="form-group">
-              <label for="pt_signupCard-email" class="control-label">E-Mail:</label>
-              <input type="email" class="form-control" id="pt_signupCard-email">
+              <label class="control-label" for="pt_signupCard-email">E-Mail:</label>
+              <input class="form-control" id="pt_signupCard-email" type="email">
             </div>
             <div class="form-group">
-              <label for="pt_signupCard-loginId" class="control-label">User Id:</label>
-              <input type="text" class="form-control" id="pt_signupCard-loginId">
+              <label class="control-label" for="pt_signupCard-loginId">User Id:</label>
+              <input class="form-control" id="pt_signupCard-loginId" type="text">
             </div>
             <div class="form-group">
-              <label for="pt_signupCard-password" class="control-label">Password:</label>
-              <input type="text" class="form-control" id="pt_signupCard-password">
+              <label class="control-label" for="pt_signupCard-password">Password:</label>
+              <input class="form-control" id="pt_signupCard-password" type="text">
             </div>
             <div class="form-group">
-              <label>
-                <input type="checkbox" id="pt_signupCard-hidePassword">Hide password</label>
+              <label><input id="pt_signupCard-hidePassword" type="checkbox">Hide password</label>
             </div>
-            <button type="button" class="btn btn-primary pt_signupAction">Sign Me Up</button>
+            <button class="btn btn-primary pt_signupAction" type="button">Sign Me Up</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -142,42 +142,39 @@
       </div>
     </div>
   </div>
-  
-
 
   <!-- Upload Modal -->
-  <div class="modal fade" id="pt_uploadCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div aria-labelledby="myModalLabel" class="modal fade" id="pt_uploadCard" role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">×</span>
+          </button>
           <h4 class="modal-title" id="myModalLabel">Upload Photo</h4>
         </div>
         <div class="modal-body">
           <form>
-              <div class="form-group">
-                <input type="file" name="files[]" id="js-upload-files" multiple>
+            <div class="form-group">
+              <input id="js-upload-files" multiple name="files[]" type="file">
+            </div>
+            <div class="form-group">
+              <label for="email">Victim's Email:</label>
+              <input class="form-control" id="email" type="email">
+            </div>
+            <div class="form-group">
+              <div class="radio">
+                <p>Mode of Payment</p><label><input name="optradio" type="radio">Bitcoins</label>
               </div>
-              <div class="form-group">
-                <label for="email">Victim's Email:</label>
-                <input type="email" class="form-control" id="email">
+              <div class="radio">
+                <label><input name="optradio" type="radio">Money</label>
               </div>
-              <div class="form-group">
-                <div class="radio">
-                  <p>Mode of Payment</p>
-                  <label>
-                    <input type="radio" name="optradio">Bitcoins</label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="optradio">Money</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="comment">Message:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
-              </div>
-              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+            </div>
+            <div class="form-group">
+              <label for="comment">Message:</label>
+              <textarea class="form-control" id="comment" rows="5"></textarea>
+            </div>
+            <button class="btn btn-sm btn-primary" id="js-upload-submit" type="submit">Upload files</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -189,7 +186,6 @@
     </div>
   </div>
 
-
   <div class="container-fuid">
     <div class="pt_landPage-content">
       <!-- The dynamic content goes in here -->
@@ -199,9 +195,13 @@
   <!-- Collage gallery -->
   <p class="heading">Random Mix</p>
   <section class="Collage effect-parent">
-
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/002.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/022.jpg" alt="photo"></div>
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/032.jpg" alt="photo"></div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container-fluid">
       <div class="row row-footer">
@@ -236,9 +236,7 @@
   <script src="libraries/owlcarousel/owl-carousel/owl.carousel.js"></script>
   <!-- 3rd party library collageplus -->
   <script defer src="js/collageplus-load.js"></script>
-
   <!-- Application specific JS have it load last -->
   <script src="js/photothief.js"></script>
 </body>
-
 </html>

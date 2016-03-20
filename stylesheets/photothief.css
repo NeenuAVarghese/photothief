@@ -139,12 +139,6 @@ body {
   background: #46B6AC;
 }
 
-.row-footer {
-  margin: 0 auto;
-  padding: 20px 0;
-  background-color: #AFAFAF;
-}
-
 .navbar-inverse {
   background: #3F51B5;
 }
@@ -168,13 +162,15 @@ body {
   color: white;
 }
 
-.pt_footer > a{
-  color:black;
-}
-
 .pt_footer > p{
   font-size: 20px;
   margin: 10px;
+}
+
+.row-footer {
+  margin: 0 auto;
+  padding: 20px 0;
+  background-color: #E6E6E6;
 }
 
 .row-footer .pt_footer > a{
