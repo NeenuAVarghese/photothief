@@ -159,4 +159,15 @@ body {
   background: #1a237e;
   color: #ffffff;
 }
+.pt_footer > a{
+  color:black;
+}
+.pt_footer > p{
+  font-size: 20px;
+  margin: 10px;
+}
+
+.row-footer .pt_footer > a{
+  padding: 10px;
+}
 
