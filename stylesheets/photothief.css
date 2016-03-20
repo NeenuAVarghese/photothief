@@ -34,6 +34,10 @@ body {
   margin: 0 0 0 2em;
 }
 
+.noselect {
+  cursor: default;
+}
+
 .navbar-toggle, .navbar-toggle:active {
   background-color: #3F51B5;
 }
