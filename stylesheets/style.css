@@ -14,6 +14,25 @@ body {
   margin: 1em 0 0 3em;
 }
 
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle;
+  padding: 0 1.2em 0 0;
+}
+
+.navbar-brand {
+  margin: 0 0 0 2em;
+}
+
+.navbar-toggle, .navbar-toggle:active {
+  background-color: #3F51B5;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #FF4081;
+}
+
 .pt_photosSlider-Container .owl-item {
   margin: 3px;
   border: 6px solid #FFF;
@@ -123,7 +142,7 @@ body {
   color: floralwhite;
 }
 .navbar-inverse {
-  background: #303f9f;
+  background: #3F51B5;
 }
 .navbar-inverse .navbar-brand {
   color: #FFFFFF;

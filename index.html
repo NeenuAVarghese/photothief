@@ -15,7 +15,10 @@
     <!--BootStrap Libraries -->
     <link href="libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="libraries/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <!--<link href="libraries/mdl-theme/css/bootstrap-material-design.min.css" rel="stylesheet" type="text/css">-->
+    <!-- Bootstrap Material Design -->
+    <!--<link href="libraries/bootstrap-mdl/css/bootstrap-material-design.min.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="libraries/bootstrap-mdl/css/ripples.min.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="libraries/bootstrap-mdl/css/mdl-theme.css" rel="stylesheet" type="text/css">-->
     <!-- MDL libraries -->
     <link href="libraries/iconfont/material-icons.css" rel="stylesheet" type="text/css">
     <link href="libraries/material/css/material.indigo-pink.min.css" rel="stylesheet" type="text/css">
@@ -26,46 +29,42 @@
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
   </head>
 
-<body>
+  <body>
+    <!-- Fixed navbar -->
+    <nav class="pt_landPage-navigation navbar navbar-inverse navbar-fixed-top">
+      <a class="navbar-brand" href="#">Photo Thief</a>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
-  <nav class="pt_landPage-navigation navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle Navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"> Photo Thief</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="AboutUs.html" class="btn"><span class="glyphicon glyphicon-fire" aria-hidden="true">&nbsp;</span>Demands</a></li>
-          <li>
-
-            <a href="" class="pt_uploadAction"><i class="fa fa-cloud-upload">&nbsp;</i>Upload</a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="" class="pt_openSignupCardAction"><span class="glyphicon glyphicon-qrcode" aria-hidden="true">&nbsp;</span>Sign Up</a>
-          </li>
-          <li>
-            <a href="" class="pt_openLoginCardAction"><span  class="glyphicon glyphicon-log-in" aria-hidden="true">&nbsp;</span>Login</a>
-          </li>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#demands" class="pt_openDemandsCardAction"><i class="material-icons">gavel</i>Demands</a></li>
+            <li><a href="#upload" class="pt_openUploadCardAction"><i class="material-icons">cloud_upload</i>Upload</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#signup" class="pt_openSignupCardAction"><i class="material-icons">touch_app</i>Sign Up</a></li>
+            <li><a href="" class="pt_openLoginCardAction"><i class="material-icons">input</i>Login</a></li>
           <li class=".pt_landPage_loginInfo">
             <a href="#" class="btn disabled">
-              <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span>
               <span id="pt_session_Id" hidden></span>
               <span id="pt_session_Email" hidden></span>
               <span id="pt_session_User"></span>
+              <i class="material-icons">person</i>
             </a>
           </li>
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+
+
 
   <!-- Login Modal -->
   <div class="modal fade" id="pt_loginCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -182,29 +181,7 @@
   <!-- Collage gallery -->
   <p class="heading">Random Mix</p>
   <section class="Collage effect-parent">
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/001.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>5</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>1</span><button class='material-icons like'>thumb_down</button>"><img src="photos/003.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>12</span><button class='material-icons like'>thumb_down</button>"><img src="photos/014.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>3</span><button class='material-icons like'>thumb_down</button>"><img src="photos/025.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/016.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/027.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/018.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/029.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/010.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/021.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/012.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/023.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/014.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/035.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/016.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/027.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/018.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/039.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/040.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/051.jpg" alt="photo"></div>
-    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/062.jpg" alt="photo"></div>
-
+    <div class="Image_Wrapper" data-caption="<button class='material-icons like'>thumb_up</button><span class='counter'>0</span><button class='material-icons like'>thumb_down</button>"><img src="photos/002.jpg" alt="photo"></div>
   </section>
 
   <footer>
@@ -246,6 +223,9 @@
   <script src="libraries/jquery/jquery-2.2.2.min.js"></script>
   <!-- Bootstrap -->
   <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Material Theme-->
+  <script src="libraries/bootstrap-mdl/js/ripples.min.js"></script>
+  <script src="libraries/bootstrap-mdl/js/material.min.js"></script>
   <!-- MDL -->
   <script src="libraries/material/js/material.min.js"></script>
   <!-- 3rd party library collageplus.edlea.com -->
