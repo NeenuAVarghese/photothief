@@ -135,6 +135,7 @@ var main = function () {
     // Function to load thumbs up/down for each image
     function loadScores(indices) {
         _.each(indices, function (n) {
+            $("#rand" + n).children('img').eq(0).attr("src", "photos/0" + chance.integer({min: 10, max: 72}) + ".jpg");
             $("#rand" + n).attr("data-caption",
                 "<button class='material-icons like'>thumb_up</button><span class='counter'>"
                 + chance.integer({min: 0, max: 100})
