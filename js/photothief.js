@@ -5,6 +5,8 @@
 var main = function () {
     "use strict";
 
+    var jsonPath = "http://localhost:3000";
+
     /*
         Change the individual variable into a object with tree structure like
         this allow us to group all the fields, actions and allow easy access
@@ -16,26 +18,26 @@ var main = function () {
     var $pt = {
         landPage: {
             section: {
-                navbar : ".pt_landPage-navigation",
-                slogan : ".pt_landPage-slogan",
+                navbar: ".pt_landPage-navigation",
+                slogan: ".pt_landPage-slogan",
                 content: ".pt_landPage-content",
                 loginInfo: ".pt_landPage-loginInfo"
             },
             session: {
-                info : ".pt_landPage_loginInfo",
+                info: ".pt_landPage_loginInfo",
                 id: "#pt_session_Id",
                 user: "#pt_session_User",
                 email: "#pt_session_Email",
-                notify : "#pt_session_Notify"
+                notify: "#pt_session_Notify"
             },
             action: {
-                icon : "#pt_log_icon",
-                text : "#pt_log_text",
-                login : ".pt_openLoginCardAction",
-                logout : ".pt_logOutAction",
-                signup : ".pt_openSignupCardAction",
-                demand : ".pt_openDemandCardAction",
-                upload : ".pt_openUploadCardAction"
+                icon: "#pt_log_icon",
+                text: "#pt_log_text",
+                login: ".pt_openLoginCardAction",
+                logout: ".pt_logOutAction",
+                signup: ".pt_openSignupCardAction",
+                demand: ".pt_openDemandCardAction",
+                upload: ".pt_openUploadCardAction"
             }
         },
         carousel: {
@@ -44,10 +46,15 @@ var main = function () {
             mostWanted: "#pt_carouselMostWanted",
             newestUpload: "#pt_carouselNewestUpload"
         },
+        scores: {
+            count: 0,
+            up: "",
+            down: ""
+        },
         loginCard: {
             handle: "#pt_loginCard",
             field: {
-                loginId : "#pt_loginCard-loginId",
+                loginId: "#pt_loginCard-loginId",
                 password: "#pt_loginCard-loginPassword",
                 revealPass: "#pt_loginCard-revealPassword",
                 errorStatus: "#pt_loginCard-errorMessage"
@@ -88,7 +95,7 @@ var main = function () {
                 demand: "#pt_demandsCard-demand",
                 victimEmail: "#pt_demandsCard-victimEmail",
                 errorStatus: "#pt_demandCard-errorMessage",
-                removeVictim : "#pt_demandcard-removeVictim"
+                removeVictim: "#pt_demandcard-removeVictim"
 
             },
             action: {
@@ -125,13 +132,25 @@ var main = function () {
         });
     }
 
+    // Function to load thumbs up/down for each image
+    function loadScores(indices) {
+        _.each(indices, function (n) {
+            alert(Date.now());
+            $("#rand" + n).attr("data-caption", 
+                "<button class='material-icons like'>thumb_up</button><span class='counter'>"
+                + chance.integer({min: 0, max: 100})
+                + "</span><button class='material-icons like'>thumb_down</button>");
+            console.log("Loading score for " + n);
+          });
+    }
+
     // Function for the initial load of the page.
     function initialize() {
 
         // TODO: More code to handle the sign up
         var $template = $("<div>").hide();
-        var $wantedSource = "http://localhost:3000/photos?_start=40&_end=60";
-        var $newestSource = "http://localhost:3000/photos?_start=0&_end=30";
+        var $wantedSource = jsonPath + "/photos?_start=40&_end=60";
+        var $newestSource = jsonPath + "/photos?_start=0&_end=30";
 
         // Update the template with class mdl-grid
         $template.addClass("mdl-grid");
@@ -157,6 +176,7 @@ var main = function () {
         });
 
         // TODO: Any other tasks need to be done here to initialize page
+        loadScores([1,2,3,4,5,6,7,8,9,10]);
     } // End iniitalize function
 
     // Function to set things up when login is successful
@@ -205,7 +225,7 @@ var main = function () {
         }
 
         // Build the JSON urlHost
-        var urlHost = "http://localhost:3000/users";
+        var urlHost = jsonPath + "/users";
         urlHost += "?loginId=" + $loginId.val().trim();
         urlHost += "&password=" + $password.val().trim();
 
@@ -308,7 +328,7 @@ var main = function () {
         signupData.avatar = "";
 
         // Build the JSON urlHost to check if loginId already exist
-        var urlHost = "http://localhost:3000/users";
+        var urlHost = jsonPath + "/users";
         urlHost += "?loginId=" + signupData.loginId;
 
         // TODO:  Perform AJAX to check data here
@@ -321,7 +341,7 @@ var main = function () {
                 if (result.length === 0) {
                     // We have no duplicate, allow the user to signup
                     // WS to add the user signup
-                    var urlHost = "http://localhost:3000/users";
+                    var urlHost = jsonPath + "/users";
 
                     // Call ajax to save the signupData
                     $.ajax({
@@ -471,7 +491,7 @@ var main = function () {
         if (userId !== "") {
             $($pt.demandCard.handle).modal("show");
             $.ajax({
-                url: "http://localhost:3000/demands",
+                url: jsonPath + "/demands",
                 method: "GET",
                 type: "json",
                 data: {
