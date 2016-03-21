@@ -150,8 +150,8 @@ var main = function () {
         });
     }
 
-    // Function to load thumbs up/down for each image
-    function loadScores(indices) {
+    // Function to random images
+    function loadRandom(indices) {
         var pt_img = [];
         var pt_rand = 0;
 
@@ -163,9 +163,18 @@ var main = function () {
               pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
             }
 
+            // var $newestSource = $pt.server.db + "/photos?used_ne=true&_limit=15";
+
             // Add random score to each random image
             pt_img.push(pt_rand);
             $("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
+        });
+    }
+
+    // Function to load thumbs up/down for each image
+    function loadScores(indices) {
+        _.each(indices, function (n) {
+            // Add random score to each random image
             $("#rand" + n).attr("data-caption",
                 "<a class='like'><i id='upvote" + n + "'" +
                 "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
@@ -173,7 +182,7 @@ var main = function () {
                 "<a class='like'><i id='downvote" + n + "'" +
                 "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
             //console.log("Loading score for " + n);
-          });
+        });
     }
 
     // Event handler for upvote/downvote
@@ -214,9 +223,9 @@ var main = function () {
 
         // TODO: More code to handle the sign up
         var $template = $("<div>").hide();
-        var $wantedSource = $pt.server.db + "/photos?_start=40&_end=60";
+        var $wantedSource = $pt.server.db + "/photos?used_ne=true&_sort=createDate&_order=ASC&_limit=20";
         // Get the latest 10 pictures
-        var $newestSource = $pt.server.db + "/photos?_sort=createDate&_order=DESC&_limit=10";
+        var $newestSource = $pt.server.db + "/photos?used_ne=true&_sort=createDate&_order=DESC&_limit=10";
 
         // Update the template with class mdl-grid
         $template.addClass("mdl-grid");
@@ -242,6 +251,7 @@ var main = function () {
         });
 
         // TODO: Any other tasks need to be done here to initialize page
+        loadRandom(indices);
         loadScores(indices);
         handleVoteAction(indices);
     } // End iniitalize function
@@ -253,8 +263,13 @@ var main = function () {
         $($pt.landPage.session.id).text(result[0].id);
         $($pt.landPage.session.user).text(result[0].loginId);
         $($pt.landPage.session.email).text(result[0].email);
-        $($pt.landPage.session.notify).attr("data-badge", 5 /*result[0].notify*/);
-        $(document).attr("title", "PhotoThief (" + 5 + ")");
+
+        // Notifications
+        if (result[0].notify !== 0) {
+          $($pt.landPage.session.notify).attr("data-badge", result[0].notify);
+          $(document).attr("title", "* PhotoThief");
+          $("#favicon").attr("href", "favicon2.ico");
+        }
 
         // Hide slogan
         $($pt.landPage.section.slogan).addClass("hidden").removeClass("show");
@@ -343,6 +358,7 @@ var main = function () {
         $($pt.landPage.session.email).text("");
         $($pt.landPage.session.notify).removeAttr("data-badge");
         $(document).attr("title", "PhotoThief");
+        $("#favicon").attr("href", "favicon.ico");
 
         // Hide user info
         $($pt.landPage.session.info).addClass("hidden").removeClass("show");

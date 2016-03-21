@@ -12,6 +12,10 @@ body {
   background-color: #E6E6E6;
 }
 
+a {
+  color: #FF4081;
+}
+
 .title {
   font-size: 2em;
   color: #FF0000;
@@ -232,7 +236,5 @@ body {
 
 .pt_uploadCard-preview > .preview {
   height: 100px;
-  border: 1px dashed #E6E6E6;
-  display: inline;
   margin: 0 100px 0 10px;
 }
