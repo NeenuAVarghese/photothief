@@ -34,6 +34,7 @@ var main = function () {
             action: {
                 icon: "#pt_log_icon",
                 text: "#pt_log_text",
+                image: ".counter",
                 login: ".pt_openLoginCardAction",
                 logout: ".pt_logOutAction",
                 signup: ".pt_openSignupCardAction",
@@ -47,10 +48,15 @@ var main = function () {
             mostWanted: "#pt_carouselMostWanted",
             newestUpload: "#pt_carouselNewestUpload"
         },
-        scores: {
-            count: 0,
-            up: "",
-            down: ""
+        imageCard: {
+            handle: "#pt_imageCard",
+            field: {
+                imgSrc: ".pt_imageCard-src",
+                errorStatus: "#pt_imageCard-errorMessage"
+            },
+            action: {
+                image: ".pt_imageAction"
+            }
         },
         loginCard: {
             handle: "#pt_loginCard",
@@ -63,7 +69,6 @@ var main = function () {
             action: {
                 login: ".pt_loginAction"
             }
-
         },
         signupCard: {
             handle: "#pt_signupCard",
@@ -155,7 +160,7 @@ var main = function () {
             $("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
             $("#rand" + n).attr("data-caption",
                 "<a class='like'><i id='upvote" + n + "'"
-                + "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter' disabled>"
+                + "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>"
                 + chance.integer({min: 0, max: 30}) + "</button>"
                 + "<a class='like'><i id='downvote" + n + "'"
                 + "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
@@ -207,6 +212,7 @@ var main = function () {
         $($pt.landPage.session.user).text(result[0].loginId);
         $($pt.landPage.session.email).text(result[0].email);
         $($pt.landPage.session.notify).attr("data-badge", 5 /*result[0].notify*/);
+        $(document).attr("title", "PhotoThief (" + 5 + ")");
 
         // Hide slogan
         $($pt.landPage.section.slogan).addClass("hidden").removeClass("show");
@@ -291,6 +297,7 @@ var main = function () {
         $($pt.landPage.session.user).text("");
         $($pt.landPage.session.email).text("");
         $($pt.landPage.session.notify).removeAttr("data-badge");
+        $(document).attr("title", "PhotoThief");
 
         // Hide user info
         $($pt.landPage.session.info).addClass("hidden").removeClass("show");
@@ -560,6 +567,20 @@ var main = function () {
             });
         });
     }
+
+    // Event handler for Image Link
+    $(".Collage").on("click", $pt.landPage.action.image, function () {
+        var imgFocus = $(this).parent().parent().parent().children("img").eq(0).attr('src');
+        console.log(imgFocus);
+        $($pt.imageCard.field.imgSrc).attr("src", imgFocus);
+        //$("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
+
+        // Bootstrap open up modal for sign up
+        $($pt.imageCard.handle).modal("show");
+
+        // Needed to stop follow link
+        return false;
+    });
 
     // Event handler for Sign Up link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.signup, function () {

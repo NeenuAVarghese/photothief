@@ -138,10 +138,19 @@ body {
   height: 56px;
 }
 
+.counter:focus, .counter:active {
+  outline: none;
+}
+
 .mdl-mini-footer {
   padding: 1.25em;
 }
 
+.pt_imageCard-src {
+  max-width: 500px;
+}
+
+.pt_imageCard .mdl-card,
 .pt_loginCard .mdl-card,
 .pt_signupCard .mdl-card {
   min-width: 450px;
@@ -149,6 +158,7 @@ body {
   margin: auto;
 }
 
+.pt_imageCard > .mdl-card__title,
 .pt_loginCard > .mdl-card__title,
 .pt_signupCard > .mdl-card__title {
   color: white;
