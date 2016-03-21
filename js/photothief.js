@@ -134,8 +134,20 @@ var main = function () {
 
     // Function to load thumbs up/down for each image
     function loadScores(indices) {
+        var pt_img = [];
+        var pt_rand = 0;
+
         _.each(indices, function (n) {
-            $("#rand" + n).children('img').eq(0).attr("src", "photos/0" + chance.integer({min: 10, max: 72}) + ".jpg");
+            // Get random image, no dupes
+            pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
+            while (_.contains(pt_img, pt_rand)) {
+              console.log("Dupe found " + pt_rand);
+              pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
+            }
+
+            // Add random score to each random image
+            pt_img.push(pt_rand);
+            $("#rand" + n).children('img').eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
             $("#rand" + n).attr("data-caption",
                 "<button class='material-icons like'>thumb_up</button><span class='counter'>"
                 + chance.integer({min: 0, max: 100})
