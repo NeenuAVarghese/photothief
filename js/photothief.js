@@ -6,7 +6,7 @@ var main = function () {
     "use strict";
 
     var jsonPath = "http://"+window.location.hostname + ":3000";
-    var indices = [1,2,3,4,5,6,7,8,9,10];
+    var indices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
     /*
         Change the individual variable into a object with tree structure like

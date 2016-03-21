@@ -1,3 +1,12 @@
+@media (max-width: 600px) {
+  .owl-theme .owl-controls .owl-buttons {
+    display: none;
+  }
+  .pt_imageCard-src {
+    width: 300px;
+  }
+}
+
 body {
   padding-top: 70px;
   background-color: #E6E6E6;
@@ -68,13 +77,13 @@ body {
 }
 
 .owl-theme .owl-controls .owl-buttons .owl-prev {
-  left: -5em;
-  top: 7em;
+  left: -70px;
+  top: 70px;
 }
 
 .owl-theme .owl-controls .owl-buttons .owl-next {
-  right: -5em;
-  top: 7em;
+  right: -70px;
+  top: 70px;
 }
 
 .Image_Wrapper,
