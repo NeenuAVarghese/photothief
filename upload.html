@@ -7,15 +7,60 @@
         <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-theme.min.css">
     </head>
     <body>
-      <div class="col-lg-4 col-sm-4 col-12">
-        <form action="/ptupload" method="post"  enctype="multipart/form-data">
-            <input id="pt_uploadCard-file" name="photo" type="file">
-            <input class="btn btn-primary pt_uploadAction" type="submit" value="Upload">
-        </form>
+        <div class="col-lg-4 col-sm-4 col-12">
+            <form id="pt_uploadCard-form">
+                <input id="pt_uploadCard-file" name="photo" type="file">
+            </form>
+            <button class="btn btn-primary pt_uploadAction">Upload</button>
+        </div>
 
         <!-- JQuery -->
         <script src="libraries/jquery/jquery-2.2.2.min.js"></script>
         <!-- Bootstrap -->
         <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
+
+        <script>
+            "use strict";
+            var pt = {
+                click: ".pt_uploadAction"
+            };
+
+            var main = function () {
+                // http://digipiph.com/blog/submitting-multipartform-data-using-jquery-and-ajax
+                // Credit to the above site for code sample on using ajax to post multipart
+                // formdata
+                $(pt.click).on("click", function (event) {
+                    var $photo = $("#pt_uploadCard-file")[0];
+                    if ($photo.files.length === 0) {
+                        return false;
+                    }
+
+                    var form = new FormData();
+                    form.append("photo", $photo.files[0]);
+
+                    $.ajax({
+                        url: "http://localhost:8000/ptupload",
+                        method: "POST",
+                        data: form,
+                        contentType: false,
+                        processData: false,
+                        success: function (result) {
+                            var success = result;
+                            alert (result);
+                        },
+                        error: function (result) {
+                            var error = result;
+                            alert (error);
+                        }
+                    });
+
+                    return false;
+                });
+            };
+
+            $(document).ready(main);
+
+        </script>
+
     </body>
 </html>
