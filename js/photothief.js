@@ -95,7 +95,8 @@ var main = function () {
                 email: "#pt_uploadCard-victim",
                 paymentType: "#pt_uploadCard-payment",
                 amount: "#pt_uploadCard-amount",
-                errorStatus: "#pt_uploadCard-errorMessage"
+                errorStatus: "#pt_uploadCard-errorMessage",
+                preview: ".pt_uploadCard-preview"
             },
             action: {
                 upload: ".pt_uploadAction"
@@ -557,6 +558,7 @@ var main = function () {
                                             $($pt.uploadCard.field.file).attr("type", "file");
                                             $($pt.uploadCard.field.email).val("");
                                             $($pt.uploadCard.field.amount).val("");
+                                            $($pt.uploadCard.field.preview).empty();
                                             $error.empty();
 
                                             // Reload the newest upload carousel
@@ -681,7 +683,7 @@ var main = function () {
             var $target = $(event.currentTarget);
             var photo = event.currentTarget.files[0];
             // Initialize the preview image area
-            var $preview = $(".pt_uploadCard-preview").hide();
+            var $preview = $($pt.uploadCard.field.preview).hide();
             $preview.empty();
 
             // Only accept JPEG file
