@@ -12,6 +12,10 @@ body {
   background-color: #E6E6E6;
 }
 
+a {
+  color: #FF4081;
+}
+
 .title {
   font-size: 2em;
   color: #FF0000;
