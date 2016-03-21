@@ -6,6 +6,7 @@ var main = function () {
     "use strict";
 
     var jsonPath = "http://localhost:3000";
+    var indices = [1,2,3,4,5,6,7,8,9,10];
 
     /*
         Change the individual variable into a object with tree structure like
@@ -153,10 +154,12 @@ var main = function () {
             pt_img.push(pt_rand);
             $("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
             $("#rand" + n).attr("data-caption",
-                "<button class='material-icons like'>thumb_up</button><span class='counter'>"
-                + chance.integer({min: 0, max: 100})
-                + "</span><button class='material-icons like'>thumb_down</button>");
-            console.log("Loading score for " + n);
+                "<a class='like'><i id='upvote" + n + "'"
+                + "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter' disabled>"
+                + chance.integer({min: 0, max: 30}) + "</button>"
+                + "<a class='like'><i id='downvote" + n + "'"
+                + "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
+            //console.log("Loading score for " + n);
           });
     }
 
@@ -192,7 +195,8 @@ var main = function () {
         });
 
         // TODO: Any other tasks need to be done here to initialize page
-        loadScores([1,2,3,4,5,6,7,8,9,10]);
+        loadScores(indices);
+        handleVoteAction(indices);
     } // End iniitalize function
 
     // Function to set things up when login is successful
@@ -528,6 +532,33 @@ var main = function () {
 
         // Stop link follow if anything
         return false;
+    }
+
+    // Event handler for upvote/downvote
+    function handleVoteAction(indices) {
+        _.each(indices, function (n) {
+            $(".Collage").on("click", "#upvote" + n, function() {
+                $(this).prop("disabled", true);
+                $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
+                console.log("upvote");
+                $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
+                $("#downvote" + n).prop("disabled", false);
+
+                // TODO
+            });
+        });
+
+        _.each(indices, function (n) {
+            $(".Collage").on("click", "#downvote" + n, function() {
+                $(this).prop("disabled", true);
+                $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
+                console.log("downvote");
+                $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
+                $("#upvote" + n).prop("disabled", false);
+
+                // TODO
+            });
+        });
     }
 
     // Event handler for Sign Up link
