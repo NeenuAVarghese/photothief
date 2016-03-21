@@ -136,7 +136,7 @@ var main = function () {
     function loadScores(indices) {
         _.each(indices, function (n) {
             alert(Date.now());
-            $("#rand" + n).attr("data-caption", 
+            $("#rand" + n).attr("data-caption",
                 "<button class='material-icons like'>thumb_up</button><span class='counter'>"
                 + chance.integer({min: 0, max: 100})
                 + "</span><button class='material-icons like'>thumb_down</button>");
