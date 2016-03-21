@@ -5,7 +5,7 @@
 var main = function () {
     "use strict";
 
-    var jsonPath = "http://"+window.location.hostname + ":3000";
+	var hostname = "http://" + window.location.hostname;
     var indices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
     /*
@@ -18,8 +18,8 @@ var main = function () {
     */
     var $pt = {
         server: {
-            upload: "http://localhost:8000/ptupload",
-            db: "http://localhost:3000"
+            upload: hostname + ":8000/ptupload",
+            db: hostname + ":3000"
         },
         landPage: {
             section: {
@@ -214,9 +214,9 @@ var main = function () {
 
         // TODO: More code to handle the sign up
         var $template = $("<div>").hide();
-        var $wantedSource = jsonPath + "/photos?_start=40&_end=60";
+        var $wantedSource = $pt.server.db + "/photos?_start=40&_end=60";
         // Get the latest 10 pictures
-        var $newestSource = jsonPath + "/photos?_sort=createDate&_order=DESC&_limit=10";
+        var $newestSource = $pt.server.db + "/photos?_sort=createDate&_order=DESC&_limit=10";
 
         // Update the template with class mdl-grid
         $template.addClass("mdl-grid");
@@ -294,7 +294,7 @@ var main = function () {
         }
 
         // Build the JSON urlHost
-        var urlHost = jsonPath + "/users";
+        var urlHost = $pt.server.db + "/users";
         urlHost += "?loginId=" + $loginId.val().trim();
         urlHost += "&password=" + $password.val().trim();
 
@@ -401,7 +401,7 @@ var main = function () {
         signupData.avatar = "";
 
         // Build the JSON urlHost to check if loginId already exist
-        var urlHost = jsonPath + "/users";
+        var urlHost = $pt.server.db + "/users";
         urlHost += "?loginId=" + signupData.loginId;
 
         // TODO:  Perform AJAX to check data here
@@ -414,7 +414,7 @@ var main = function () {
                 if (result.length === 0) {
                     // We have no duplicate, allow the user to signup
                     // WS to add the user signup
-                    var urlHost = jsonPath + "/users";
+                    var urlHost = $pt.server.db + "/users";
 
                     // Call ajax to save the signupData
                     $.ajax({
@@ -520,7 +520,7 @@ var main = function () {
 
                     // Perform add to photos database
                     $.ajax({
-                        url: jsonPath + "/photos",
+                        url: $pt.server.db + "/photos",
                         dataType: "json",
                         method: "POST",
                         data: photoData,
@@ -537,7 +537,7 @@ var main = function () {
                             };
 
                             $.ajax({
-                                url: jsonPath + "/demands",
+                                url: $pt.server.db + "/demands",
                                 dataType: "json",
                                 method: "POST",
                                 data: demandData,
@@ -548,7 +548,7 @@ var main = function () {
                                     };
 
                                     $.ajax({
-                                        url: jsonPath + "/demands/" + result.id,
+                                        url: $pt.server.db + "/demands/" + result.id,
                                         dataType: "json",
                                         method: "PATCH",
                                         data: linkData,
@@ -562,7 +562,7 @@ var main = function () {
                                             $error.empty();
 
                                             // Reload the newest upload carousel
-                                            //var $newestSource = jsonPath + "/photos?_sort=createDate&_order=DESC&_limit=10";
+                                            //var $newestSource = $pt.server.db + "/photos?_sort=createDate&_order=DESC&_limit=10";
                                             //loadCarousel($pt.carousel.newestUpload, $newestSource);
                                             // Call this for now to refresh the carousel
                                             initialize();
@@ -721,7 +721,7 @@ var main = function () {
         if (userId !== "") {
             $($pt.demandCard.handle).modal("show");
             $.ajax({
-                url: jsonPath + "/demands",
+                url: $pt.server.db + "/demands",
                 method: "GET",
                 dataType: "json",
                 data: {
