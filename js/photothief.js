@@ -5,7 +5,7 @@
 var main = function () {
     "use strict";
 
-    var jsonPath = "http://localhost:3000";
+    var jsonPath = "http://"+window.location.hostname + ":3000";
     var indices = [1,2,3,4,5,6,7,8,9,10];
 
     /*
