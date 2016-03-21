@@ -17,6 +17,10 @@ var main = function () {
 
     */
     var $pt = {
+        server: {
+            upload: "http://localhost:8000/ptupload",
+            db: "http://localhost:3000"
+        },
         landPage: {
             section: {
                 navbar: ".pt_landPage-navigation",
@@ -119,16 +123,19 @@ var main = function () {
     // and the sliderId
     function loadCarousel($sliderId, source) {
         // Load owlCarousel for slider 1.  Sample data pull from image 40 to 60
+        $($sliderId).empty();
         $($sliderId).owlCarousel({
             jsonPath : source,
             jsonSuccess : function (data) {
-                // Call back function to process the photo data we pull
-                data.forEach(function(image) {
-                    var $img = $("<img>");
-                    $img.prop("src", image.src);
-                    $img.prop("alt", "images from json");
-                    $($sliderId).append($img);
-                });
+                if (data.length >= 1) {
+                    // Call back function to process the photo data we pull
+                    data.forEach(function(image) {
+                        var $img = $("<img>");
+                        $img.prop("src", image.src);
+                        $img.prop("alt", "images from json");
+                        $($sliderId).append($img);
+                    });
+                }
             },
             navigation: true,
             navigationText: [
@@ -201,14 +208,14 @@ var main = function () {
         });
     }
 
-
     // Function for the initial load of the page.
     function initialize() {
 
         // TODO: More code to handle the sign up
         var $template = $("<div>").hide();
         var $wantedSource = jsonPath + "/photos?_start=40&_end=60";
-        var $newestSource = jsonPath + "/photos?_start=0&_end=30";
+        // Get the latest 10 pictures
+        var $newestSource = jsonPath + "/photos?_sort=createDate&_order=DESC&_limit=10";
 
         // Update the template with class mdl-grid
         $template.addClass("mdl-grid");
@@ -270,7 +277,8 @@ var main = function () {
     }
 
     // Function to handle the loginCard login button
-    function handleLoginAction() {
+    function handleLoginAction(event) {
+        event.preventDefault();
         //var $target = $(event.currentTarget);
         // Grab all the fields on the login Card
         var $loginId = $($pt.loginCard.field.loginId);
@@ -302,7 +310,7 @@ var main = function () {
         // TODO:  Perform AJAX to check data here
         $.ajax({
             url: urlHost,
-            type: "json",
+            dataType: "json",
             method: "GET",
             success: function (result) {
                 // result is an array if it return
@@ -324,7 +332,9 @@ var main = function () {
     }
 
     // Function to handle logout action
-    function handleLogOutAction() {
+    function handleLogOutAction(event) {
+        event.preventDefault();
+
         // Remove userId and Email from footer
         // Can't save to session or anything here
         $($pt.landPage.session.id).text("");
@@ -358,8 +368,9 @@ var main = function () {
     }
 
     // Function to handle SignUpCard Signup button
-    function handleSignupAction() {
-        //var $target = $(event.currentTarget);
+    function handleSignupAction(event) {
+        event.preventDefault();
+
         // Grab all the fields on the login Card
         var $name = $($pt.signupCard.field.name);
         var $email = $($pt.signupCard.field.email);
@@ -395,7 +406,7 @@ var main = function () {
         // TODO:  Perform AJAX to check data here
         $.ajax({
             url: urlHost,
-            type: "json",
+            dataType: "json",
             method: "GET",
             success: function (result) {
                 // result is an array if it return
@@ -407,7 +418,7 @@ var main = function () {
                     // Call ajax to save the signupData
                     $.ajax({
                         url: urlHost,
-                        type: "json",
+                        dataType: "json",
                         method: "POST",
                         data: signupData,
                         success: function (result) {
@@ -446,7 +457,8 @@ var main = function () {
 
     }
 
-    function handleUploadAction() {
+    function handleUploadAction(event) {
+        event.preventDefault();
         // Retrieve all the necessary data to prepare the following:
         // 1. File upload to server
         // 2. Insert data into photos database
@@ -488,7 +500,7 @@ var main = function () {
         form.append("photo", $file.files[0]);
 
         $.ajax({
-            url: "http://localhost:8000/ptupload",
+            url: $pt.server.upload,
             method: "POST",
             data: form,
             contentType: false,
@@ -498,7 +510,7 @@ var main = function () {
                     // We got the file uploaded, now save it to photos
                     var photoData = {
                         src: result.path,
-                        creationDate: result.created,
+                        createDate: result.created,
                         score: 0,
                         source: "own",
                         used: false,
@@ -507,7 +519,7 @@ var main = function () {
 
                     // Perform add to photos database
                     $.ajax({
-                        url: "http://localhost:3000/photos",
+                        url: jsonPath + "/photos",
                         dataType: "json",
                         method: "POST",
                         data: photoData,
@@ -524,7 +536,7 @@ var main = function () {
                             };
 
                             $.ajax({
-                                url: "http://localhost:3000/demands",
+                                url: jsonPath + "/demands",
                                 dataType: "json",
                                 method: "POST",
                                 data: demandData,
@@ -535,7 +547,7 @@ var main = function () {
                                     };
 
                                     $.ajax({
-                                        url: "http://localhost:3000/demands/" + result.id,
+                                        url: jsonPath + "/demands/" + result.id,
                                         dataType: "json",
                                         method: "PATCH",
                                         data: linkData,
@@ -546,24 +558,33 @@ var main = function () {
                                             $($pt.uploadCard.field.email).val("");
                                             $($pt.uploadCard.field.amount).val("");
                                             $error.empty();
+
+                                            // Reload the newest upload carousel
+                                            //var $newestSource = jsonPath + "/photos?_sort=createDate&_order=DESC&_limit=10";
+                                            //loadCarousel($pt.carousel.newestUpload, $newestSource);
+                                            // Call this for now to refresh the carousel
+                                            initialize();
                                             // Hide modal
                                             $($pt.uploadCard.handle).modal("hide");
+                                            return false;
                                         },
                                         error: function (result) {
                                             console.log("Fail update link" + result.status);
                                         }
-                                    });
+                                    }); // End Update Ransom Link and reload carousel
                                 },
                                 error: function (result) {
                                     console.log("Fail added to demands database " + result.status);
                                 }
                             }); // Finished AJAX for Demands
+                            return false;
                         },
                         error: function (result) {
                             console.log("Failed add to photos database " + result.status);
                         }
                     }); // Finish AJAX for Photos
                 } // If has filename as result from upload
+                return false;
             },
             error: function (result) {
                 $error.append($("<p>").text(result.responseJSON.message));
@@ -596,11 +617,14 @@ var main = function () {
         // Bootstrap open up modal for sign up
         $($pt.signupCard.handle).modal("show");
 
-        // Add Event handler for the login button
-        $($pt.signupCard.action.signup).on("click", handleSignupAction);
+        // Add Event handler for the login button.  Since it get add everytime
+        // the modal is show, we must unregister it first then re-register
+        // .off() will remove all events for the selector.  If have multiple
+        // attached, specified it as .off("click") ...
+        $($pt.signupCard.action.signup).off().on("click", handleSignupAction);
 
         // Add Event handler for the Checkbox toggle
-        $($pt.signupCard.field.hidePass).on("click", function (event) {
+        $($pt.signupCard.field.hidePass).off().on("click", function (event) {
             var $target = $(event.currentTarget);
             // Set the type of the password input to either text or password
             if ($target.is(":checked") === true) {
@@ -620,10 +644,10 @@ var main = function () {
         $($pt.loginCard.handle).modal("show");
 
         // Add Event handler for the login button
-        $($pt.loginCard.action.login).on("click", handleLoginAction);
+        $($pt.loginCard.action.login).off().on("click", handleLoginAction);
 
         // Add Event handler for the Checkbox toggle
-        $($pt.loginCard.field.revealPass).on("click", function (event) {
+        $($pt.loginCard.field.revealPass).off().on("click", function (event) {
             var $target = $(event.currentTarget);
             // Set the type of the password input to either text or password
             if ($target.is(":checked") === true) {
@@ -645,7 +669,44 @@ var main = function () {
         $($pt.uploadCard.handle).modal("show");
 
         // Add Event handler for the login button
-        $($pt.uploadCard.action.upload).on("click", handleUploadAction);
+        $($pt.uploadCard.action.upload).off().on("click", handleUploadAction);
+
+        // Add Event handler for image preview during upload
+        // http://codepedia.info/2015/06/html5-filereader-preview-image-show-thumbnail-image-before-uploading-on-server-in-jquery/
+        // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
+        // Credit to the sites above for instruction and sample code
+        $($pt.uploadCard.field.file).off().on("change", function (event) {
+            event.preventDefault();
+            // Get the select file
+            var $target = $(event.currentTarget);
+            var photo = event.currentTarget.files[0];
+            // Initialize the preview image area
+            var $preview = $(".pt_uploadCard-preview").hide();
+            $preview.empty();
+
+            // Only accept JPEG file
+            if (! photo.type.match(".*jpeg$")) {
+                // Reset the file selected
+                $target.attr("type", "text").attr("type", "file");
+                // Output message
+                $preview.append($("<p>").text("We only accept jpeg file"));
+                $preview.fadeIn();
+                return false;
+            }
+
+            // Use FileReader to preview the image
+            var reader = new FileReader();
+            // Read the file as URL (so that we can link to img src)
+            reader.readAsDataURL(photo);
+
+            reader.onload = function (event) {
+                // when load finish get the result of the read
+                var src = event.currentTarget.result;
+                var $img = $("<img>").addClass("preview").attr("src", src);
+                $img.attr("alt", "Upload Preview");
+                $preview.append($img).fadeIn();
+            };
+        }); // End onChange of image selection
 
         return false;
     });
@@ -660,7 +721,7 @@ var main = function () {
             $.ajax({
                 url: jsonPath + "/demands",
                 method: "GET",
-                type: "json",
+                dataType: "json",
                 data: {
                     userId: userId,
                     met: false
@@ -695,6 +756,13 @@ var main = function () {
         return false;
     });
 
+    // Attempt to clear all modal data
+    // $("body").on("hidden.bs.modal", ".modal", function (event) {
+    //     // if (event.currentTarget.id === $pt.loginCard.handle.substr(1)) {
+    //     // }
+    //     // alert("Fire when modal hide");
+    //     // $(event.currentTarget).removeData("bs.modal");
+    // });
     // Call function to intitialize it here
     initialize();
 

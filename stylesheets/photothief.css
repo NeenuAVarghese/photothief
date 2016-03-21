@@ -229,3 +229,10 @@ body {
 .row-footer .pt_footer > a{
   padding: 10px;
 }
+
+.pt_uploadCard-preview > .preview {
+  height: 100px;
+  border: 1px dashed #E6E6E6;
+  display: inline;
+  margin: 0 100px 0 10px;
+}
