@@ -93,7 +93,7 @@ app.use(function (err, req, res, next) {
     }
 
     // Send the result back to user
-    res.status(200).json(result).end();
+    res.status(501).json(result).end();
 
     // Console log it
     console.log(err.message);
@@ -109,7 +109,7 @@ app.post(pt.route, function (req, res) {
         result.status = "error";
         result.message = "Invalid upload form encode type";
         result.message += ". Expect enctype: multipart/form-data";
-        res.status(200).json(result).end();
+        res.status(501).json(result).end();
         return;
     }
 
@@ -129,12 +129,14 @@ app.post(pt.route, function (req, res) {
         if (err) {
             result.status = "error";
             result.message = "File upload error encountered";
+            res.status(501);
         } else {
             result.status = "success";
             result.message = "File upload success";
+            res.status(200);
         }
         // Send the json result back
-        res.status(200).json(result).end();
+        res.json(result).end();
     });
 
     // Log the request to console

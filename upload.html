@@ -5,13 +5,28 @@
         <title>test upload</title>
         <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-theme.min.css">
+
+        <style>
+            .preview {
+                align-items: center;
+                height: 100px;
+                border: 1px dashed #000;
+                margin: 10px 0 5px 20px;
+            }
+        </style>
     </head>
     <body>
         <div class="col-lg-4 col-sm-4 col-12">
             <form id="pt_uploadCard-form">
                 <input id="pt_uploadCard-file" name="photo" type="file">
             </form>
+            <div class="pt_uploadCard-preview">
+                <img class="preview" alt="photo preview">
+            </div>
             <button class="btn btn-primary pt_uploadAction">Upload</button>
+
+            <div class="result">
+            </div>
         </div>
 
         <!-- JQuery -->
@@ -49,13 +64,47 @@
                             alert (result);
                         },
                         error: function (result) {
-                            var error = result;
+                            var error = result.responseJSON;
                             alert (error);
                         }
                     });
 
                     return false;
-                });
+                }); // End upload click button
+
+                // http://codepedia.info/2015/06/html5-filereader-preview-image-show-thumbnail-image-before-uploading-on-server-in-jquery/
+                // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
+                // Credit to the sites above for instruction and sample code
+                // $("#pt_uploadCard-file").on("change", function (event) {
+                //     // Get the select file
+                //     var $target = $(event.currentTarget);
+                //     var photo = event.currentTarget.files[0];
+                //     // Initialize the preview image area
+                //     var $preview = $(".pt_uploadCard-preview").hide();
+                //     $preview.empty();
+                //
+                //     // Only accept JPEG file
+                //     if (! photo.type.match(".*jpeg$")) {
+                //         // Reset the file selected
+                //         $target.attr("type", "text").attr("type", "file");
+                //         // Output message
+                //         $preview.append($("<p>").text("We only accept jpeg file"));
+                //         $preview.fadeIn();
+                //         return false;
+                //     }
+                //
+                //     // Use FileReader to preview the image
+                //     var reader = new FileReader();
+                //     // Read the file as URL (so that we can link to img src)
+                //     reader.readAsDataURL(photo);
+                //
+                //     reader.onload = function (event) {
+                //         // when load finish get the result of the read
+                //         var src = event.currentTarget.result;
+                //         var $img = $("<img>").addClass("preview").attr("src", src);
+                //         $preview.append($img).fadeIn();
+                //     }
+                // }); // End onChange of image selection
             };
 
             $(document).ready(main);

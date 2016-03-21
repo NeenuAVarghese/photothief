@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global alert: true, console: true */
+/* global alert: true, console: true, _: true */
 
 var main = function () {
     "use strict";
@@ -81,10 +81,14 @@ var main = function () {
         uploadCard: {
             handle: "#pt_uploadCard",
             field: {
-                source: "#pt_uploadCard-source"
+                file: "#pt_uploadCard-file",
+                email: "#pt_uploadCard-victim",
+                paymentType: "#pt_uploadCard-payment",
+                amount: "#pt_uploadCard-amount",
+                errorStatus: "#pt_uploadCard-errorMessage"
             },
             action: {
-                upload: ".pt_uploadImageAction"
+                upload: ".pt_uploadAction"
             }
         },
         demandCard: {
@@ -147,7 +151,7 @@ var main = function () {
 
             // Add random score to each random image
             pt_img.push(pt_rand);
-            $("#rand" + n).children('img').eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
+            $("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
             $("#rand" + n).attr("data-caption",
                 "<button class='material-icons like'>thumb_up</button><span class='counter'>"
                 + chance.integer({min: 0, max: 100})
@@ -397,12 +401,133 @@ var main = function () {
 
     }
 
-    function handleDemandAction() {
-        // TODO
-    }
-
     function handleUploadAction() {
-        // TODO
+        // Retrieve all the necessary data to prepare the following:
+        // 1. File upload to server
+        // 2. Insert data into photos database
+        // 3. Insert data into demands database
+        // 4. Possibly need to send link to victim ???
+        var userId = $($pt.landPage.session.id).text().trim();
+        //var userEmail = $($pt.landPage.session.email).text().trim();
+        var $file = $($pt.uploadCard.field.file)[0];
+        var victimEmail = $($pt.uploadCard.field.email).val().trim();
+        var pymntType = $($pt.uploadCard.field.paymentType).find("option:selected").text().trim();
+        var amount = $($pt.uploadCard.field.amount).val().trim();
+        var $error = $($pt.uploadCard.field.errorStatus).hide();
+
+        // Empty the error container
+        $error.empty();
+
+        var errorFlag = false;
+        // Perform validation here
+        if ($file.files.length === 0) {
+            $error.append($("<p>").text("A photo is required"));
+            errorFlag = true;
+        }
+        if (victimEmail === "") {
+            $error.append($("<p>").text("Victim email is required"));
+            errorFlag = true;
+        }
+        if (amount === "") {
+            $error.append($("<p>").text("Demand amount is required"));
+            errorFlag = true;
+        }
+        if (errorFlag) {
+            $error.show();
+            return false;
+        }
+
+        // If we get here, it's good
+        // Perform upload of the image
+        var form = new FormData();
+        form.append("photo", $file.files[0]);
+
+        $.ajax({
+            url: "http://localhost:8000/ptupload",
+            method: "POST",
+            data: form,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result.hasOwnProperty("filename")) {
+                    // We got the file uploaded, now save it to photos
+                    var photoData = {
+                        src: result.path,
+                        creationDate: result.created,
+                        score: 0,
+                        source: "own",
+                        used: false,
+                        userId: userId
+                    };
+
+                    // Perform add to photos database
+                    $.ajax({
+                        url: "http://localhost:3000/photos",
+                        dataType: "json",
+                        method: "POST",
+                        data: photoData,
+                        success: function (result) {
+                            // Now we need to add it to the demands database
+                            var demandData = {
+                                photoId: result.id,
+                                demand: amount + " " + pymntType,
+                                victimEmail: victimEmail,
+                                createDate: Date.now(),
+                                link: "localhost:8000/ransom.html?id=",
+                                met: false,
+                                userId: userId
+                            };
+
+                            $.ajax({
+                                url: "http://localhost:3000/demands",
+                                dataType: "json",
+                                method: "POST",
+                                data: demandData,
+                                success: function (result) {
+                                    // Now we need update the link with the id
+                                    var linkData = {
+                                        link: result.link + result.id
+                                    };
+
+                                    $.ajax({
+                                        url: "http://localhost:3000/demands/" + result.id,
+                                        dataType: "json",
+                                        method: "PATCH",
+                                        data: linkData,
+                                        success: function () {
+                                            // Reset form and close modal
+                                            $($pt.uploadCard.field.file).attr("type", "text");
+                                            $($pt.uploadCard.field.file).attr("type", "file");
+                                            $($pt.uploadCard.field.email).val("");
+                                            $($pt.uploadCard.field.amount).val("");
+                                            $error.empty();
+                                            // Hide modal
+                                            $($pt.uploadCard.handle).modal("hide");
+                                        },
+                                        error: function (result) {
+                                            console.log("Fail update link" + result.status);
+                                        }
+                                    });
+                                },
+                                error: function (result) {
+                                    console.log("Fail added to demands database " + result.status);
+                                }
+                            }); // Finished AJAX for Demands
+                        },
+                        error: function (result) {
+                            console.log("Failed add to photos database " + result.status);
+                        }
+                    }); // Finish AJAX for Photos
+                } // If has filename as result from upload
+            },
+            error: function (result) {
+                $error.append($("<p>").text(result.responseJSON.message));
+                return false;
+            }
+        });  // Finish AJAX to upload picture
+
+        // Stop link follow if anything
+        return false;
     }
 
     // Event handler for Sign Up link
@@ -455,42 +580,13 @@ var main = function () {
     // Event handler for logout Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.logout, handleLogOutAction);
 
-  /*
-    // Event handler event for demands Action
-    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function (event) {
-        var $target = $(event.currentTarget);
-
-        // TODO: code needed here to handle demands
-        alert ("Action click: " + $target.text());
-
-
-        // Need to stop follow Link
-        return false;
-    });
-*/
-    /*// Event handler for Demands Link
-    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
-        var $target = $(event.currentTarget);
-
-        // Show the Demands Modal
-        $($pt.demandsCard.handle).modal("show");
-
-        // Add Event handler for the login button
-        $($pt.demandsCard.action.demand).on("click", handleDemandAction);
-
-        // Add Event handler for the Checkbox toggle
-        alert ("Action click: " + $target.text());
-
-        return false;
-    });*/
-
     // Event handler for Upload Link
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.upload, function () {
         // Show the Upload Modal
         $($pt.uploadCard.handle).modal("show");
 
         // Add Event handler for the login button
-        $($pt.uploadCard.action.demand).on("click", handleUploadAction);
+        $($pt.uploadCard.action.upload).on("click", handleUploadAction);
 
         return false;
     });
