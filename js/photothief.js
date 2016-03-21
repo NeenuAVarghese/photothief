@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global alert: true, console: true, _: true */
+/* global console: true, _: true, chance: true */ /* ,alert: true */
 
 var main = function () {
     "use strict";
@@ -159,14 +159,48 @@ var main = function () {
             pt_img.push(pt_rand);
             $("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
             $("#rand" + n).attr("data-caption",
-                "<a class='like'><i id='upvote" + n + "'"
-                + "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>"
-                + chance.integer({min: 0, max: 30}) + "</button>"
-                + "<a class='like'><i id='downvote" + n + "'"
-                + "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
+                "<a class='like'><i id='upvote" + n + "'" +
+                "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
+                chance.integer({min: 0, max: 30}) + "</button>" +
+                "<a class='like'><i id='downvote" + n + "'" +
+                "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
             //console.log("Loading score for " + n);
           });
     }
+
+    // Event handler for upvote/downvote
+    function handleVoteAction(indices) {
+        _.each(indices, function (n) {
+            $(".Collage").on("click", "#upvote" + n, function() {
+                $(this).prop("disabled", true);
+                $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
+                console.log("upvote");
+                $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
+                $("#downvote" + n).prop("disabled", false);
+
+                // TODO
+                $(this).parent().next("button").text(function(i, oldval) {
+                    return ++oldval;
+                });
+            });
+        });
+
+        _.each(indices, function (n) {
+            $(".Collage").on("click", "#downvote" + n, function() {
+                $(this).prop("disabled", true);
+                $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
+                console.log("downvote");
+                $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
+                $("#upvote" + n).prop("disabled", false);
+
+                // TODO
+                $(this).parent().prev("button").text(function(i, oldval) {
+                    return --oldval;
+                });
+            });
+        });
+    }
+
 
     // Function for the initial load of the page.
     function initialize() {
@@ -541,39 +575,12 @@ var main = function () {
         return false;
     }
 
-    // Event handler for upvote/downvote
-    function handleVoteAction(indices) {
-        _.each(indices, function (n) {
-            $(".Collage").on("click", "#upvote" + n, function() {
-                $(this).prop("disabled", true);
-                $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
-                console.log("upvote");
-                $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
-                $("#downvote" + n).prop("disabled", false);
-
-                // TODO
-            });
-        });
-
-        _.each(indices, function (n) {
-            $(".Collage").on("click", "#downvote" + n, function() {
-                $(this).prop("disabled", true);
-                $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
-                console.log("downvote");
-                $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
-                $("#upvote" + n).prop("disabled", false);
-
-                // TODO
-            });
-        });
-    }
-
     // Event handler for Image Link
     $(".Collage").on("click", $pt.landPage.action.image, function () {
-        var imgFocus = $(this).parent().parent().parent().children("img").eq(0).attr('src');
+        // FIXME
+        var imgFocus = $(this).parent().parent().parent().children("img").eq(0).attr("src");
         console.log(imgFocus);
         $($pt.imageCard.field.imgSrc).attr("src", imgFocus);
-        //$("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
 
         // Bootstrap open up modal for sign up
         $($pt.imageCard.handle).modal("show");

@@ -47,7 +47,7 @@ body {
   background-color: #FF4081;
 }
 
-.modal-backdrop.in {
+.modal-backdrop .in {
   filter: alpha(opacity=80);
   opacity: .8;
 }
@@ -139,7 +139,7 @@ body {
 }
 
 .counter:focus, .counter:active {
-  outline: none;
+  outline: white none;
 }
 
 .mdl-mini-footer {
@@ -199,7 +199,7 @@ body {
   font-weight:bold;
 }
 
-#ransomMoney{
+.ransomMoney{
   padding-top:10px;
 }
 
