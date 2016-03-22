@@ -6,95 +6,62 @@
   width: 30em;
 }
 
+.victim-body .container h1{
+    font-family:Ubuntu;
+}
+
 .victim-footer {
   margin: 50px 0;
+  font-family:Ubuntu;
 }
 
-header .victimContainer {
-    max-width: 855px;
-    margin: auto;
-    
-}
-
-header .victimContainer h1{
+.col-md-4 h3, .col-md-12 h1{
    font-family:Ubuntu;
-   font-weight:bold;
-   font-style:italic;
+   font-weight:200;
+   font-style:normal;
    color:black;
    font-size:30px;
-   float:left;
-   padding:20px;
 }
 
-header .victimContainer nav {
-  float: right;
-  padding:20px;
+.col-md-4 p , .col-md-4 li{
+    font-style:Ubuntu;
+    font-weight:normal;
+    font-style:italic;
+    padding-left:20px;
 }
 
-main .mainVictimContainer{
-    max-width: 855px;
-    margin: auto;
-    
-}
-
-.victimMessage{
-    font-weight:small;
-    background: white;
-    overflow: auto;
-    width:auto;
-    font-style:oblique;
-    
-    
-}
-
-#messageHeading{
-    font-weight:bold; 
-    text-decoration:underline;
-}
-
-#imageText{
-    font-weight:bold; 
-    text-decoration:underline;  
-}
-
-#formText{
-    font-weight:bold; 
-    text-decoration:underline;
-}   
-.victimImage {
-    max-width:855px;
-    margin:auto;
-}
-
-.victimImage img{
-    width:35%;
-    height:auto;
-}
-
-.victimInfoForm{
-    max-width:855px;
-    margin:auto;
+.col-md-8 img{
+    border-radius:15px;    
 }
 
 textarea{
   padding:5px 2px;
   margin:4px 4px;
-  text-align:left;
-  
+  text-align:left; 
+  border-radius: 5px;
+  border: 2px solid black;
 }
 
-input[type=submit]{
+input[type=number]{
+    border-radius: 5px;
+    border: 2px solid black;
+    margin-left:5px;
+}
+
+button {
   padding:10px 20px;
-  margin:4px 2px;
+  margin-left:5px;
+  margin-top:5px;
   text-decoration:none;
   color:white;
   border:none;
   Background-color:black;
+ border-radius: 5px;
 }
 
-footer footerContainer a{
+.victim-footer p{
     max-width: 855px;
-    margin: auto;
-    text-align:center;
+    font-size:small;
+    font-style:italic;
     
 }
