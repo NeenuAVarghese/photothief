@@ -124,11 +124,11 @@ var main = function () {
         // Load owlCarousel for slider 1.  Sample data pull from image 40 to 60
         $($sliderId).empty();
         $($sliderId).owlCarousel({
-            jsonPath : source,
-            jsonSuccess : function (data) {
+            jsonPath: source,
+            jsonSuccess: function (data) {
                 if (data.length >= 1) {
                     // Call back function to process the photo data we pull
-                    data.forEach(function(image) {
+                    data.forEach(function (image) {
                         var $img = $("<img>");
                         $img.prop("src", image.src);
                         $img.prop("alt", "images from json");
@@ -140,11 +140,11 @@ var main = function () {
             navigationText: [
               "<i class='material-icons'>navigate_before</i>",
               "<i class='material-icons'>navigate_next</i>" ],
-            autoPlay : 5000, //Set AutoPlay to 3 seconds
-            items : 8,
-            lazyLoad : true,
-            itemsDesktop : [1199,5],
-            itemsDesktopSmall : [979,3]
+            autoPlay: 5000, //Set AutoPlay to 3 seconds
+            items: 8,
+            lazyLoad: true,
+            itemsDesktop: [1199,5],
+            itemsDesktopSmall: [979,3]
         });
     }
 
@@ -157,8 +157,8 @@ var main = function () {
             // Get random image, no dupes
             pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
             while (_.contains(pt_img, pt_rand)) {
-              console.log("Dupe found " + pt_rand);
-              pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
+                console.log("Dupe found " + pt_rand);
+                pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
             }
 
             // var $newestSource = $pt.server.db + "/photos?used_ne=true&_limit=15";
@@ -186,7 +186,7 @@ var main = function () {
     // Event handler for upvote/downvote
     function handleVoteAction(indices) {
         _.each(indices, function (n) {
-            $(".Collage").on("click", "#upvote" + n, function() {
+            $(".Collage").on("click", "#upvote" + n, function () {
                 $(this).prop("disabled", true);
                 $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
                 console.log("upvote");
@@ -194,14 +194,14 @@ var main = function () {
                 $("#downvote" + n).prop("disabled", false);
 
                 // TODO
-                $(this).parent().next("button").text(function(i, oldval) {
+                $(this).parent().next("button").text(function (i, oldval) {
                     return ++oldval;
                 });
             });
         });
 
         _.each(indices, function (n) {
-            $(".Collage").on("click", "#downvote" + n, function() {
+            $(".Collage").on("click", "#downvote" + n, function () {
                 $(this).prop("disabled", true);
                 $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
                 console.log("downvote");
@@ -209,7 +209,7 @@ var main = function () {
                 $("#upvote" + n).prop("disabled", false);
 
                 // TODO
-                $(this).parent().prev("button").text(function(i, oldval) {
+                $(this).parent().prev("button").text(function (i, oldval) {
                     return --oldval;
                 });
             });
@@ -264,9 +264,9 @@ var main = function () {
 
         // Notifications
         if (result[0].notify !== 0) {
-          $($pt.landPage.session.notify).attr("data-badge", result[0].notify);
-          $(document).attr("title", "* PhotoThief");
-          $("#favicon").attr("href", "favicon2.ico");
+            $($pt.landPage.session.notify).attr("data-badge", result[0].notify);
+            $(document).attr("title", "* PhotoThief");
+            $("#favicon").attr("href", "favicon2.ico");
         }
 
         // Hide slogan
@@ -606,7 +606,7 @@ var main = function () {
                 $error.append($("<p>").text(result.responseJSON.message));
                 return false;
             }
-        });  // Finish AJAX to upload picture
+        }); // Finish AJAX to upload picture
 
         // Stop link follow if anything
         return false;
@@ -701,7 +701,7 @@ var main = function () {
             $preview.empty();
 
             // Only accept JPEG file
-            if (! photo.type.match(".*jpeg$")) {
+            if (!photo.type.match(".*jpeg$")) {
                 // Reset the file selected
                 $target.attr("type", "text").attr("type", "file");
                 // Output message
