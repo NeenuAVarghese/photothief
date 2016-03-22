@@ -118,6 +118,10 @@ var main = function () {
         }
     };
 
+    // Pretty errors
+    var alertBar = "<div class='alert alert-danger fade in'><strong class='pull-left'>Error!&nbsp;</strong><span>";
+    var alertEnd = "</span>&nbsp;<a class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>";
+
     // Function to load the Picture Carousel with specified AJAX source
     // and the sliderId
     function loadCarousel($sliderId, source) {
@@ -286,6 +290,11 @@ var main = function () {
         $($pt.landPage.action.login).addClass(($pt.landPage.action.logout).substr(1));
         $($pt.landPage.action.login).removeClass(($pt.landPage.action.login).substr(1));
 
+        // Confirm leaving webapp
+        window.onbeforeunload = function() {
+           return "";
+        };
+
         // Reload the main page with carousel with user specific data ???
         //initialize();
     }
@@ -302,7 +311,7 @@ var main = function () {
 
         if ($loginId.val().trim() === "" || $password.val().trim() === "") {
             // Empty login Information
-            $error.text("Either User or Password is empty");
+            $error.append(alertBar + "Either User or Password is empty" + alertEnd);
             return false;
         }
 
@@ -330,7 +339,7 @@ var main = function () {
                 // result is an array if it return
                 if (result.length === 0) {
                     // Failed login
-                    $error.text("Invalid Login Information");
+                    $error.append(alertBar + "Invalid Login Information" + alertEnd);
                     return false;
                 } else if (result.length === 1) {
                     // Close Bootstrap Login Modal
@@ -375,6 +384,8 @@ var main = function () {
         $($pt.landPage.action.logout).addClass(($pt.landPage.action.login).substr(1));
         $($pt.landPage.action.logout).removeClass(($pt.landPage.action.logout).substr(1));
 
+        // Remove confirmation
+        window.onbeforeunload = null;
 
         // TODO:  Anything else that we need to handle go here
 
@@ -493,15 +504,15 @@ var main = function () {
         var errorFlag = false;
         // Perform validation here
         if ($file.files.length === 0) {
-            $error.append($("<p>").text("A photo is required"));
+            $error.append(alertBar + "A photo is required" + alertEnd);
             errorFlag = true;
         }
         if (victimEmail === "") {
-            $error.append($("<p>").text("Victim email is required"));
+            $error.append(alertBar + "Victim email is required" + alertEnd);
             errorFlag = true;
         }
         if (amount === "") {
-            $error.append($("<p>").text("Demand amount is required"));
+            $error.append(alertBar + "Demand amount is required" + alertEnd);
             errorFlag = true;
         }
         if (errorFlag) {
@@ -603,7 +614,7 @@ var main = function () {
                 return false;
             },
             error: function (result) {
-                $error.append($("<p>").text(result.responseJSON.message));
+                $error.append(alertBar + result.responseJSON.message + alertEnd);
                 return false;
             }
         }); // Finish AJAX to upload picture
