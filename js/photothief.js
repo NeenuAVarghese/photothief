@@ -142,8 +142,8 @@ var main = function () {
             },
             navigation: true,
             navigationText: [
-              "<i class='material-icons'>navigate_before</i>",
-              "<i class='material-icons'>navigate_next</i>" ],
+                "<span class=\"glyphicon glyphicon-chevron-left\"></span>",
+                "<span class=\"glyphicon glyphicon-chevron-right\"></span>"],
             autoPlay: 5000, //Set AutoPlay to 3 seconds
             items: 8,
             lazyLoad: true,
@@ -229,8 +229,8 @@ var main = function () {
         // Get the latest 10 pictures
         var $newestSource = $pt.server.db + "/photos?used_ne=true&_sort=createDate&_order=DESC&_limit=10";
 
-        // Update the template with class mdl-grid
-        $template.addClass("mdl-grid");
+        // Change to use bootstrap
+        $template.addClass("row");
         // Use AJAX to load in the template file with the main carousel
         $template.load($pt.carousel.template, function (result, status) {
             if (status === "success") {
