@@ -776,43 +776,12 @@ var main = function () {
 
     //Show content in the modal for the given user
     updateDemandModal();
-
-
-
-
     return false;
   });
 
 
   $($pt.demandCard.content).delegate($pt.demandCard.action.collected, 'click', function () {
-    console.log("In class");
-
-    //var $demandId = $($pt.demandCard.field.demandId).text().trim();
-    var $demandId = $(this).index(".pt_demandcard-removeVictim");
-    var urlHost = $pt.server.db + "/demands";
-    console.log($demandId);
-
-    var metdata = {
-      'met': true
-    };
-    $.ajax({
-      url: $pt.server.db + "/demands/" + $demandId
-      , dataType: "json"
-      , method: "PATCH"
-      , data: metdata
-      , success: function () {
-        updateDemandModal();
-      }
-      , error: function () {
-        console.log("error occured");
-      }
-    });
-
-  });
-
-  $($pt.demandCard.content).delegate($pt.demandCard.action.collected, 'click', function () {
-    console.log("In class");
-    var $demandId = $($pt.demandCard.field.demandId).text().trim();
+     var $demandId = $($pt.demandCard.field.demandId).text().trim();
     var urlHost = $pt.server.db + "/demands";
     console.log($demandId);
 
