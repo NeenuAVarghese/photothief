@@ -753,8 +753,8 @@ var main = function () {
                     $(".pt_demandCard-content").empty();
 
                     if (data.length > 0) {
-                        $.each(data, function (index, element) {;
-							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><span class='glyphicon glyphicon-piggy-bank'>&nbsp;</span><span class='elementname'>" + element.victimEmail + "</span><span id='pt_demandId' hidden = ''>" + element.id + "</span>&nbsp;&nbsp;<a class='btn pt_demandcard-removeVictim'><span class='glyphicon glyphicon-trash'></span></a></div></li>"))
+                        $.each(data, function (index, element) {
+							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><i class='fa fa-usd fa-2x'></i>&nbsp;&nbsp;<span class='elementname'>" + element.victimEmail + "</span><span id='pt_demandId' hidden = ''>" + element.id + "</span>&nbsp;&nbsp;&nbsp;<a class='btn pt_demandcard-removeVictim move-right'><i class='fa fa-trash fa-2x'></i></a></div></li>"))
                         });
                     }
                 },
