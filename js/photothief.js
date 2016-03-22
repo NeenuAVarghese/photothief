@@ -750,11 +750,11 @@ var main = function () {
                 },
                 success: function (data) {
                     // Empty the list
-                    $(".mdl-list").empty();
+                    $(".pt_demandCard-content").empty();
 
                     if (data.length > 0) {
-                        $.each(data, function (index, element) {
-                            $(".mdl-list").append($("<div class='mdl-list__item'><span class='mdl-list__item-primary-content'><i class='material-icons'>person</i><span class='elementname'>" + element.victimEmail + "</span></span><span id='pt_demandId' hidden = ''>" + element.id + "</span><button class=' mdl-list__item-secondary-action' ><i class='pt_demandcard-removeVictim material-icons'>delete</i></button></div>"));
+                        $.each(data, function (index, element) {;
+							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><span class='glyphicon glyphicon-piggy-bank'>&nbsp;</span><span class='elementname'>" + element.victimEmail + "</span><span id='pt_demandId' hidden = ''>" + element.id + "</span>&nbsp;&nbsp;<a class='btn pt_demandcard-removeVictim'><span class='glyphicon glyphicon-trash'></span></a></div></li>"))
                         });
                     }
                 },
@@ -764,35 +764,33 @@ var main = function () {
             });
         } else {
             console.log("not logged in");
-            //$error.text("Either User or Password is empty");
-            //$($pt.demandCard.handle).modal("hide");
         }
     }
 
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
         //Get our user info
         var userId = $($pt.landPage.session.id).text().trim();
-
-        //Show content in the modal for the given user
         updateDemandModal();
         return false;
     });
 
 
     $($pt.demandCard.content).delegate($pt.demandCard.action.collected, "click", function () {
-         var $demandId = $($pt.demandCard.field.demandId).text().trim();
+        var $demandId = $(this).siblings("#pt_demandId").text().trim();
+		console.log($demandId);
         var urlHost = $pt.server.db + "/demands/" + $demandId;
-        console.log($demandId);
 
         var metdata = {
             "met": true
         };
+		
         $.ajax({
             url: urlHost,
             dataType: "json",
             method: "PATCH",
             data: metdata,
             success: function () {
+				$(".pt_demandCard-content").empty();
                 updateDemandModal();
             },
             error: function () {
