@@ -1,3 +1,15 @@
+.victim-body {
+  padding-top: 70px;
+}
+
+.navbar-victim {
+  width: 30em;
+}
+
+.victim-footer {
+  margin: 50px 0;
+}
+
 header .victimContainer {
     max-width: 855px;
     margin: auto;
