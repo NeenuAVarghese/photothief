@@ -110,12 +110,10 @@ var main = function () {
                 demand: "#pt_demandsCard-demand",
                 victimEmail: "#pt_demandsCard-victimEmail",
                 errorStatus: "#pt_demandCard-errorMessage",
-                removeVictim: "#pt_demandcard-removeVictim"
-
+                demandId: "#pt_demandId"
             },
             action: {
-                collected: ".pt_demandcard-removeVictim",
-
+                collected: ".pt_demandcard-removeVictim"
             }
         }
     };
@@ -729,11 +727,8 @@ var main = function () {
         return false;
     });
 
-    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
-        //Get our user info
+    function updateDemandModal() {
         var userId = $($pt.landPage.session.id).text().trim();
-
-        //Show content in the modal for the given user
         if (userId !== "") {
             $($pt.demandCard.handle).modal("show");
             $.ajax({
@@ -750,7 +745,7 @@ var main = function () {
 
                     if (data.length > 0) {
                         $.each(data, function (index, element) {
-                            $(".mdl-list").append($("<div id='pt_demandcard-removeVictim' class='mdl-list__item'><span class='mdl-list__item-primary-content'><i class='material-icons'>person</i><span class='elementname'>" + element.victimEmail + "</span></span><a class='mdl-list__item-secondary-action' href='#'><i class='material-icons'>delete</i></a></div>"));
+                            $(".mdl-list").append($("<div class='mdl-list__item'><span class='mdl-list__item-primary-content'><i class='material-icons'>person</i><span class='elementname'>" + element.victimEmail + "</span></span><span id='pt_demandId' hidden = ''>" + element.id + "</span><button class=' mdl-list__item-secondary-action' ><i class='pt_demandcard-removeVictim material-icons'>delete</i></button></div>"));
                         });
                     }
                 },
@@ -763,25 +758,41 @@ var main = function () {
             //$error.text("Either User or Password is empty");
             //$($pt.demandCard.handle).modal("hide");
         }
+    }
 
-        // Add event handler for the remove button
-        $($pt.demandCard.field.removeVictim).on("click", function (event){
-            var $target = $(event.currentTarget);
-            $target.parent();
-            //to be coded
-        });
+    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
+        //Get our user info
+        var userId = $($pt.landPage.session.id).text().trim();
 
+        //Show content in the modal for the given user
+        updateDemandModal();
         return false;
     });
 
-    // Attempt to clear all modal data
-    // $("body").on("hidden.bs.modal", ".modal", function (event) {
-    //     // if (event.currentTarget.id === $pt.loginCard.handle.substr(1)) {
-    //     // }
-    //     // alert("Fire when modal hide");
-    //     // $(event.currentTarget).removeData("bs.modal");
-    // });
-    // Call function to intitialize it here
+
+    $($pt.demandCard.content).delegate($pt.demandCard.action.collected, 'click', function () {
+         var $demandId = $($pt.demandCard.field.demandId).text().trim();
+        var urlHost = $pt.server.db + "/demands";
+        console.log($demandId);
+
+        var metdata = {
+            'met': true
+        };
+        $.ajax({
+            url: $pt.server.db + "/demands/" + $demandId,
+            dataType: "json",
+            method: "PATCH",
+            data: metdata,
+            success: function () {
+                updateDemandModal();
+            },
+            error: function () {
+                console.log("error occured");
+            }
+        });
+
+    });
+
     initialize();
 
 };
