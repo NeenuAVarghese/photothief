@@ -82,7 +82,7 @@ var main = function () {
                 loginId: "#pt_signupCard-loginId",
                 password: "#pt_signupCard-password",
                 hidePass: "#pt_signupCard-hidePassword",
-                status: "#pt_signupCard-errorMessage"
+                errorStatus: "#pt_signupCard-errorMessage"
             },
             action: {
                 signup: ".pt_signupAction"
@@ -309,6 +309,8 @@ var main = function () {
         var $revealPass = $($pt.loginCard.field.revealPass);
         var $error = $($pt.loginCard.field.errorStatus);
 
+        // Fixed problem with multiple error appending to error
+        $error.empty();
         if ($loginId.val().trim() === "" || $password.val().trim() === "") {
             // Empty login Information
             $error.append(alertBar + "Either User or Password is empty" + alertEnd);
@@ -319,16 +321,6 @@ var main = function () {
         var urlHost = $pt.server.db + "/users";
         urlHost += "?loginId=" + $loginId.val().trim();
         urlHost += "&password=" + $password.val().trim();
-
-        // Clear input boxes
-        $error.text("");
-        $loginId.val("");
-        $password.val("");
-        // Reset the show password checkbox and also the password type
-        if ($revealPass.is(":checked") === true) {
-            $revealPass.prop("checked", false);
-            $password.prop("type", "password");
-        }
 
         // TODO:  Perform AJAX to check data here
         $.ajax({
@@ -342,6 +334,11 @@ var main = function () {
                     $error.append(alertBar + "Invalid Login Information" + alertEnd);
                     return false;
                 } else if (result.length === 1) {
+                    // Clear input boxes
+                    $loginId.val("");
+                    $password.val("").attr("type", "password");
+                    $revealPass.attr("checked", false);
+
                     // Close Bootstrap Login Modal
                     $($pt.loginCard.handle).modal("hide");
                     // Then process the login with the result
@@ -403,8 +400,10 @@ var main = function () {
         var $loginId = $($pt.signupCard.field.loginId);
         var $password = $($pt.signupCard.field.password);
         var $hidePass = $($pt.signupCard.field.hidePass);
-        var $status = $($pt.signupCard.field.status);
+        var $status = $($pt.signupCard.field.errorStatus);
         var signupData = {};
+
+        $status.empty();
 
         // Formulate data to store
         signupData.name = $name.val().trim();
@@ -418,7 +417,7 @@ var main = function () {
             signupData.loginId === "" ||
             signupData.password === "") {
 
-            $status.text("All fields are required !");
+            $status.append(alertBar + "All fields are required !" + alertEnd);
             return false;
         }
 
@@ -449,16 +448,12 @@ var main = function () {
                         data: signupData,
                         success: function (result) {
                             // Clear up the signup form page data
-                            $status.text("");
+                            $status.empty();
                             $name.val("");
                             $email.val("");
                             $loginId.val("");
-                            $password.val("");
-                            // Reset the show password checkbox and also the password type
-                            if ($hidePass.is(":checked") === true) {
-                                $hidePass.prop("checked", false);
-                                $password.prop("type", "text");
-                            }
+                            $password.val("").attr("type", "text");
+                            $hidePass.prop("checked", false);
                             // Close the signup modal
                             $($pt.signupCard.handle).modal("hide");
 
@@ -709,14 +704,16 @@ var main = function () {
             var photo = event.currentTarget.files[0];
             // Initialize the preview image area
             var $preview = $($pt.uploadCard.field.preview).hide();
+            var $error = $($pt.uploadCard.field.errorStatus).hide();
             $preview.empty();
+            $error.empty();
 
             // Only accept JPEG file
             if (!photo.type.match(".*jpeg$")) {
                 // Reset the file selected
                 $target.attr("type", "text").attr("type", "file");
                 // Output message
-                $preview.append($("<p>").text("We only accept jpeg file"));
+                $error.append(alertBar + "We only accept jpeg file" + alertEnd).fadeIn();
                 $preview.fadeIn();
                 return false;
             }
@@ -729,7 +726,8 @@ var main = function () {
             reader.onload = function (event) {
                 // when load finish get the result of the read
                 var src = event.currentTarget.result;
-                var $img = $("<img>").addClass("preview").attr("src", src);
+                var $img = $("<img>").attr("src", src);
+                $img.addClass("preview img-thumbnail");
                 $img.attr("alt", "Upload Preview");
                 $preview.append($img).fadeIn();
             };
@@ -781,16 +779,16 @@ var main = function () {
     });
 
 
-    $($pt.demandCard.content).delegate($pt.demandCard.action.collected, 'click', function () {
+    $($pt.demandCard.content).delegate($pt.demandCard.action.collected, "click", function () {
          var $demandId = $($pt.demandCard.field.demandId).text().trim();
-        var urlHost = $pt.server.db + "/demands";
+        var urlHost = $pt.server.db + "/demands/" + $demandId;
         console.log($demandId);
 
         var metdata = {
-            'met': true
+            "met": true
         };
         $.ajax({
-            url: $pt.server.db + "/demands/" + $demandId,
+            url: urlHost,
             dataType: "json",
             method: "PATCH",
             data: metdata,
