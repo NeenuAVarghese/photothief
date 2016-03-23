@@ -157,7 +157,7 @@ var main = function () {
 
     // Function to load random images from DB
     function loadRandom(indices) {
-        var pt_img = [];
+        //var pt_img = [];
 
         $.ajax({
             url: $pt.server.db + "/photos?used=false",
@@ -167,18 +167,38 @@ var main = function () {
                 // result is an array if it return
                 if (result.length >= 1) {
                     // select random sample of unused images
-                    var sample = _.sample(_.toArray(_.range(0, result.length)), indices.length);
+                    // var sample = _.sample(_.toArray(_.range(0, result.length)), indices.length);
 
+                    // Code to get the whole list of object randomly selected
+                    var maxSample = (result.length > indices.length) ? indices.length: result.length;
+                    var sample = _.sample(result, maxSample);
                     // store image filenames in array
-                    _.each(sample, function (img) {
-                        //console.log(img, result[img].src);
-                        pt_img.push(result[img].src);
-                    });
+                    // _.each(sample, function (img) {
+                    //     //console.log(img, result[img].src);
+                    //     pt_img.push(result[img].src);
+                    // });
 
-                    // shove images onto page
-                    _.each(indices, function (n) {
-                        $("#rand" + n).children("img").eq(0).attr("src", pt_img[n-1]);
+                    _.each(sample, function (image, index) {
+                        // Populate the random slot with our image
+                        var $randSlot = $("#rand" + (index + 1));
+                        var $imgSlot = $randSlot.children("img").eq(0);
+                        $imgSlot.attr("src", image.src);
+                        // Add these attributes to reference in voting
+                        $imgSlot.attr("photoId", image.id);
+                        $imgSlot.attr("photoScore", image.score);
+
+                        // Load the score from DB
+                        $randSlot.attr("data-caption", "<a class='like'><i id='upvote" + index + "'" +
+                        "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
+                        image.score + "</button>" +
+                        "<a class='like'><i id='downvote" + index + "'" +
+                        "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
+
                     });
+                    // shove images onto page
+                    // _.each(indices, function (n) {
+                    //     $("#rand" + n).children("img").eq(0).attr("src", pt_img[n-1]);
+                    // });
 
 
                 } else if (result.length < 1) {
@@ -273,7 +293,8 @@ var main = function () {
 
         // TODO: Any other tasks need to be done here to initialize page
         loadRandom(indices);
-        loadScores(indices);
+        // Dont need the load score as we load it with the loadRandom
+        //loadScores(indices);
         handleVoteAction(indices);
     } // End iniitalize function
 
