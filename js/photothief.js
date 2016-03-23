@@ -188,10 +188,10 @@ var main = function () {
                         $imgSlot.attr("photoScore", image.score);
 
                         // Load the score from DB
-                        $randSlot.attr("data-caption", "<a class='like'><i id='upvote" + index + "'" +
+                        $randSlot.attr("data-caption", "<a class='like'><i id='upvote" + (index + 1) + "'" +
                         "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
                         image.score + "</button>" +
-                        "<a class='like'><i id='downvote" + index + "'" +
+                        "<a class='like'><i id='downvote" + (index + 1) + "'" +
                         "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
 
                     });
