@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global console: true, _: true, chance: true, Clipboard: true */ /* ,alert: true */
+/* global console: true, _: true, Clipboard: true */ /* ,alert: true, chance: true */
 
 var main = function () {
     "use strict";
@@ -212,7 +212,7 @@ var main = function () {
         });
     }
 
-    // Function to load thumbs up/down for each image
+/*    // Function to load thumbs up/down for each image
     function loadScores(indices) {
         _.each(indices, function (n) {
             // Add random score to each random image
@@ -225,7 +225,7 @@ var main = function () {
             //console.log("Loading score for " + n);
         });
     }
-
+*/
     // Event handler for upvote/downvote
     function handleVoteAction(indices) {
         _.each(indices, function (n) {
@@ -801,7 +801,7 @@ var main = function () {
                                     $newItem.find(".pt_demandId").text(element.id);
                                     $newItem.find(".pt_photoId").text(element.photo.id);
                                     $newItem.find(".pt_itemDemand").text(element.demand);
-                                    $newItem.find(".pt_itemURL").text(ransomLink);
+                                    $newItem.find(".pt_itemURL").val(ransomLink);
                                     // Two entries below are to handle the clipboard
                                     $newItem.find(".pt_itemURL").attr("id", "pt_hash" + element.id);
                                     $newItem.find(".pt_itemClipBoard").attr("data-clipboard-target", "#pt_hash" + element.id);

@@ -1,6 +1,6 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global console: true, _: true, chance: true */ /* ,alert: true */
+/* global console: true */ /* _: true, chance: true, alert: true */
 
 var main = function () {
     "use strict";
@@ -8,7 +8,7 @@ var main = function () {
     var hostname = "http://" + window.location.hostname;
 
     var urlhash = (window.location.search).substring(1).split("=")[1];
-    console.log("hash", urlhash)
+    console.log("hash", urlhash);
 
     var $ransom = {
         server: {
@@ -50,7 +50,7 @@ var main = function () {
 
                             } else if (result.length > 1) {
                                 // We have duplicate photos.
-                                console.log("error: duplicate photo")
+                                console.log("error: duplicate photo");
                                 return false;
                             }
                         },
@@ -61,7 +61,7 @@ var main = function () {
 
                 } else if (result.length > 1) {
                     // We have duplicate demands.
-                    console.log("error: duplicate demand")
+                    console.log("error: duplicate demand");
                     return false;
                 }
             },
@@ -71,7 +71,7 @@ var main = function () {
         });
     }
 
-    loadRansom(urlhash)
+    loadRansom(urlhash);
 };
 
 $(document).ready(main);

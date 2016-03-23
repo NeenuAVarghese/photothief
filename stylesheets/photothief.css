@@ -241,8 +241,14 @@ input[type=file] {
   float: right;
 }
 
-.move-center {
+.pt_itemURL {
   text-align: center;
-  font-size: 10px;
-  width: 200px;
+  font-size: 0.7em;
+  width: 400px;
+}
+
+.pt_itemEmail {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 200;
+  font-size: 0.8em;
 }
