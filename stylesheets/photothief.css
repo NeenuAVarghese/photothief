@@ -157,6 +157,9 @@ a {
 
 .pt_imageCard-src {
   max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navbar-inverse {
