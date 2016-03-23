@@ -226,7 +226,13 @@ input[type=file] {
   display: none; /* Do not show the default file input type */
 }
 
-.move-right{
-    display: block;
-    float: right;
+.move-right {
+  display: block;
+  float: right;
+}
+
+.move-center {
+  text-align: center;
+  font-size: 10px;
+  width: 200px;
 }

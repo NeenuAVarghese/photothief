@@ -1,11 +1,12 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global console: true, _: true, chance: true */ /* ,alert: true */
+/* global console: true, _: true, chance: true, Clipboard: true */ /* ,alert: true */
 
 var main = function () {
     "use strict";
 
 	var hostname = "http://" + window.location.hostname;
+    var port = location.port;
     var indices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
     /*
@@ -18,7 +19,7 @@ var main = function () {
     */
     var $pt = {
         server: {
-            upload: hostname + ":8000/ptupload",
+            files: hostname + ":" + port /*8000*/,
             db: hostname + ":3000"
         },
         landPage: {
@@ -539,7 +540,7 @@ var main = function () {
         form.append("photo", $file.files[0]);
 
         $.ajax({
-            url: $pt.server.upload,
+            url: $pt.server.files + "/ptupload",
             method: "POST",
             data: form,
             contentType: false,
@@ -760,8 +761,18 @@ var main = function () {
 
                     if (data.length > 0) {
                         $.each(data, function (index, element) {
-							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><i class='fa fa-usd fa-2x'></i>&nbsp;&nbsp;<span class='elementname'>" + element.victimEmail + "</span><span id='pt_demandId' hidden = ''>" + element.id + "</span>&nbsp;&nbsp;&nbsp;<a class='btn pt_demandcard-removeVictim move-right'><i class='fa fa-trash fa-2x'></i></a></div></li>"));
+							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><i class='fa fa-usd fa-2x'></i>" +
+                            "&nbsp;&nbsp;<span class='elementname'>" + element.victimEmail + "</span>&nbsp;&nbsp;" +
+                            "<span class='move-right'><input id='pt_hash" + element.id + "' class='move-center' value='" +
+                            $pt.server.files + "/victim/?hash=" + element.hash + "' disabled>" +
+                            "<a class='btn clip' data-clipboard-target='#pt_hash" + element.id + "'>" +
+                            "<i class='material-icons'>assignment</i></a><span id='pt_demandId' hidden = ''>" + element.id +
+                            "</span>&nbsp;&nbsp;&nbsp;" + "<a class='btn pt_demandcard-removeVictim'>" +
+                            "<i class='fa fa-trash fa-2x'></i></a></span></div></li>"));
                         });
+                        var enableCopy = new Clipboard(".clip");
+                        console.log(enableCopy);
+
                     }
                 },
                 error: function (error) {
@@ -775,7 +786,6 @@ var main = function () {
 
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
         //Get our user info
-        //var userId = $($pt.landPage.session.id).text().trim();
         updateDemandModal();
         return false;
     });
