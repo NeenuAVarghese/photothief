@@ -533,7 +533,7 @@ var main = function () {
         var pymntType = $($pt.uploadCard.field.paymentType).find("option:selected").text().trim();
         var amount = $($pt.uploadCard.field.amount).val().trim();
         var $error = $($pt.uploadCard.field.errorStatus).hide();
-        var base64 = window.btoa(victimEmail + userId, true).replace("=", ".");
+        var base64 = window.btoa(victimEmail + userId, true).replace(/\=/g, ".");
 
         // Empty the error container
         $error.empty();
