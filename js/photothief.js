@@ -165,11 +165,11 @@ var main = function () {
                 // result is an array if it return
                 if (result.length >= 1) {
                     // select random sample of unused images
-                    var sample = _.sample(_.toArray(_.range(0, result.length)), indices.length)
+                    var sample = _.sample(_.toArray(_.range(0, result.length)), indices.length);
 
                     // store image filenames in array
                     _.each(sample, function (img) {
-                        console.log(img, result[img].src);
+                        //console.log(img, result[img].src);
                         pt_img.push(result[img].src);
                     });
 
@@ -180,7 +180,7 @@ var main = function () {
 
 
                 } else if (result.length < 1) {
-                    console.log("error: unknown image")
+                    console.log("error: unknown image");
                     return false;
                 }
             },
@@ -509,6 +509,7 @@ var main = function () {
         var pymntType = $($pt.uploadCard.field.paymentType).find("option:selected").text().trim();
         var amount = $($pt.uploadCard.field.amount).val().trim();
         var $error = $($pt.uploadCard.field.errorStatus).hide();
+        var base64 = window.btoa(victimEmail + userId, true).replace("=", ".");
 
         // Empty the error container
         $error.empty();
@@ -564,13 +565,13 @@ var main = function () {
                         success: function (result) {
                             // Now we need to add it to the demands database
                             var demandData = {
-                                photoId: result.id,
-                                demand: amount + " " + pymntType,
                                 victimEmail: victimEmail,
                                 createDate: Date.now(),
-                                link: "localhost:8000/ransom.html?id=",
-                                met: false,
-                                userId: userId
+                                demand: amount + " " + pymntType,
+                                photoId: result.id,
+                                userId: userId,
+                                hash: base64,
+                                met: false
                             };
 
                             $.ajax({
@@ -578,39 +579,20 @@ var main = function () {
                                 dataType: "json",
                                 method: "POST",
                                 data: demandData,
-                                success: function (result) {
-                                    // Now we need update the link with the id
-                                    var linkData = {
-                                        link: result.link + result.id
-                                    };
+                                success: function () {
+                                    // Reset form and close modal
+                                    $($pt.uploadCard.field.file).attr("type", "text");
+                                    $($pt.uploadCard.field.file).attr("type", "file");
+                                    $($pt.uploadCard.field.email).val("");
+                                    $($pt.uploadCard.field.amount).val("");
+                                    $($pt.uploadCard.field.preview).empty();
+                                    $error.empty();
 
-                                    $.ajax({
-                                        url: $pt.server.db + "/demands/" + result.id,
-                                        dataType: "json",
-                                        method: "PATCH",
-                                        data: linkData,
-                                        success: function () {
-                                            // Reset form and close modal
-                                            $($pt.uploadCard.field.file).attr("type", "text");
-                                            $($pt.uploadCard.field.file).attr("type", "file");
-                                            $($pt.uploadCard.field.email).val("");
-                                            $($pt.uploadCard.field.amount).val("");
-                                            $($pt.uploadCard.field.preview).empty();
-                                            $error.empty();
-
-                                            // Reload the newest upload carousel
-                                            //var $newestSource = $pt.server.db + "/photos?_sort=createDate&_order=DESC&_limit=10";
-                                            //loadCarousel($pt.carousel.newestUpload, $newestSource);
-                                            // Call this for now to refresh the carousel
-                                            initialize();
-                                            // Hide modal
-                                            $($pt.uploadCard.handle).modal("hide");
-                                            return false;
-                                        },
-                                        error: function (result) {
-                                            console.log("Fail update link" + result.status);
-                                        }
-                                    }); // End Update Ransom Link and reload carousel
+                                    // Call this for now to refresh the carousel
+                                    initialize();
+                                    // Hide modal
+                                    $($pt.uploadCard.handle).modal("hide");
+                                    return false;
                                 },
                                 error: function (result) {
                                     console.log("Fail added to demands database " + result.status);
@@ -778,7 +760,7 @@ var main = function () {
 
                     if (data.length > 0) {
                         $.each(data, function (index, element) {
-							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><i class='fa fa-usd fa-2x'></i>&nbsp;&nbsp;<span class='elementname'>" + element.victimEmail + "</span><span id='pt_demandId' hidden = ''>" + element.id + "</span>&nbsp;&nbsp;&nbsp;<a class='btn pt_demandcard-removeVictim move-right'><i class='fa fa-trash fa-2x'></i></a></div></li>"))
+							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><i class='fa fa-usd fa-2x'></i>&nbsp;&nbsp;<span class='elementname'>" + element.victimEmail + "</span><span id='pt_demandId' hidden = ''>" + element.id + "</span>&nbsp;&nbsp;&nbsp;<a class='btn pt_demandcard-removeVictim move-right'><i class='fa fa-trash fa-2x'></i></a></div></li>"));
                         });
                     }
                 },
@@ -793,7 +775,7 @@ var main = function () {
 
     $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
         //Get our user info
-        var userId = $($pt.landPage.session.id).text().trim();
+        //var userId = $($pt.landPage.session.id).text().trim();
         updateDemandModal();
         return false;
     });

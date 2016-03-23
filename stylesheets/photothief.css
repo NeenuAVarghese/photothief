@@ -222,7 +222,7 @@ a {
   height: 100px;
 }
 
-#pt_uploadCard-file {
+input[type=file] {
   display: none; /* Do not show the default file input type */
 }
 
