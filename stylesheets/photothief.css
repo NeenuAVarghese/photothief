@@ -222,6 +222,16 @@ a {
   height: 100px;
 }
 
+.pt_demandCard-content .preview {
+  clear: left;
+  height: 80px;
+  margin-right: 10px;
+  float: left;
+}
+.pt_demandCard-content .pt_demandListItem {
+    height:100px;
+}
+
 input[type=file] {
   display: none; /* Do not show the default file input type */
 }

@@ -107,6 +107,7 @@ var main = function () {
         demandCard: {
             handle: "#pt_demandCard",
             content: ".pt_demandCard-content",
+            template: "templates/demandItem.tmpl",
             field: {
                 photoId: "#pt_demandsCard-photoId",
                 demand: "#pt_demandsCard-demand",
@@ -115,7 +116,7 @@ var main = function () {
                 demandId: "#pt_demandId"
             },
             action: {
-                collected: ".pt_demandcard-removeVictim"
+                collected: ".pt_demandCard-removeVictim"
             }
         }
     };
@@ -754,26 +755,48 @@ var main = function () {
                 dataType: "json",
                 data: {
                     userId: userId,
-                    met: false
+                    met: false,
+                    _expand:"photo"
                 },
                 success: function (data) {
-                    // Empty the list
-                    $(".pt_demandCard-content").empty();
-
                     if (data.length > 0) {
-                        $.each(data, function (index, element) {
-							$(".pt_demandCard-content").append($("<li class='list-group-item'><div><i class='fa fa-usd fa-2x'></i>" +
-                            "&nbsp;&nbsp;<span class='elementname'>" + element.victimEmail + "</span>&nbsp;&nbsp;" +
-                            "<span class='move-right'><input id='pt_hash" + element.id + "' class='move-center' value='" +
-                            $pt.server.files + "/victim/?hash=" + element.hash + "' disabled>" +
-                            "<a class='btn clip' data-clipboard-target='#pt_hash" + element.id + "'>" +
-                            "<i class='material-icons'>assignment</i></a><span id='pt_demandId' hidden = ''>" + element.id +
-                            "</span>&nbsp;&nbsp;&nbsp;" + "<a class='btn pt_demandcard-removeVictim'>" +
-                            "<i class='fa fa-trash fa-2x'></i></a></span></div></li>"));
-                        });
-                        var enableCopy = new Clipboard(".clip");
-                        console.log(enableCopy);
+                        // Empty the list
+                        var $demandContent = $($pt.demandCard.content);
+                        $demandContent.empty();
 
+                        // We load the template from file for ease of maintenance
+                        var $item = $("<div>").hide();
+                        $item.addClass("list-group-item pt_demandListItem");
+
+                        // Use AJAX to load in the template file with the main carousel
+                        $item.load($pt.demandCard.template, function (result, status) {
+                            if (status === "success") {
+                                $.each(data, function (index, element) {
+                                    var $newItem = $item.clone();
+                                    var ransomLink = $pt.server.files + "/victim/?hash=" + element.hash;
+
+                                    $newItem.find(".pt_itemPhoto").attr("src", element.photo.src);
+                                    $newItem.find(".pt_itemEmail").text(element.victimEmail);
+                                    $newItem.find(".pt_demandId").text(element.id);
+                                    $newItem.find(".pt_photoId").text(element.photo.id);
+                                    $newItem.find(".pt_itemDemand").text(element.demand);
+                                    $newItem.find(".pt_itemURL").text(ransomLink);
+                                    // Two entries below are to handle the clipboard
+                                    $newItem.find(".pt_itemURL").attr("id", "pt_hash" + element.id);
+                                    $newItem.find(".pt_itemClipBoard").attr("data-clipboard-target", "#pt_hash" + element.id);
+
+                                    $demandContent.append($newItem);
+                                    $newItem.fadeIn();
+
+                                });
+                                var enableCopy = new Clipboard(".clip");
+                                console.log(enableCopy);
+
+                            } else {
+                                // Encountered error
+                                console.log(status, "Unable to load " + $pt.demandCard.template);
+                            }
+                        }); // End Load Demand Item template
                     }
                 },
                 error: function (error) {
@@ -792,26 +815,52 @@ var main = function () {
     });
 
 
-    $($pt.demandCard.content).delegate($pt.demandCard.action.collected, "click", function () {
-        var $demandId = $(this).siblings("#pt_demandId").text().trim();
-		console.log($demandId);
-        var urlHost = $pt.server.db + "/demands/" + $demandId;
+    $($pt.demandCard.content).delegate($pt.demandCard.action.collected, "click", function (event) {
+        var $target = $(event.currentTarget);
+        var demandId = $target.siblings(".pt_demandId").text().trim();
+        var photoId = $target.siblings(".pt_photoId").text().trim();
+		console.log(demandId);
+        if (demandId === "" && photoId === "") {
+            return false; // Skip update to prevent DB wipe out
+        }
 
-        var metdata = {
+        var demandURL = $pt.server.db + "/demands/" + demandId;
+        var photoURL = $pt.server.db + "/photos/" + photoId;
+
+        var demandMet = {
             "met": true
         };
 
+        var photoUsed = {
+            "used": true
+        };
+
         $.ajax({
-            url: urlHost,
+            url: demandURL,
             dataType: "json",
             method: "PATCH",
-            data: metdata,
+            data: demandMet,
             success: function () {
-				$(".pt_demandCard-content").empty();
-                updateDemandModal();
+                // Need to update photo used to true
+                $.ajax({
+                    url: photoURL,
+                    dataType: "json",
+                    method: "PATCH",
+                    data: photoUsed,
+                    success: function () {
+                        // updateDemandModal();
+                        $target.parent().fadeOut().remove();
+                        // Call to initialize to reload the carousel
+                        initialize();
+                    },
+                    error: function () {
+                        console.log("Unable to update photo used for " + photoId);
+                    }
+                });
+
             },
             error: function () {
-                console.log("error occured");
+                console.log("Unable to update demand for " + demandId);
             }
         });
 
