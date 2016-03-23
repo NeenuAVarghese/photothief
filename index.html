@@ -160,12 +160,23 @@
         <div class="modal-body">
           <form>
             <p class="uploadSections">Found an incriminating photo or got ransom URL - Upload it!</p>
-            <div class="form-group">
-              <input id="pt_uploadCard-file" name="photo" type="file">
-              <div class="pt_uploadCard-preview">
-                <!-- Image preview during upload will be added here -->
-              </div>
+            <!-- Form Browse Photo -->
+            <div class="form-group pt_uploadCard-preview">
+                <img class="preview thumbnail" alt="photo preview">
             </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <label for="pt_uploadCard-file" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-folder-open">&nbsp;</i>
+                            <span>Browse Photo ...</span>
+                            <input id="pt_uploadCard-file" type="file">
+                        </label>
+                    </span>
+                    <input type="text" id="pt_uploadCard-fileInfo" class="form-control" disabled>
+                </div>
+            </div>
+            <!-- End of Browse Photo input -->
             <div class="form-group">
               <p class="uploadSections">Want to send a ranson URL! </p>
               <label for="pt_uploadCard-victim">Victim's Email</label>
@@ -182,7 +193,7 @@
               <label class="ransomMessage" for="pt_uploadCard-amount">Demand Amount</label>
               <input class="form-control" id="pt_uploadCard-amount" type="number">
             </div>
-            <button class="btn btn-sm btn-primary pt_uploadAction">Send Ransom</button>
+            <button class="btn btn-primary pt_uploadAction">Send Ransom</button>
           </form>
         </div>
         <div class="modal-footer">

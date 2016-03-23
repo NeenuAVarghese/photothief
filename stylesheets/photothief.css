@@ -217,7 +217,10 @@ a {
 
 .pt_uploadCard-preview > .preview {
   height: 100px;
-  margin: 0 100px 0 10px;
+}
+
+#pt_uploadCard-file {
+  display: none; /* Do not show the default file input type */
 }
 
 .move-right{

@@ -92,6 +92,7 @@ var main = function () {
             handle: "#pt_uploadCard",
             field: {
                 file: "#pt_uploadCard-file",
+                fileInfo: "#pt_uploadCard-fileInfo",
                 email: "#pt_uploadCard-victim",
                 paymentType: "#pt_uploadCard-payment",
                 amount: "#pt_uploadCard-amount",
@@ -705,8 +706,11 @@ var main = function () {
             // Initialize the preview image area
             var $preview = $($pt.uploadCard.field.preview).hide();
             var $error = $($pt.uploadCard.field.errorStatus).hide();
+            var $fileInfo = $($pt.uploadCard.field.fileInfo);
+
             $preview.empty();
             $error.empty();
+            $fileInfo.val("");
 
             // Only accept JPEG file
             if (!photo.type.match(".*jpeg$")) {
@@ -714,9 +718,13 @@ var main = function () {
                 $target.attr("type", "text").attr("type", "file");
                 // Output message
                 $error.append(alertBar + "We only accept jpeg file" + alertEnd).fadeIn();
+                $fileInfo.val("File not selected");
                 $preview.fadeIn();
                 return false;
             }
+
+            // Show the file Information
+            $fileInfo.val(photo.name + " ( " + Math.floor(parseInt(photo.size)/1024) + "KB )");
 
             // Use FileReader to preview the image
             var reader = new FileReader();
@@ -783,7 +791,7 @@ var main = function () {
         var metdata = {
             "met": true
         };
-		
+
         $.ajax({
             url: urlHost,
             dataType: "json",
