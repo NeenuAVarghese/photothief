@@ -441,6 +441,7 @@ var main = function () {
 
         // Add an empty avatar for now.
         signupData.avatar = "";
+        signupData.notify = 0;
 
         // Build the JSON urlHost to check if loginId already exist
         var urlHost = $pt.server.db + "/users";
@@ -485,7 +486,7 @@ var main = function () {
                     });
                 } else if (result.length >= 1) {
                     // We have duplicate.
-                    $status.text("LoginId existed. Choose a different loginId");
+                    $status.append(alertBar +"LoginId existed. Choose a different loginId" +alertEnd);
                     return false;
                 }
             },
