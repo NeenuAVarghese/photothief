@@ -153,24 +153,40 @@ var main = function () {
         });
     }
 
-    // Function to random images
+    // Function to load random images from DB
     function loadRandom(indices) {
         var pt_img = [];
-        var pt_rand = 0;
 
-        _.each(indices, function (n) {
-            // Get random image, no dupes
-            pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
-            while (_.contains(pt_img, pt_rand)) {
-                console.log("Dupe found " + pt_rand);
-                pt_rand = chance.pad(chance.integer({min: 1, max: 72}), 3);
+        $.ajax({
+            url: $pt.server.db + "/photos?used=false",
+            dataType: "json",
+            method: "GET",
+            success: function (result) {
+                // result is an array if it return
+                if (result.length >= 1) {
+                    // select random sample of unused images
+                    var sample = _.sample(_.toArray(_.range(0, result.length)), indices.length)
+
+                    // store image filenames in array
+                    _.each(sample, function (img) {
+                        console.log(img, result[img].src);
+                        pt_img.push(result[img].src);
+                    });
+
+                    // shove images onto page
+                    _.each(indices, function (n) {
+                        $("#rand" + n).children("img").eq(0).attr("src", pt_img[n-1]);
+                    });
+
+
+                } else if (result.length < 1) {
+                    console.log("error: unknown image")
+                    return false;
+                }
+            },
+            error: function (result) {
+                console.log("ajax error " + result.status);
             }
-
-            // var $newestSource = $pt.server.db + "/photos?used_ne=true&_limit=15";
-
-            // Add random score to each random image
-            pt_img.push(pt_rand);
-            $("#rand" + n).children("img").eq(0).attr("src", "photos/" + pt_img[n-1] + ".jpg");
         });
     }
 
