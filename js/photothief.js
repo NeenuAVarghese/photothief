@@ -188,11 +188,15 @@ var main = function () {
                         $imgSlot.attr("photoScore", image.score);
 
                         // Load the score from DB
-                        $randSlot.attr("data-caption", "<a class='like'><i id='upvote" + (index + 1) + "'" +
+/*
+                        $randSlot.attr("data-caption", "<a class='like'><i id='upvote" + (index + 1) + "' " +
                         "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
                         image.score + "</button>" +
-                        "<a class='like'><i id='downvote" + (index + 1) + "'" +
+                        "<a class='like'><i id='downvote" + (index + 1) + "' " +
                         "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
+*/
+                        // TODO dirty hack
+                        ($randSlot).children(".Caption").children(".Caption_Content").children(".counter").text(image.score);
 
                     });
                     // shove images onto page
@@ -212,7 +216,7 @@ var main = function () {
         });
     }
 
-/*    // Function to load thumbs up/down for each image
+    // Function to load thumbs up/down for each image
     function loadScores(indices) {
         _.each(indices, function (n) {
             // Add random score to each random image
@@ -225,7 +229,7 @@ var main = function () {
             //console.log("Loading score for " + n);
         });
     }
-*/
+
     // Event handler for upvote/downvote
     function handleVoteAction(indices) {
         _.each(indices, function (n) {
@@ -292,9 +296,9 @@ var main = function () {
         });
 
         // TODO: Any other tasks need to be done here to initialize page
+        // Initialize scores
+        loadScores(indices);
         loadRandom(indices);
-        // Dont need the load score as we load it with the loadRandom
-        //loadScores(indices);
         handleVoteAction(indices);
     } // End iniitalize function
 
