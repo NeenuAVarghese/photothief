@@ -234,31 +234,70 @@ var main = function () {
     function handleVoteAction(indices) {
         _.each(indices, function (n) {
             $(".Collage").on("click", "#upvote" + n, function () {
+				var oldscore;
                 $(this).prop("disabled", true);
                 $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
                 console.log("upvote");
                 $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
                 $("#downvote" + n).prop("disabled", false);
 
-                // TODO
-                $(this).parent().next("button").text(function (i, oldval) {
+                
+				$(this).parent().next("button").text(function (i, oldval) {
                     return ++oldval;
                 });
-            });
+				 //Retrieved old score
+				oldscore =  $(this).parent().next("button").text();
+				var photoId = ($(this).parent().parent().parent().siblings("img").attr('photoid'));
+				console.log(photoId);
+				
+				var updatedScore = {
+            		"score": ++oldscore
+        		}; 
+				//updated new score in the database
+				var photoUrl = $pt.server.db + "/photos/" + photoId;
+				$.ajax({
+					url: photoUrl,
+					dataType: "json",
+					method: "PATCH",
+					data: updatedScore,
+					success: function(){
+					
+					}	
+				});
+				
+			});
         });
 
         _.each(indices, function (n) {
             $(".Collage").on("click", "#downvote" + n, function () {
+				var oldscore;
                 $(this).prop("disabled", true);
                 $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
-                console.log("downvote");
+   
                 $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
                 $("#upvote" + n).prop("disabled", false);
-
-                // TODO
-                $(this).parent().prev("button").text(function (i, oldval) {
+				$(this).parent().prev("button").text(function (i, oldval) {
                     return --oldval;
                 });
+				//Retrieved old score
+				oldscore =  $(this).parent().next("button").text();
+				var photoId = ($(this).parent().parent().parent().siblings("img").attr('photoid'));
+				
+				var updatedScore = {
+            		"score": --oldscore
+        		}; 
+				//updated new score in the database
+				var photoUrl = $pt.server.db + "/photos/" + photoId;
+				$.ajax({
+					url: photoUrl,
+					dataType: "json",
+					method: "PATCH",
+					data: updatedScore,
+					success: function(){
+					
+					}	
+				});
+				
             });
         });
     }
