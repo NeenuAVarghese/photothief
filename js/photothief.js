@@ -157,8 +157,19 @@ var main = function () {
 
     // Function to load random images from DB
     function loadRandom(indices) {
-        //var pt_img = [];
 
+        _.each(indices, function (n) {
+            // Populate the caption information for each of the random image first
+            $("#rand" + n).attr("data-caption",
+                "<a class='like'><i id='upvote" + n + "'" +
+                "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
+                999 + "</button>" +
+                "<a class='like'><i id='downvote" + n + "'" +
+                "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
+            //console.log("Loading score for " + n);
+        });
+
+        // Use AJAX to get the random images
         $.ajax({
             url: $pt.server.db + "/photos?used=false",
             dataType: "json",
@@ -166,44 +177,22 @@ var main = function () {
             success: function (result) {
                 // result is an array if it return
                 if (result.length >= 1) {
-                    // select random sample of unused images
-                    // var sample = _.sample(_.toArray(_.range(0, result.length)), indices.length);
-
                     // Code to get the whole list of object randomly selected
                     var maxSample = (result.length > indices.length) ? indices.length: result.length;
                     var sample = _.sample(result, maxSample);
-                    // store image filenames in array
-                    // _.each(sample, function (img) {
-                    //     //console.log(img, result[img].src);
-                    //     pt_img.push(result[img].src);
-                    // });
 
                     _.each(sample, function (image, index) {
                         // Populate the random slot with our image
                         var $randSlot = $("#rand" + (index + 1));
                         var $imgSlot = $randSlot.children("img").eq(0);
+                        var $caption = $randSlot.find(".Caption_Content");
                         $imgSlot.attr("src", image.src);
                         // Add these attributes to reference in voting
-                        $imgSlot.attr("photoId", image.id);
-                        $imgSlot.attr("photoScore", image.score);
-
-                        // Load the score from DB
-/*
-                        $randSlot.attr("data-caption", "<a class='like'><i id='upvote" + (index + 1) + "' " +
-                        "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
-                        image.score + "</button>" +
-                        "<a class='like'><i id='downvote" + (index + 1) + "' " +
-                        "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
-*/
+                        $caption.attr("photoId", image.id);
+                        $caption.attr("photoScore", image.score);
                         // TODO dirty hack
-                        ($randSlot).children(".Caption").children(".Caption_Content").children(".counter").text(image.score);
-
+                        $caption.children(".counter").text(image.score);
                     });
-                    // shove images onto page
-                    // _.each(indices, function (n) {
-                    //     $("#rand" + n).children("img").eq(0).attr("src", pt_img[n-1]);
-                    // });
-
 
                 } else if (result.length < 1) {
                     console.log("error: unknown image");
@@ -216,88 +205,77 @@ var main = function () {
         });
     }
 
-    // Function to load thumbs up/down for each image
-    function loadScores(indices) {
-        _.each(indices, function (n) {
-            // Add random score to each random image
-            $("#rand" + n).attr("data-caption",
-                "<a class='like'><i id='upvote" + n + "'" +
-                "class='mdi mdi-thumb-up-outline'>&nbsp;</i></a><button class='counter'>" +
-                chance.integer({min: 0, max: 30}) + "</button>" +
-                "<a class='like'><i id='downvote" + n + "'" +
-                "class='mdi mdi-thumb-down-outline'>&nbsp;</i></a>");
-            //console.log("Loading score for " + n);
-        });
-    }
-
     // Event handler for upvote/downvote
     function handleVoteAction(indices) {
         _.each(indices, function (n) {
             $(".Collage").on("click", "#upvote" + n, function () {
-				var oldscore;
+                var oldscore;
+                var photoId = $(this).parent().parent().attr("photoId");
+                var $button = $(this).parent().parent().find("button");
+                var updatedScore = {};
+
                 $(this).prop("disabled", true);
                 $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
                 console.log("upvote");
                 $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
                 $("#downvote" + n).prop("disabled", false);
 
-                
-				$(this).parent().next("button").text(function (i, oldval) {
-                    return ++oldval;
+                //Retrieved old score
+                oldscore =  $button.text();
+
+                console.log(photoId);
+
+                // Increase the score by 1
+                updatedScore.score = ++oldscore;
+
+                //updated new score in the database
+                var photoUrl = $pt.server.db + "/photos/" + photoId;
+                $.ajax({
+                    url: photoUrl,
+                    dataType: "json",
+                    method: "PATCH",
+                    data: updatedScore,
+                    success: function(){
+                        // Once the db has been updated, we update the button
+                        $button.text(oldscore);
+                    }
                 });
-				 //Retrieved old score
-				oldscore =  $(this).parent().next("button").text();
-				var photoId = ($(this).parent().parent().parent().siblings("img").attr('photoid'));
-				console.log(photoId);
-				
-				var updatedScore = {
-            		"score": ++oldscore
-        		}; 
-				//updated new score in the database
-				var photoUrl = $pt.server.db + "/photos/" + photoId;
-				$.ajax({
-					url: photoUrl,
-					dataType: "json",
-					method: "PATCH",
-					data: updatedScore,
-					success: function(){
-					
-					}	
-				});
-				
-			});
+
+            });
         });
 
         _.each(indices, function (n) {
             $(".Collage").on("click", "#downvote" + n, function () {
-				var oldscore;
+                var oldscore;
+                var photoId = $(this).parent().parent().attr("photoId");
+                var $button = $(this).parent().parent().find("button");
+                var updatedScore = {};
+
                 $(this).prop("disabled", true);
                 $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
-   
+
                 $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
                 $("#upvote" + n).prop("disabled", false);
-				$(this).parent().prev("button").text(function (i, oldval) {
-                    return --oldval;
+
+                //Retrieved old score
+                oldscore =  $button.text();
+
+                // Reduce score by 1
+                updatedScore.score = --oldscore;
+
+                //updated new score in the database
+                var photoUrl = $pt.server.db + "/photos/" + photoId;
+                $.ajax({
+                    url: photoUrl,
+                    dataType: "json",
+                    method: "PATCH",
+                    data: updatedScore,
+                    success: function () {
+                        // Once the db has been updated, we update the button
+                        $button.text(oldscore);
+                    }
                 });
-				//Retrieved old score
-				oldscore =  $(this).parent().next("button").text();
-				var photoId = ($(this).parent().parent().parent().siblings("img").attr('photoid'));
-				
-				var updatedScore = {
-            		"score": --oldscore
-        		}; 
-				//updated new score in the database
-				var photoUrl = $pt.server.db + "/photos/" + photoId;
-				$.ajax({
-					url: photoUrl,
-					dataType: "json",
-					method: "PATCH",
-					data: updatedScore,
-					success: function(){
-					
-					}	
-				});
-				
+
             });
         });
     }
@@ -336,7 +314,6 @@ var main = function () {
 
         // TODO: Any other tasks need to be done here to initialize page
         // Initialize scores
-        loadScores(indices);
         loadRandom(indices);
         handleVoteAction(indices);
     } // End iniitalize function
@@ -562,6 +539,7 @@ var main = function () {
 
     }
 
+    // Function to handle The actual upload of image and demands
     function handleUploadAction(event) {
         event.preventDefault();
         // Retrieve all the necessary data to prepare the following:
@@ -809,10 +787,16 @@ var main = function () {
         return false;
     });
 
+    // Function to refresh the data inside the Pending Demand Modal
     function updateDemandModal() {
         var userId = $($pt.landPage.session.id).text().trim();
         if (userId !== "") {
+
             $($pt.demandCard.handle).modal("show");
+            // Empty the list
+            var $demandContent = $($pt.demandCard.content);
+            $demandContent.empty();
+
             $.ajax({
                 url: $pt.server.db + "/demands",
                 method: "GET",
@@ -824,10 +808,6 @@ var main = function () {
                 },
                 success: function (data) {
                     if (data.length > 0) {
-                        // Empty the list
-                        var $demandContent = $($pt.demandCard.content);
-                        $demandContent.empty();
-
                         // We load the template from file for ease of maintenance
                         var $item = $("<div>").hide();
                         $item.addClass("list-group-item pt_demandListItem");
@@ -870,15 +850,14 @@ var main = function () {
         } else {
             console.log("not logged in");
         }
+
+        return false;
     }
 
-    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, function () {
-        //Get our user info
-        updateDemandModal();
-        return false;
-    });
+    // Event handler for Viewing pending Demands
+    $($pt.landPage.section.navbar).on("click", $pt.landPage.action.demand, updateDemandModal);
 
-
+    // Event handler to handle Demand Met (Trashbox)
     $($pt.demandCard.content).delegate($pt.demandCard.action.collected, "click", function (event) {
         var $target = $(event.currentTarget);
         var demandId = $target.siblings(".pt_demandId").text().trim();
