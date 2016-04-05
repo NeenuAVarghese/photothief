@@ -1,11 +1,11 @@
 // Client-side code
 /* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
-/* global console: true, _: true, Clipboard: true */ /* ,alert: true, chance: true */
+/* global console: true, _: true, Clipboard: true */
 
 var main = function () {
     "use strict";
 
-	var hostname = "http://" + window.location.hostname;
+    var hostname = "http://" + window.location.hostname;
     var port = location.port;
     var indices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
@@ -206,76 +206,75 @@ var main = function () {
     }
 
     // Event handler for upvote/downvote
-    function handleVoteAction(indices) {
+    function handleVoteAction(updown, n, that) {
+        var oldscore;
+        var photoId = $(that).parent().parent().attr("photoId");
+        var $button = $(that).parent().parent().find("button");
+        var updatedScore = {};
+
+        if (updown === "up") {
+            console.log("upppp", $(that).is("disabled"));
+            $(that).prop("disabled", true);
+            $(that).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
+            console.log("upvote");
+            $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
+            $("#downvote" + n).prop("disabled", false);
+
+            //Retrieved old score
+            oldscore = $button.text();
+            console.log(photoId);
+
+            // Increase the score by 1
+            updatedScore.score = ++oldscore;
+        }
+
+        else if (updown === "down") {
+            console.log("downnn", $(that).is("disabled"));
+            $(that).prop("disabled", true);
+            $(that).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
+            console.log("downvote");
+            $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
+            $("#upvote" + n).prop("disabled", false);
+
+            //Retrieved old score
+            oldscore =  $button.text();
+            console.log(photoId);
+
+            // Reduce score by 1
+            updatedScore.score = --oldscore;
+        }
+
+        else {
+            console.log("Voting error");
+        }
+
+        //updated new score in the database
+        var photoUrl = $pt.server.db + "/photos/" + photoId;
+        $.ajax({
+            url: photoUrl,
+            dataType: "json",
+            method: "PATCH",
+            data: updatedScore,
+            success: function(){
+                // Once the db has been updated, we update the button
+                $button.text(oldscore);
+            }
+        });
+    }
+
+    // Listen for onclick events
+    function voteEventListener(indices) {
         _.each(indices, function (n) {
             $(".Collage").on("click", "#upvote" + n, function () {
-                var oldscore;
-                var photoId = $(this).parent().parent().attr("photoId");
-                var $button = $(this).parent().parent().find("button");
-                var updatedScore = {};
-
-                $(this).prop("disabled", true);
-                $(this).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
-                console.log("upvote");
-                $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
-                $("#downvote" + n).prop("disabled", false);
-
-                //Retrieved old score
-                oldscore =  $button.text();
-
-                console.log(photoId);
-
-                // Increase the score by 1
-                updatedScore.score = ++oldscore;
-
-                //updated new score in the database
-                var photoUrl = $pt.server.db + "/photos/" + photoId;
-                $.ajax({
-                    url: photoUrl,
-                    dataType: "json",
-                    method: "PATCH",
-                    data: updatedScore,
-                    success: function(){
-                        // Once the db has been updated, we update the button
-                        $button.text(oldscore);
-                    }
-                });
-
+                var that = $(this);
+                handleVoteAction("up", n, that);
             });
         });
 
         _.each(indices, function (n) {
             $(".Collage").on("click", "#downvote" + n, function () {
-                var oldscore;
-                var photoId = $(this).parent().parent().attr("photoId");
-                var $button = $(this).parent().parent().find("button");
-                var updatedScore = {};
-
-                $(this).prop("disabled", true);
-                $(this).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
-
-                $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
-                $("#upvote" + n).prop("disabled", false);
-
-                //Retrieved old score
-                oldscore =  $button.text();
-
-                // Reduce score by 1
-                updatedScore.score = --oldscore;
-
-                //updated new score in the database
-                var photoUrl = $pt.server.db + "/photos/" + photoId;
-                $.ajax({
-                    url: photoUrl,
-                    dataType: "json",
-                    method: "PATCH",
-                    data: updatedScore,
-                    success: function () {
-                        // Once the db has been updated, we update the button
-                        $button.text(oldscore);
-                    }
-                });
-
+                var that = $(this);
+                handleVoteAction("down", n, that);
             });
         });
     }
@@ -315,7 +314,7 @@ var main = function () {
         // TODO: Any other tasks need to be done here to initialize page
         // Initialize scores
         loadRandom(indices);
-        handleVoteAction(indices);
+        voteEventListener(indices);
     } // End iniitalize function
 
     // Function to set things up when login is successful
@@ -862,7 +861,7 @@ var main = function () {
         var $target = $(event.currentTarget);
         var demandId = $target.siblings(".pt_demandId").text().trim();
         var photoId = $target.siblings(".pt_photoId").text().trim();
-		console.log(demandId);
+        console.log(demandId);
         if (demandId === "" && photoId === "") {
             return false; // Skip update to prevent DB wipe out
         }
