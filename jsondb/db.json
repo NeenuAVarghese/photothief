@@ -1067,5 +1067,19 @@
       "hash": "ZGlmZmljdWx0aXJ3aW5AeWFob28uY29tMzY.",
       "met": false
     }
+  ],
+  "haggles": [
+    {
+      "id": 0,
+      "hash": "cmljaGRydXNpbGxhQGdtYWlsLmNvbTM0",
+      "text": "Not fair!",
+      "paid": 400
+    },
+    {
+      "id": 1,
+      "hash": "YW11c2luZ3N1c2FuQGhvdG1haWwuY29tMzI.",
+      "text": "Please leave me alone",
+      "paid": 173
+    }
   ]
 }
