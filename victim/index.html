@@ -1,85 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Blackmail</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="favicon.ico" rel="icon" type="image/x-icon">
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../stylesheets/victimurl.css" rel="stylesheet">
+  <title>Blackmail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <!-- Reset default stylesheets -->
+  <link href="../stylesheets/reset.css" rel="stylesheet" type="text/css">
+  <!-- Bootstrap Core CSS -->
+  <link href="../libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="../stylesheets/victim.css" rel="stylesheet">
 </head>
 
 <body class="victim-body">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-            </div>
-        </div>
-    </nav>
-
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Surprise!</h1>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-
-            <div class="col-md-8">
-                <img id="redhanded" class="img-responsive" src="http://placehold.it/750x500" alt="">
-            </div>
-
-            <div class="col-md-4">
-              <h3>Ransom Message</h3>
-              <p>Your picture is publicly available for everyone to see!</p>
-              <p>Accept my demands within 3 days and I'll take it down, otherwise it will be posted to social media!</p>
-              <h3>Demands</h3>
-              <ul>
-                <li id="mwahaha"></li>
-              </ul>
-              <h3>Pay Ransom</h3>
-              <div>
-                <textarea rows="4" cols="50" placeholder="Any message for me!"></textarea>
-              </div>
-              <div>
-                <input type="number" placeholder="100"><label>points</label>
-              </div>
-              <button>Confirm</button>
-            </div>
-            
-        </div>
-        <!-- /.row -->
-        
-        
-        
-        <!-- Footer -->
-        <footer class="victim-footer">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3>Disclaimer</h3>
-                <p>We take no responsibility and assume no liability for any content uploaded.</p>
-              </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-        
+      <div class="navbar-header">
+        <div class="navbar-brand noselect">You've been Blackmailed!</div>
+      </div>
     </div>
-    
-    <!-- JQuery -->
-    <script src="../libraries/jquery/jquery-2.2.2.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../libraries/bootstrap/js/bootstrap.min.js"></script>
-    <!-- UnderscoreJS -->
-    <script src="../libraries/underscore/underscore-min.js"></script>
-    <!-- Application specific JS have it load last -->
-    <script src="../js/victim.js"></script>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 title">
+        <h1 class="page-header noselect">Surprise!</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 victim-image">
+        <img id="redhanded" class="img-responsive" src="http://placehold.it/750x500" alt="">
+      </div>
+
+      <div class="col-md-4">
+        <div class="noselect">
+          <h3>Ransom Message</h3>
+          <p>Your picture is publicly available for everyone to see!</p>
+          <p>Accept my demands within 3 days and I'll take it down, otherwise it will be posted to social media!</p>
+          <h3>Demands</h3>
+          <ul>
+            <li id="mwahaha"></li>
+          </ul>
+          <h3>Pay Ransom</h3>
+        </div>
+
+        <form class="haggle">
+          <div>
+            <textarea id="message" rows="4" cols="50" placeholder="Any message for me!"></textarea>
+          </div>
+          <div>
+            <input id="amount" type="number" placeholder="100" min="0" required>
+            <label id="pymntType">points</label>
+          </div>
+          <button>Confirm</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="victim-footer noselect">
+      <div class="row">
+        <div class="col-lg-12">
+        <h3>Disclaimer</h3>
+        <p>We take no responsibility and assume no liability for any content uploaded.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JQuery -->
+  <script src="../libraries/jquery/jquery-2.2.2.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="../libraries/bootstrap/js/bootstrap.min.js"></script>
+  <!-- UnderscoreJS -->
+  <script src="../libraries/underscore/underscore-min.js"></script>
+  <!-- Application specific JS have it load last -->
+  <script src="../js/victim.js"></script>
 </body>
 </html>

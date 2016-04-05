@@ -1,67 +1,68 @@
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.noselect {
+  cursor: default;
+}
+
 .victim-body {
-  padding-top: 70px;
+  padding-top: 2em;
 }
 
 .navbar-victim {
   width: 30em;
 }
 
-.victim-body .container h1{
-    font-family:Ubuntu;
+.victim-body {
+  font-family: "Arial", sans-serif;
 }
 
-.victim-footer {
-  margin: 50px 0;
-  font-family:Ubuntu;
+h3 {
+  font-size: 1.8em;
 }
 
-.col-md-4 h3, .col-md-12 h1{
-   font-family:Ubuntu;
-   font-weight:200;
-   font-style:normal;
-   color:black;
-   font-size:30px;
+p, li {
+  font-style: italic;
+  padding-left: 1em;
 }
 
-.col-md-4 p , .col-md-4 li{
-    font-style:Ubuntu;
-    font-weight:normal;
-    font-style:italic;
-    padding-left:20px;
+p {
+  font-size: 1em;
 }
 
-.col-md-8 img{
-    border-radius:15px;    
+li {
+  font-size: 1.3em;
 }
 
-textarea{
-  padding:5px 2px;
-  margin:4px 4px;
-  text-align:left; 
+img {
+  border-radius: 15px;
+}
+
+.victim-image {
+  max-width: 550px;
+}
+
+input[type=number], textarea {
+  padding-left: 8px;
+  margin: 4px;
+  text-align: left;
   border-radius: 5px;
   border: 2px solid black;
 }
 
-input[type=number]{
-    border-radius: 5px;
-    border: 2px solid black;
-    margin-left:5px;
-}
-
 button {
-  padding:10px 20px;
-  margin-left:5px;
-  margin-top:5px;
-  text-decoration:none;
-  color:white;
-  border:none;
-  Background-color:black;
- border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 5px;
+  margin-top: 5px;
+  text-decoration: none;
+  color: white;
+  border: none;
+  background-color: black;
+  border-radius: 5px;
 }
 
-.victim-footer p{
-    max-width: 855px;
-    font-size:small;
-    font-style:italic;
-    
+.victim-footer {
+  font-style: italic;
+  padding-bottom: 2em;
 }
