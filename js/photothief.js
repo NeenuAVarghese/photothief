@@ -8,6 +8,7 @@ var main = function () {
     var hostname = "http://" + window.location.hostname;
     var port = location.port;
     var indices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+    var scores = [];
 
     /*
         Change the individual variable into a object with tree structure like
@@ -192,6 +193,7 @@ var main = function () {
                         $caption.attr("photoScore", image.score);
                         // TODO dirty hack
                         $caption.children(".counter").text(image.score);
+                        scores.push(image.score);
                     });
 
                 } else if (result.length < 1) {
@@ -207,41 +209,63 @@ var main = function () {
 
     // Event handler for upvote/downvote
     function handleVoteAction(updown, n, that) {
-        var oldscore;
         var photoId = $(that).parent().parent().attr("photoId");
         var $button = $(that).parent().parent().find("button");
         var updatedScore = {};
 
-        if (updown === "up") {
-            console.log("upppp", $(that).is("disabled"));
-            $(that).prop("disabled", true);
-            $(that).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
-            console.log("upvote");
-            $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
-            $("#downvote" + n).prop("disabled", false);
+        // Retrieve the score from array
+        var oldscore = scores[n - 1];
 
-            //Retrieved old score
-            oldscore = $button.text();
+        if (updown === "up") {
             console.log(photoId);
 
-            // Increase the score by 1
-            updatedScore.score = ++oldscore;
+            if ($(that).hasClass("mdi-thumb-up-outline")) {
+                console.log("upvote");
+                // Set upvote icon to clicked
+                $(that).addClass("mdi-thumb-up").removeClass("mdi-thumb-up-outline");
+                // Set downvote icon to unclicked
+                $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
+                // Increase the score by 1
+                updatedScore.score = ++oldscore;
+            }
+            else if ($(that).hasClass("mdi-thumb-up")) {
+                console.log("reset");
+                // Set upvote icon to unclicked
+                $(that).addClass("mdi-thumb-up-outline").removeClass("mdi-thumb-up");
+                // Set downvote icon to unclicked
+                $("#downvote" + n).removeClass("mdi-thumb-down").addClass("mdi-thumb-down-outline");
+                // Reset the score
+                updatedScore.score = oldscore;
+            }
+            else {
+                console.log("Upvote error");
+            }
         }
 
         else if (updown === "down") {
-            console.log("downnn", $(that).is("disabled"));
-            $(that).prop("disabled", true);
-            $(that).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
-            console.log("downvote");
-            $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
-            $("#upvote" + n).prop("disabled", false);
-
-            //Retrieved old score
-            oldscore =  $button.text();
             console.log(photoId);
 
-            // Reduce score by 1
-            updatedScore.score = --oldscore;
+            if ($(that).hasClass("mdi-thumb-down-outline")) {
+                console.log("downvote");
+                // Set downvote icon to clicked
+                $(that).addClass("mdi-thumb-down").removeClass("mdi-thumb-down-outline");
+                // Set upvote icon to unclicked
+                $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
+                // Reduce the score by 1
+                updatedScore.score = --oldscore;
+            }
+            else if ($(that).hasClass("mdi-thumb-down")) {
+                console.log("reset");
+                // Set downvote icon to unclicked
+                $(that).addClass("mdi-thumb-down-outline").removeClass("mdi-thumb-down");
+                // Set upvote icon to unclicked
+                $("#upvote" + n).removeClass("mdi-thumb-up").addClass("mdi-thumb-up-outline");
+                // Reset the score
+                updatedScore.score = oldscore;
+            }
+            else {
+                console.log("Downvote error");
+            }
         }
 
         else {
