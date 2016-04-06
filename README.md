@@ -1,36 +1,14 @@
-Software Installation
-The application was built using the following software and libraries.  All licenses and credits for these libraries are to the respected owners.  We only use them to incorporate it into the application.
-Software LibrariesLicense DetailsOfficial WebsiteBootstrap CSS FrameworkMIT licensehttp://getbootstrap.com/Clipboard libraryMIT licensehttps://github.com/zenorocha/clipboard.jsCollageplus libraryMIT, GPLv2 Licensehttp://collageplus.edlea.com/Font-awesomeMIT, SIL OFL 1.1http://fontawesome.io/Material Design Lite icons, fontsSIF OFL 1.1https://github.com/FortAwesome/Font-AwesomeJQueryMIT licensehttp://jquery.com/OwlcarouselMIT licensehttp://www.owlcarousel.owlgraphic.com/UnderscoreMIT licensehttp://underscorejs.org/ExpressMIT licensehttps://github.com/expressjsMulterMIT licensehttps://github.com/expressjs/multer
-a. Prerequisites
-Before installing the application, we need to setup a basic environment to get started.  Below is the list of preinstalled software that must exists for our application to work.
-1. NodeJS 
-2. Json-server module 
-3. Git
-4. npm
-The above can be satisfied quite easily using the predefined vagrant node-box provided in this course.
-b. Installation
-To install the application perform the following steps:
-1. Create or pick a directory of your choice to host the application  i.e. ~/test
-	mkdir test
-2. Clone our application from github
-cd test
-git clone https://github.com/NeenuAVarghese/photothief.git
-3. Install the node dependencies modules required for this application (Express and Multer)
-	cd photothief
-	npm install
-Upon finish installation, you should have the following directory structures similar to the screenshot below.
-Figure: After Installation Directory Structurec. Post Installation and Run the application
-To use the demo data, we need to perform the following:
+#PhotoThief - *A photosharing site*
 
-1. Git clone the demo photo files
-git clone https://github.com/ddangcsu/photothief-demo.git
-2. Extract and copy the demo photos into the photos subdirectory of photothief application
-3. Start the node server that will assist us in accepting upload photos and also acting as a static file server.
-      cd <path_to>/photothief
-      node ./server/ptserver
-Figure : Starting HTTP Server4. Open another ssh session and start the json server to host the database
-	cd <path_to>/photothief
-	json-server ./jsondb/db.json
-Figure: Starting JSON Server      
-5. Open the browser and connect to http://localhost:8000 to start using the application
+PhotoThief is a photo-sharing site where users can upload incriminating photos and generate a ransoms link that the users can send to the victims.  The application is created for entertainment purposes only and primarily use to demonstrate that such single-page web application can be written entirely with just HTML, CSS, and JavaScript technologies
 
+![Main Screen](https://github.com/NeenuAVarghese/photothief/blob/master/screenshots/MainScreen.png)
+###Software Installation
+
+####Prerequisites
+Before installing the application, we need to setup a basic environment to get started.  Below is the list of required preinstalled software:
+1.	NodeJS and update npm
+2.	Json-server module 
+3.	Git
+4.	Two servers are required for this application. HTTP server will be running on port 8000 and JSON server will be running on port 3000. Please ensure that the environment has these two ports available. 
+5.  Additionally, an internet connection is needed to download the application from GitHub.
