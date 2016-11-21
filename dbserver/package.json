@@ -1,0 +1,23 @@
+{
+  "name": "photothief-db",
+  "version": "1.0.0",
+  "description": "standalone json-server DB",
+  "main": "dbserver.js",
+  "scripts": {
+    "start": "node dbserver.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mittman/photothief-db.git"
+  },
+  "author": "mittman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mittman/photothief-db/issues"
+  },
+  "homepage": "https://github.com/mittman/photothief-db#readme",
+  "dependencies": {
+    "json-server": "^0.8.10"
+  }
+}

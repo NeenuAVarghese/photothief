@@ -19,7 +19,7 @@
 // formField: the input name of the field specify the type="file"
 // route: the route name that this application will expose
 var pt = {
-    port: 8000,
+    port: process.env.PORT || 8000,
     staticHtml: "./",
     uploadDir: "./photos",
     photoPrefix: "ptimg-",
