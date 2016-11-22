@@ -20,8 +20,8 @@ var main = function () {
     */
     var $pt = {
         server: {
-            files: hostname + ":" + port /*8000*/,
-            db: hostname + ":3000"
+            files: config.files,
+            db: config.db
         },
         landPage: {
             section: {
@@ -857,7 +857,6 @@ var main = function () {
 
                                 });
                                 var enableCopy = new Clipboard(".clip");
-                                console.log(enableCopy);
 
                             } else {
                                 // Encountered error
